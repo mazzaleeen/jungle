@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Джунгли Сити — детский развлекательный парк</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Yg7M0YnaYnXg2sx70IHQZRC4PpRi4INNuVY1FML374AQ6bBkBIT3L-GjhNqk_JVD8vryYGzC09GjZvnFwhFnFssPLSqy4v8g6VqfsAHH8uWx3cLo4tFPYCUO6mmeWpoDRw6AoCiOzz3SWd8gtR1L_mn5usdvVIgO0ItPJo9ei-5fkXOBmKK00MC-Y2p-Q-u6dejwKzjOPDgvOVB8SCujVjrEvO2J1MSlSKZRvwSKIGWw2dG2zS_04L3GI68XI4amGZj87kzN2l5nFFvSqVV4Vdh3PNAebR1yc3PP5pNCBBIdSxsY-UaPoBh6-R4cGnNdD9_YntFMKbn-mcfkA6Snk85ligcQRSX5hBWnHDOPQHK40xZmZGYaPiMXv9koLm1wHNA6NB2qQzcEmlCKbQiHc5yAmknQHMWO6pTbhN6l-1WixEIywHFdsLztHCLksJs412IwIFVQshq6u2WTS804fvOw-jAIMFzSwHYRxcw5BDw588ENKoYtm8heLR-D378a_F8A8zVyZdsdAoXDSNuNwAMrPSkdE90y6h78G74sfOzaYKE8TEpnRXPhIs7m7PNB5QJWK7rVeblfuvAfLv7keUh3f9kKy2Quay8EYUGW_XjMSyFnZE8oPujbETseIjcqd2k6BOvPrz1vF0rGPY7UKg" charset="UTF-8"></script><style>
+:root{
+  --purple:#6E25BD;
+  --purple-dark:#5A1D9E;
+  --purple-grad-a:#470C94;
+  --purple-grad-b:#6E25BD;
+  --logo-purple:#7C35B5;
+  --logo-purple-dark:#6A2D9C;
+  --green:#58CC3A;
+  --green-dark:#3FA028;
+  --green-light:#7EE06A;
+  --gold:#F5A623;
+  --gold-light:#FFD166;
+  --pink:#EC4899;
+  --pink-light:#F472B6;
+  --bg:#FFFDF9;
+  --bg-lavender:#F4F0FC;
+  --text:#470C94;
+  --text-muted:#6B4FA8;
+  --line:#E7DFF7;
+  --radius:28px;
+  --radius-sm:16px;
+  --shadow-soft:0 4px 20px rgba(71,12,148,0.08);
+  --shadow-medium:0 8px 32px rgba(71,12,148,0.12);
+  --shadow-strong:0 16px 48px rgba(71,12,148,0.18);
+
+  --purple-1: #4a1185;
+  --purple-2: #6b2cc0;
+  --purple-hover: #8b5cf6;
+  --purple-deep: #2e0b5e;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#FFFDF9;color:#470C94;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-weight:700;}
+h1,h2,h3,h4{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:700;letter-spacing:-0.02em;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1140px;margin:0 auto;padding:0 24px;}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-dark);font-weight:900;}
+
+/* ===== ПАТТЕРНЫ ===== */
+.pattern-dots{
+  background-image:radial-gradient(circle, rgba(71,12,148,0.055) 1.8px, transparent 1.8px);
+  background-size:28px 28px;
+}
+.pattern-dots-light{
+  background-image:radial-gradient(circle, rgba(71,12,148,0.035) 1.8px, transparent 1.8px);
+  background-size:28px 28px;
+}
+
+
+  /* ===== ШАПКА ===== */
+  .top-bar{background:var(--green);color:#fff;position:relative;padding:12px 0 34px}
+  .top-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .top-item{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+  .top-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+  .top-icon svg{width:20px;height:20px}
+  .top-icon--green{background:rgba(255,255,255,.25);color:#fff}
+  .top-icon--white{background:#fff;color:var(--green-dark)}
+  .top-text{display:flex;flex-direction:column;line-height:1.15}
+  .top-text small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.95;font-weight:700}
+  .top-text strong{font-size:17px;font-weight:800}
+  .top-text--right{align-items:flex-end;text-align:right}
+  .top-divider{width:1px;height:34px;background:rgba(255,255,255,.4)}
+  .top-wave{position:absolute;left:0;bottom:-1px;width:100%;height:26px;display:block}
+
+  .main-bar{background:linear-gradient(90deg,var(--purple-1),var(--purple-2))}
+  .main-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:relative}
+  .logo{color:#fff;font-weight:900;text-decoration:none}
+  .logo img{height:58px;display:block}
+
+  .nav{display:flex;gap:12px;align-items:center}
+  .nav-btn{
+    color:#fff;text-decoration:none;text-transform:uppercase;
+    font-weight:800;font-size:14px;letter-spacing:.06em;
+    padding:13px 28px;border-radius:999px;
+    transition:background .25s, transform .25s;
+  }
+  .nav-btn:hover{background:var(--purple-hover);transform:translateY(-1px)}
+  .nav-btn.active{background:var(--green)}
+  .nav-btn.active:hover{background:var(--purple-hover)}
+
+  .burger{display:none;width:44px;height:44px;border:none;border-radius:12px;
+    background:rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer;
+    align-items:center;justify-content:center}
+
+  /* ===== HERO ===== */
+  .hero{background:linear-gradient(180deg,var(--purple-2),var(--purple-deep));
+    color:#fff;position:relative;padding:70px 0 110px}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(34px,6vw,56px);font-weight:900}
+  .hero p{margin-top:12px;font-size:18px;opacity:.9;max-width:560px}
+  .hero-stats{display:flex;gap:16px;margin-top:30px;flex-wrap:wrap}
+  .stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    border-radius:16px;padding:14px 24px;display:flex;flex-direction:column}
+  .stat strong{font-size:24px;font-weight:900}
+  .stat span{font-size:13px;opacity:.85}
+  .hero-wave{position:absolute;left:0;bottom:-1px;width:100%;height:44px;display:block}
+  .mascot-box{display:flex;align-items:center;justify-content:center}
+  .mascot-box img{width:100%;max-width:260px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.25));animation:float 4s ease-in-out infinite}
+
+  
+
+
+/* ===== НАВИГАЦИОННЫЕ КНОПКИ ===== */
+.quick-nav{padding:40px 24px 60px;}
+.quick-nav-card{
+  background:#fff; border-radius:32px; padding:40px 36px 44px;
+  box-shadow:0 12px 40px rgba(71,12,148,0.10);
+  border:1px solid #E8E0F5;
+  position:relative; overflow:hidden;
+}
+.qn-title{
+  text-align:center; color:var(--purple-1); text-transform:uppercase;
+  font-size:22px; margin-bottom:32px; font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-weight:700; letter-spacing:0.04em;
+}
+.nav-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.nav-card{
+  background:#F0E6FF;
+  border:1.5px solid #D4C4F0; border-radius:24px;
+  padding:28px 20px; text-align:center; transition:all .3s ease; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; min-height:90px;
+}
+.nav-card:hover{
+  background:#E8D9FF;
+  border-color:var(--purple-1);
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(74,17,133,0.12);
+}
+.nav-card h3{
+  font-size:17px; color:#4a1185; text-transform:uppercase;
+  letter-spacing:0.06em; font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-weight:700; margin:0;
+}
+
+/* ===== СЕКЦИИ-РАЗДЕЛЫ ===== */
+section.category{padding:80px 0; scroll-margin-top:100px; position:relative;}
+section.category h2{
+  font-size:clamp(28px,3.5vw,36px);
+  color:var(--text); text-transform:uppercase;
+  margin-bottom:40px; display:flex; align-items:center; gap:16px;
+}
+section.category h2::before{
+  content:''; display:inline-block; width:8px; height:40px;
+  background:var(--purple);
+  border-radius:4px;
+}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+.placeholder-box{
+  border:2px dashed #C9B8ED; border-radius:var(--radius); background:var(--bg-lavender);
+  min-height:220px;
+}
+
+/* ===== ПОДВАЛ ===== */
+footer{
+  background:#511691;
+  color:#F0E6FA;
+  position:relative;
+}
+.footer-inner{max-width:1140px; margin:0 auto; padding:64px 24px 36px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:48px; position:relative; z-index:1;}
+footer h4{color:#fff; text-transform:uppercase; font-size:16px; margin-bottom:20px; letter-spacing:.04em; font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+footer a{display:block; font-size:15px; margin-bottom:12px; opacity:.9; transition:.25s; font-weight:700;}
+footer a:hover{color:var(--green-light); opacity:1; transform:translateX(4px);}
+footer p{font-size:14px; opacity:.85; margin-top:18px; max-width:280px; font-weight:700; line-height:1.7;}
+.footer-logo{display:flex; align-items:center; gap:16px; margin-bottom:16px;}
+.footer-logo img{height:64px; width:auto; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));}
+.footer-bottom{
+  text-align:center; font-size:13px; opacity:.7; padding:20px 24px;
+  border-top:1px solid rgba(255,255,255,.12); font-weight:700;
+}
+
+/* ===== КНОПКА "НАВЕРХ" ===== */
+.to-top{
+  position:fixed; right:24px; bottom:24px; width:68px; height:68px; border-radius:50%;
+  background:linear-gradient(135deg, var(--pink), var(--pink-light));
+  color:#fff; border:none; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:2px; cursor:pointer;
+  box-shadow:0 10px 30px rgba(236,72,153,.35); opacity:0; visibility:hidden;
+  transform:translateY(16px) scale(0.9); transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  z-index:70;
+}
+.to-top.visible{opacity:1; visibility:visible; transform:translateY(0) scale(1);}
+.to-top:hover{transform:translateY(-4px) scale(1.05); box-shadow:0 14px 40px rgba(236,72,153,.5);}
+.to-top svg{width:20px; height:20px;}
+.to-top span{font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:.04em;}
+
+/* ===== АНИМАЦИИ ПОЯВЛЕНИЯ ===== */
+@keyframes fadeInUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+.{opacity:0; animation:none;}
+..visible{animation:fadeInUp .7s cubic-bezier(.22,1,.36,1) forwards;}
+.mascot-box img{animation:float 4s ease-in-out infinite;}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;text-align:center;gap:36px}
+  .mascot-box img{max-width:180px}
+  .hero-stats{justify-content:center}
+  .top-divider{display:none}
+  .burger{display:flex}
+  .nav{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;
+    flex-direction:column;background:var(--purple-1);border-radius:16px;
+    padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);z-index:20}
+  .nav.open{display:flex}
+  .nav-btn{width:100%;text-align:center}
+  .nav-grid, .grid-3{grid-template-columns:1fr}
+  .quick-nav-card{padding:32px 24px}
+  .footer-inner{flex-direction:column;text-align:center;gap:32px}
+  .footer-logo{justify-content:center}
+}
+</style>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+</head>
+<body>
+
+<header class="site-header">
+  <!-- Зелёная полоса -->
+  <div class="top-bar">
+    <div class="container top-bar__inner">
+      <div class="top-item">
+        <span class="top-icon top-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="top-text">
+          <small>Ежедневно</small>
+          <strong>10:00 – 22:00</strong>
+        </span>
+      </div>
+      <span class="top-divider"></span>
+      <a href="tel:+70000000000" class="top-item">
+        <span class="top-text top-text--right">
+          <small>Позвонить</small>
+          <strong>+7 (000) 000-00-00</strong>
+        </span>
+        <span class="top-icon top-icon--white">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        </span>
+      </a>
+    </div>
+    <!-- волна -->
+    <svg class="top-wave" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="gradHeader" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#4a1185"/>
+          <stop offset="1" stop-color="#6b2cc0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#gradHeader)" d="M0,30 C160,46 340,8 540,16 C740,24 900,46 1100,32 C1260,21 1370,26 1440,32 L1440,52 L0,52 Z"/>
+    </svg>
+  </div>
+
+  <!-- Фиолетовая панель с логотипом и меню -->
+  <div class="main-bar">
+    <div class="container main-bar__inner">
+      <a class="logo" href="#">
+        <img src="images/image.png" alt="Джунгли Сити">
+      </a>
+      <nav class="nav" id="nav">
+        <a class="nav-btn active" href="#cafe">Кафе</a>
+        <a class="nav-btn" href="#new">Новинки</a>
+        <a class="nav-btn" href="#extra">Доп. услуги</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ХИРО -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Джунгли Сити</h1>
+      <p>Детский развлекательный парк, где каждый день — настоящее приключение!</p>
+      <div class="hero-stats">
+        <div class="stat"><strong>1950 м²</strong><span>игровой зоны</span></div>
+        <div class="stat"><strong>20+</strong><span>активностей</span></div>
+      </div>
+    </div>
+    <div class="mascot-box">
+      <img src="images/mascot.png" alt="Маскот парка Джунгли Сити">
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#f7f3ff" d="M0,40 C240,60 480,10 720,26 C960,42 1200,14 1440,34 L1440,60 L0,60 Z"/>
+  </svg>
+</section>
+
+<!-- НАВИГАЦИОННЫЕ КНОПКИ -->
+<section class="quick-nav">
+  <div class="container">
+    <div class="quick-nav-card">
+      <h2 class="qn-title">Навигационные кнопки</h2>
+      <div class="nav-grid">
+        <a href="#cafe" class="nav-card">
+          <h3>Кафе</h3>
+        </a>
+        <a href="#new" class="nav-card">
+          <h3>Новинки</h3>
+        </a>
+        <a href="#extra" class="nav-card">
+          <h3>Доп. услуги</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ: КАФЕ -->
+<section class="category pattern-dots" id="cafe" style="background:var(--bg);">
+  <div class="container">
+    <h2>Кафе</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ: НОВИНКИ -->
+<section class="category pattern-dots-light" id="new" style="background:var(--bg-lavender);">
+  <div class="container">
+    <h2>Новинки</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ: ДОП УСЛУГИ -->
+<section class="category pattern-dots" id="extra" style="background:var(--bg);">
+  <div class="container">
+    <h2>Доп. услуги</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="images/image.png" alt="Джунгли Сити">
+      </div>
+      <p>Детский развлекательный парк, где дети растут счастливыми, а родители отдыхают спокойно.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <a href="#cafe">Кафе</a>
+      <a href="#new">Новинки</a>
+      <a href="#extra">Доп. услуги</a>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <a href="#">г. Москва, ул. Южнобутовская, 76</a>
+      <a href="tel:+70000000000">+7 (000) 000-00-00</a>
+      <a href="#">Ежедневно 10:00–22:00</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span>Наверх</span>
+</button>
+
+<script>
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => toTop.classList.toggle('visible', window.scrollY > 400));
+toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+if(burger && nav){
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+}
+</script>
+</body>
+</html>
