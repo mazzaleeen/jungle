@@ -129,7 +129,7 @@ button{font-family:inherit}
 .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .pkg-card{background:#fff;border:2px solid var(--line);border-radius:28px;padding:28px 26px;display:flex;flex-direction:column;gap:18px;transition:border-color .25s,transform .25s,box-shadow .25s}
 .pkg-card:hover{border-color:var(--purple-1);box-shadow:0 14px 34px rgba(74,17,133,.14);transform:translateY(-4px)}
-.pkg-card--featured{border-color:var(--purple-1);background:linear-gradient(180deg,#fff,var(--bg-lavender))}
+.pkg-card--featured{background:linear-gradient(180deg,#fff,var(--bg-lavender))}
 .pkg-card__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .pkg-card__name{font-size:20px;text-transform:uppercase;color:var(--purple-1)}
 .pkg-card__duration{background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:6px 14px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
