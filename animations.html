@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анимации — Джунгли Сити</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container top-bar__inner">
+      <div class="top-item">
+        <span class="top-icon top-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="top-text">
+          <small>Ежедневно</small>
+          <strong>10:00 – 22:00</strong>
+        </span>
+      </div>
+      <span class="top-divider"></span>
+      <a href="tel:+70000000000" class="top-item">
+        <span class="top-text top-text--right">
+          <small>Позвонить</small>
+          <strong>+7 (000) 000-00-00</strong>
+        </span>
+        <span class="top-icon top-icon--white">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        </span>
+      </a>
+    </div>
+    <svg class="top-wave" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a1185"/><stop offset="1" stop-color="#6b2cc0"/></linearGradient></defs>
+      <path fill="url(#gh)" d="M0,30 C160,46 340,8 540,16 C740,24 900,46 1100,32 C1260,21 1370,26 1440,32 L1440,52 L0,52 Z"/>
+    </svg>
+  </div>
+  <div class="main-bar">
+    <div class="container main-bar__inner">
+      <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
+      <nav class="nav" id="nav">
+        <div class="nav-item">
+          <a class="nav-btn" href="index.html#">Кафе</a>
+        </div>
+
+        <!-- АНИМАЦИИ: активный раздел на этой странице -->
+        <div class="nav-item">
+          <button class="nav-btn active" type="button" data-flyout-trigger="anim-nav">
+            Анимации
+            <span class="nav-btn__caret" aria-hidden="true"></span>
+          </button>
+          <div class="flyout" data-flyout="anim-nav">
+            <a href="#domiki">Домики для праздника</a>
+            <a href="#packages">Праздничные пакеты</a>
+            <a href="#new">Новинки</a>
+            <a href="#vip">VIP герои</a>
+            <a href="#quests">Активити и квесты</a>
+            <a href="#kids">Малышник</a>
+            <a href="#masterclass">Мастер-классы</a>
+            <a href="#shows">Шоу-программы</a>
+            <a href="#parties">Вечеринки</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-btn" href="index.html#">Доп. услуги</a>
+        </div>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Крутая анимация для улётного праздника</h1>
+    <p>Каталог развлекательных программ Джунгли Сити — выбирайте категорию в меню ниже.</p>
+  </div>
+  <svg class="page-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FFFDF9" d="M0,40 C240,60 480,10 720,26 C960,42 1200,14 1440,34 L1440,60 L0,60 Z"/>
+  </svg>
+</section>
+
+<!-- Локальная навигация по категориям -->
+<nav class="subnav" id="subnav" aria-label="Категории анимаций">
+  <div class="subnav__inner" id="subnavInner">
+    <a href="#domiki">Домики для праздника</a>
+    <a href="#packages">Праздничные пакеты</a>
+    <a href="#new">Новинки</a>
+    <a href="#vip">VIP герои</a>
+    <a href="#quests">Активити и квесты</a>
+    <a href="#kids">Малышник</a>
+    <a href="#masterclass">Мастер-классы</a>
+    <a href="#shows">Шоу-программы</a>
+    <a href="#parties">Вечеринки</a>
+  </div>
+</nav>
+
+<section class="category pattern-dots" id="domiki" style="background:var(--bg)">
+  <div class="container">
+    <h2>Домики для праздника</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots-light" id="packages" style="background:var(--bg-lavender)">
+  <div class="container">
+    <h2>Праздничные пакеты</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots" id="new" style="background:var(--bg)">
+  <div class="container">
+    <h2>Новинки</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots-light" id="vip" style="background:var(--bg-lavender)">
+  <div class="container">
+    <h2>VIP герои</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots" id="quests" style="background:var(--bg)">
+  <div class="container">
+    <h2>Активити и квесты</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots-light" id="kids" style="background:var(--bg-lavender)">
+  <div class="container">
+    <h2>Малышник</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots" id="masterclass" style="background:var(--bg)">
+  <div class="container">
+    <h2>Мастер-классы</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots-light" id="shows" style="background:var(--bg-lavender)">
+  <div class="container">
+    <h2>Шоу-программы</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<section class="category pattern-dots" id="parties" style="background:var(--bg)">
+  <div class="container">
+    <h2>Вечеринки</h2>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="images/image.png" alt="Джунгли Сити"></div>
+      <p>Детский развлекательный парк, где дети растут счастливыми, а родители отдыхают спокойно.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <a href="index.html#">Кафе</a>
+      <a href="animations.html">Анимации</a>
+      <a href="index.html#">Доп. услуги</a>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <a href="#">г. Москва, ул. Южнобутовская, 76</a>
+      <a href="tel:+70000000000">+7 (000) 000-00-00</a>
+      <a href="#">Ежедневно 10:00–22:00</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span>Наверх</span>
+</button>
+
+<script src="main.js"></script>
+<script>
+/* ===== Scrollspy: подсвечиваем активную категорию в локальном меню ===== */
+(function () {
+  const sections = document.querySelectorAll('section.category[id]');
+  const links = document.querySelectorAll('#subnavInner a');
+  const linkByHash = {};
+  links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+
+  function setActive(id) {
+    links.forEach(a => a.classList.remove('active'));
+    const link = linkByHash['#' + id];
+    if (link) {
+      link.classList.add('active');
+      link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-160px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+
+  if (location.hash) setActive(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
