@@ -101,6 +101,46 @@ button{font-family:inherit}
 .subnav a:hover{background:#E8D9FF}
 .subnav a.active{background:var(--purple-1);color:#fff}
 
+/* ВСТУПЛЕНИЕ КАТЕГОРИИ */
+.category-intro{max-width:760px;margin:0 auto 44px;text-align:center}
+.category-intro p{font-size:16px;opacity:.85;font-weight:700}
+.badge-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.badge-pill{background:var(--purple-1);color:#fff;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;padding:10px 20px;border-radius:999px}
+.badge-pill--accent{background:var(--green)}
+
+/* ГАЛЕРЕЯ КОМНАТ (карточки с фото) */
+.room-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
+.room-card{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 14px 34px rgba(74,17,133,.16);isolation:isolate}
+.room-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.34,1.2,.64,1)}
+.room-card:hover img{transform:scale(1.07)}
+.room-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,11,94,0) 42%,rgba(46,11,94,.88) 100%);pointer-events:none}
+.room-card__label{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+
+/* Callout-плашка */
+.callout{background:var(--bg-lavender);border:1.5px dashed var(--purple-1);border-radius:20px;padding:22px 28px;text-align:center;font-size:15px;color:var(--purple-1);margin:44px 0;font-weight:700}
+.callout strong{color:var(--purple-2)}
+
+/* Подзаголовок блока внутри секции */
+.section-subhead{text-align:center;margin:56px 0 28px}
+.section-subhead h3{font-size:clamp(20px,2.6vw,26px);text-transform:uppercase;color:var(--purple-1)}
+.section-subhead span{display:block;font-size:14px;font-weight:700;opacity:.75;margin-top:6px}
+
+/* Тарифные карточки (пакеты) */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.pkg-card{background:#fff;border:2px solid var(--line);border-radius:28px;padding:28px 26px;display:flex;flex-direction:column;gap:18px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.pkg-card:hover{border-color:var(--purple-1);box-shadow:0 14px 34px rgba(74,17,133,.14);transform:translateY(-4px)}
+.pkg-card--featured{border-color:var(--purple-1);background:linear-gradient(180deg,#fff,var(--bg-lavender))}
+.pkg-card__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pkg-card__name{font-size:20px;text-transform:uppercase;color:var(--purple-1)}
+.pkg-card__duration{background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:6px 14px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
+.pkg-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px;font-weight:700;opacity:.9}
+.pkg-card ul li{padding-left:20px;position:relative}
+.pkg-card ul li::before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.pkg-card__prices{margin-top:auto;border-top:1px dashed var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.pkg-card__price-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.pkg-card__price-row span{font-size:13px;font-weight:700;opacity:.7}
+.pkg-card__price-row strong{font-size:21px;color:var(--purple-1);font-weight:900}
+
 /* СЕКЦИИ */
 section.category{padding:80px 0;scroll-margin-top:150px}
 section.category h2{font-size:clamp(28px,3.5vw,36px);color:var(--text);text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;gap:16px}
