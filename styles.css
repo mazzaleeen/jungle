@@ -141,6 +141,52 @@ button{font-family:inherit}
 .pkg-card__price-row span{font-size:13px;font-weight:700;opacity:.7}
 .pkg-card__price-row strong{font-size:21px;color:var(--purple-1);font-weight:900}
 
+/* КАРТОЧКИ ПРОГРАММ (разворачивающиеся) */
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.program-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .3s}
+.program-card:hover{box-shadow:0 18px 42px rgba(74,17,133,.16)}
+.program-card.expanded{grid-column:1/-1;flex-direction:row;align-items:stretch}
+.program-card.expanded .program-card__photo{flex:0 0 300px;aspect-ratio:unset;max-height:440px}
+.program-card.expanded .program-card__body{flex:1}
+
+.program-card__photo{aspect-ratio:3/4;background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.program-card__photo img{max-width:80%;max-height:96%;object-fit:contain;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
+
+.program-card__body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
+.program-card__title{font-size:19px;text-transform:uppercase;color:var(--purple-1);line-height:1.25}
+.program-card__meta{display:flex;gap:8px;flex-wrap:wrap}
+.meta-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:6px 13px;border-radius:999px;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.meta-chip--price{background:var(--green);color:#fff}
+
+.program-card__teaser{font-size:14px;opacity:.85;font-weight:700;line-height:1.55}
+.program-card__full{display:none;font-size:14px;opacity:.9;font-weight:700;line-height:1.65}
+.program-card__full p + p{margin-top:10px}
+.program-card__full ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.program-card__full ul li{padding-left:20px;position:relative}
+.program-card__full ul li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
+.program-card.expanded .program-card__teaser{display:none}
+.program-card.expanded .program-card__full{display:block}
+
+.program-card__toggle{align-self:flex-start;margin-top:auto;border:none;background:none;color:var(--purple-2);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 0}
+.program-card__toggle svg{width:13px;height:13px;transition:transform .25s}
+.program-card.expanded .program-card__toggle svg{transform:rotate(180deg)}
+
+@media(max-width:860px){
+  .program-grid{grid-template-columns:1fr}
+  .program-card.expanded{flex-direction:column}
+  .program-card.expanded .program-card__photo{flex:none;aspect-ratio:3/4;max-height:none}
+}
+
+/* КАРТОЧКИ VIP-ГЕРОЕВ */
+.hero-grid-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.hero-card{position:relative;background:linear-gradient(180deg,var(--bg-lavender),#fff);border-radius:28px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);aspect-ratio:3/4;display:flex;align-items:flex-end;justify-content:center;transition:box-shadow .3s,transform .3s}
+.hero-card:hover{box-shadow:0 18px 42px rgba(74,17,133,.18);transform:translateY(-4px)}
+.hero-card img{max-width:78%;max-height:92%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(74,17,133,.20))}
+.hero-card__tier{position:absolute;top:14px;left:14px;z-index:2;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:6px 13px;border-radius:999px;color:#fff}
+.hero-card__tier--premium{background:linear-gradient(120deg,#8b5cf6,#6b2cc0)}
+.hero-card__tier--ultra{background:linear-gradient(120deg,#F472B6,#EC4899)}
+.hero-card__label{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;color:var(--purple-1);font-size:15px;font-weight:800;text-transform:uppercase;text-align:center;background:rgba(255,255,255,.88);border-radius:14px;padding:8px 10px;backdrop-filter:blur(2px)}
+
 /* СЕКЦИИ */
 section.category{padding:80px 0;scroll-margin-top:150px}
 section.category h2{font-size:clamp(28px,3.5vw,36px);color:var(--text);text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;gap:16px}
