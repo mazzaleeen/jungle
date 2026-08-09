@@ -143,6 +143,28 @@ button{font-family:inherit}
 
 /* КАРТОЧКИ ПРОГРАММ (разворачивающиеся) */
 .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.program-grid--single{grid-template-columns:minmax(260px,380px)}
+.program-grid--single .program-card.expanded{flex-direction:column}
+.program-grid--single .program-card.expanded .program-card__photo{flex:none;aspect-ratio:3/4;max-height:none}
+
+/* КАРТОЧКА-ФИЧА (одиночная программа на всю ширину, без сворачивания) */
+.feature-card{display:flex;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line)}
+.feature-card__photo{flex:0 0 340px;background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;align-items:flex-end;justify-content:center}
+.feature-card__photo img{max-width:78%;max-height:94%;object-fit:contain;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
+.feature-card__body{flex:1;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.feature-card__title{font-size:24px;text-transform:uppercase;color:var(--purple-1)}
+.feature-card__meta{display:flex;gap:8px;flex-wrap:wrap}
+.feature-card__body p{font-size:15px;opacity:.9;font-weight:700;line-height:1.65}
+.feature-card__body p + p{margin-top:-6px}
+.feature-card__body ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:15px;opacity:.9;font-weight:700}
+.feature-card__body ul li{padding-left:22px;position:relative}
+.feature-card__body ul li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+@media(max-width:860px){
+  .feature-card{flex-direction:column}
+  .feature-card__photo{flex:none;aspect-ratio:3/4}
+  .feature-card__body{padding:26px 24px}
+}
 .program-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .3s}
 .program-card:hover{box-shadow:0 18px 42px rgba(74,17,133,.16)}
 .program-card.expanded{grid-column:1/-1;flex-direction:row;align-items:stretch}
