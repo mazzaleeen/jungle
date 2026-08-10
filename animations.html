@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Анимации — Джунгли Сити</title>
 <link rel="stylesheet" href="styles.css">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=RaTIoDJi0rlLgc_DuVZJZ21FUOsgo5aQQgSCRG2uRsC65Id2axIQgSr-e1Ovno9uZWvlPCrLFnhy0VqlMVNZQRxKnhpoPfCo8Ah0umYYuVNzUBmeH5ksKubJhvDHh-2EQJ18XV3pNFgQR4vKMOgITZ3ce6DZPJgSSf9tboqNW57R7og5b0ygKehNWo1wGAEmczK-UMIWrwyN-_q6ILTEqUdk4lJwuWXH0lzDA0LwScavCeAS4GV8FfNufVGAnR9A06H6fKOHW4IrKbuZyfKjHhqO7aFCmfzO3zfu_Ay6e6ifxpbaQp5_ahLXBDhSSvKfEUJj7_k2gTUdc-_iiPs1EjNqbrwqe9lakbTEnBZ-Ahm5KlJOS4_0-F0G55TKOqRbKyrs-wYcJpsm785RrQ308sL7pqyCcbsyY4X9i6lfFUXuXyRfDiQB-P7ytBvPlg2fMPJ6Yk6onBCyCv8-2FdCi0Z680mUntjxgQXjjNSTSnmtJceQir-gZ9j2qMoxTq1lPKmz85v1uWABTKap7PZNDxXiyBSnaDTIC8QhOQ3oQtQWsOHh1v4I3trV7P9GVKCtt_L_apiyjfDxAX7ckX6GzJCQX8_pSoOwjTQxutTFaRW4FqeF9p6vSJZVQWCnidZOExLuxL9nVcwMgUYPmivyrw" charset="UTF-8"></script></head>
+</head>
 <body>
 
 <header class="site-header">
@@ -1096,59 +1096,13 @@
 <section class="category pattern-dots" id="parties" style="background:var(--bg)">
   <div class="container">
     <h2>Вечеринки</h2>
-
-    <div class="party-intro-card">
-      <p>Превращаем праздник в настоящее приключение! Выбирайте любимого героя, и мы устроим тематическую вечеринку с увлекательными играми, захватывающими испытаниями, ярким реквизитом и зажигательными танцами.</p>
-
-      <div class="party-steps">
-        <div class="party-step">
-          <div class="party-step__num">1</div>
-          <p>Выбираете героя из раздела персонажей ниже.</p>
-        </div>
-        <div class="party-step">
-          <div class="party-step__num">2</div>
-          <p>Выбираете дополнительную активность к программе по желанию.</p>
-        </div>
-        <div class="party-step">
-          <div class="party-step__num">3</div>
-          <p>Праздник превращается в сплошное веселье, где каждый ребёнок становится частью истории!</p>
-        </div>
-      </div>
-
-      <h4>Выберите одну активность к программе (мегачелленджи)</h4>
-      <ul class="party-activities-list">
-        <li>Нащупай-шоу</li>
-        <li>Трясуны</li>
-        <li>Коробка фортуны</li>
-        <li>Торт в лицо</li>
-        <li>Мыльный салют (тысяча пузыриков, самый яркий элемент шоу)</li>
-        <li>Серебряный салют (3 кг лент)</li>
-        <li>Цветной салют (3 кг лент)</li>
-        <li>Салют из подушек</li>
-        <li>Коронация</li>
-      </ul>
-
-      <div class="party-price-row">
-        <span class="meta-chip">60 мин</span>
-        <span class="meta-chip meta-chip--price">7 100 ₽</span>
-      </div>
-      <p class="party-note">*Можно заказать программу на 50 минут без активности за 4800 ₽. Дополнительно: пиньята, аквагрим, оформление шарами, фотосессия, торт.<br>Доплата за героя в костюме Премиум — 2300 ₽, Ультра — 1200 ₽ (герои с пометкой работают по предзаказу за 7–10 дней).</p>
+    <div class="grid-3">
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
+      <div class="placeholder-box"></div>
     </div>
-
-    <div class="party-filters" id="partyFilters"></div>
-    <div class="party-grid" id="partyGrid"></div>
   </div>
 </section>
-
-<div class="lightbox" id="partyLightbox">
-  <div class="lightbox__inner">
-    <button class="lightbox__close" type="button" id="partyLightboxClose" aria-label="Закрыть">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <img id="partyLightboxImg" src="" alt="">
-    <div class="lightbox__name" id="partyLightboxName"></div>
-  </div>
-</div>
 
 <footer>
   <div class="footer-inner">
@@ -1219,139 +1173,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   sections.forEach(s => observer.observe(s));
 
   if (location.hash) setActive(location.hash.slice(1));
-})();
-</script>
-
-<script>
-/* ===== Вечеринки: каталог персонажей (фильтры + сетка + лайтбокс) ===== */
-(function () {
-  const CATEGORIES = [
-    { id: 'all', label: 'Все' },
-    { id: 'princesses', label: 'Принцессы' },
-    { id: 'cartoon', label: 'Мульт-герои' },
-    { id: 'hosts', label: 'Ведущие' },
-    { id: 'super', label: 'Супергерои' },
-    { id: 'games', label: 'Герои игр' },
-    { id: 'kino', label: 'Герои кино' },
-  ];
-
-  const CHARACTERS = [
-    // Принцессы
-    { cat: 'princesses', name: 'Русалочка Ариэль', img: 'ariel' },
-    { cat: 'princesses', name: 'Анна', img: 'anna' },
-    { cat: 'princesses', name: 'Рапунцель', img: 'rapunzel' },
-    { cat: 'princesses', name: 'Белль', img: 'belle' },
-    { cat: 'princesses', name: 'Жасмин', img: 'jasmine' },
-    { cat: 'princesses', name: 'Пони', img: 'pony' },
-    { cat: 'princesses', name: 'Эльза (белое платье)', img: 'elsa-white' },
-    { cat: 'princesses', name: 'Эльза (синее платье)', img: 'elsa-blue-gown' },
-    { cat: 'princesses', name: 'Эльза (пальто)', img: 'elsa-coat' },
-    { cat: 'princesses', name: 'Алиса в Стране чудес', img: 'alice' },
-    // Мульт-герои
-    { cat: 'cartoon', name: 'Барби', img: 'barbie' },
-    { cat: 'cartoon', name: 'Единорог-фея', img: 'unicorn-fairy' },
-    { cat: 'cartoon', name: 'Робот', img: 'robot-tv' },
-    { cat: 'cartoon', name: 'Подарок', img: 'gift-box' },
-    { cat: 'cartoon', name: 'Динозаврик', img: 'dino' },
-    { cat: 'cartoon', name: 'Зайка', img: 'bunny-white' },
-    { cat: 'cartoon', name: 'Тачки', img: 'cars' },
-    { cat: 'cartoon', name: 'Лабубу', img: 'labubu' },
-    { cat: 'cartoon', name: 'Радость (Головоломка)', img: 'joy' },
-    { cat: 'cartoon', name: 'Бамблби', img: 'bumblebee' },
-    { cat: 'cartoon', name: 'Скоморох', img: 'jester' },
-    { cat: 'cartoon', name: 'Гринч', img: 'grinch' },
-    { cat: 'cartoon', name: 'Черепашка Ниндзя', img: 'ninja-turtle-red' },
-    { cat: 'cartoon', name: 'Заяц', img: 'bunny-beige' },
-    // Ведущие
-    { cat: 'hosts', name: 'Ведущие TikTok', img: 'tiktok-couple' },
-    { cat: 'hosts', name: 'Кошка-ведущая', img: 'cat-maid' },
-    { cat: 'hosts', name: 'Ведущая в золотом', img: 'gold-host' },
-    { cat: 'hosts', name: 'Челлендж пати', img: 'challenge-girl' },
-    { cat: 'hosts', name: 'Неоновый ведущий', img: 'neon-host' },
-    { cat: 'hosts', name: 'Ведущие в зелёном', img: 'green-gold-couple' },
-    // Супергерои
-    { cat: 'super', name: 'Человек-паук (Майлз Моралес)', img: 'spiderman-miles' },
-    { cat: 'super', name: 'Супергёрл', img: 'supergirl' },
-    { cat: 'super', name: 'Харли Квинн', img: 'harley' },
-    { cat: 'super', name: 'Бэтмен', img: 'batman' },
-    { cat: 'super', name: 'Человек-паук', img: 'spiderman-classic' },
-    // Герои игр
-    { cat: 'games', name: 'Крипер', img: 'creeper' },
-    { cat: 'games', name: 'Соник', img: 'sonic' },
-    { cat: 'games', name: 'Among Us (красный)', img: 'among-us-red' },
-    { cat: 'games', name: 'Among Us (синий)', img: 'among-us-blue' },
-    { cat: 'games', name: 'Майнкрафт-девочка', img: 'minecraft-girl' },
-    { cat: 'games', name: 'Пикачу', img: 'pikachu' },
-    { cat: 'games', name: 'Радужные друзья', img: 'huggy-wuggy' },
-    { cat: 'games', name: 'Roblox-персонаж', img: 'roblox-blue' },
-    { cat: 'games', name: 'Кот-хулиган', img: 'cat-troublemaker' },
-    // Герои кино
-    { cat: 'kino', name: 'Гарри Поттер', img: 'harry-potter' },
-    { cat: 'kino', name: 'Уэнсдей Аддамс', img: 'wednesday-black' },
-    { cat: 'kino', name: 'Драко Малфой', img: 'draco' },
-    { cat: 'kino', name: 'Уэнсдей Аддамс (школьная форма)', img: 'wednesday-school' },
-    { cat: 'kino', name: 'Игра в кальмара', img: 'squid-game' },
-    { cat: 'kino', name: 'Гермиона Грейнджер', img: 'hermione' },
-    { cat: 'kino', name: 'Джек Воробей', img: 'jack-sparrow' },
-    { cat: 'kino', name: 'Ретро-пара 1920-х', img: 'retro-couple' },
-    { cat: 'kino', name: 'Уэнсдей Аддамс (полосатая форма)', img: 'wednesday-purple' },
-    { cat: 'kino', name: 'Сафари-пара', img: 'safari-couple' },
-    { cat: 'kino', name: 'Повара-пара', img: 'chef-couple' },
-    { cat: 'kino', name: 'Пират', img: 'pirate-solo' },
-    { cat: 'kino', name: 'Капитан и пиратка', img: 'captain-pirate-couple' },
-    { cat: 'kino', name: 'Надувной T-Rex', img: 'trex' },
-  ];
-
-  const filtersEl = document.getElementById('partyFilters');
-  const gridEl = document.getElementById('partyGrid');
-  if (!filtersEl || !gridEl) return;
-
-  const counts = { all: CHARACTERS.length };
-  CHARACTERS.forEach(c => { counts[c.cat] = (counts[c.cat] || 0) + 1; });
-
-  filtersEl.innerHTML = CATEGORIES.map((c, i) =>
-    `<button class="party-filter${i === 0 ? ' active' : ''}" type="button" data-cat="${c.id}">${c.label} (${counts[c.id] || 0})</button>`
-  ).join('');
-
-  function renderGrid(activeCat) {
-    const list = activeCat === 'all' ? CHARACTERS : CHARACTERS.filter(c => c.cat === activeCat);
-    gridEl.innerHTML = list.map(c =>
-      `<button class="party-thumb" type="button" data-img="images/party/${c.img}.webp" data-name="${c.name}">
-        <img src="images/party/${c.img}.webp" alt="${c.name}" loading="lazy">
-        
-      </button>`
-    ).join('');
-  }
-
-  filtersEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.party-filter');
-    if (!btn) return;
-    filtersEl.querySelectorAll('.party-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGrid(btn.dataset.cat);
-  });
-
-  renderGrid('all');
-
-  // Лайтбокс
-  const lightbox = document.getElementById('partyLightbox');
-  const lightboxImg = document.getElementById('partyLightboxImg');
-  const lightboxName = document.getElementById('partyLightboxName');
-  const lightboxClose = document.getElementById('partyLightboxClose');
-
-  gridEl.addEventListener('click', (e) => {
-    const thumb = e.target.closest('.party-thumb');
-    if (!thumb) return;
-    lightboxImg.src = thumb.dataset.img;
-    lightboxImg.alt = "";
-    // lightboxName.textContent = thumb.dataset.name;
-    lightbox.classList.add('open');
-  });
-
-  function closeLightbox() { lightbox.classList.remove('open'); }
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 })();
 </script>
 </body>
