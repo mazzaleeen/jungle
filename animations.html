@@ -40,10 +40,6 @@
     <div class="container main-bar__inner">
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
       <nav class="nav" id="nav">
-        <div class="nav-item">
-          <a class="nav-btn" href="index.html#">Кафе</a>
-        </div>
-
         <!-- АНИМАЦИИ: активный раздел на этой странице -->
         <div class="nav-item">
           <button class="nav-btn active" type="button" data-flyout-trigger="anim-nav">
@@ -63,9 +59,14 @@
           </div>
         </div>
 
-        <div class="nav-item">
-          <a class="nav-btn" href="index.html#">Доп. услуги</a>
-        </div>
+        <div class="nav-item"><a class="nav-btn" href="index.html#">Дополнения</a></div>
+        <div class="nav-item"><a class="nav-btn" href="index.html#">Меню</a></div>
+        <div class="nav-item"><a class="nav-btn" href="index.html#">Торты</a></div>
+
+        <!-- Скрытые пока разделы: подготовлены в коде, но не показываются на сайте -->
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Выпускной</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
       </nav>
       <button class="burger" id="burger" aria-label="Меню">☰</button>
     </div>
@@ -1096,13 +1097,59 @@
 <section class="category pattern-dots" id="parties" style="background:var(--bg)">
   <div class="container">
     <h2>Вечеринки</h2>
-    <div class="grid-3">
-      <div class="placeholder-box"></div>
-      <div class="placeholder-box"></div>
-      <div class="placeholder-box"></div>
+
+    <div class="party-intro-card">
+      <p>Превращаем праздник в настоящее приключение! Выбирайте любимого героя, и мы устроим тематическую вечеринку с увлекательными играми, захватывающими испытаниями, ярким реквизитом и зажигательными танцами.</p>
+
+      <div class="party-steps">
+        <div class="party-step">
+          <div class="party-step__num">1</div>
+          <p>Выбираете героя из раздела персонажей ниже.</p>
+        </div>
+        <div class="party-step">
+          <div class="party-step__num">2</div>
+          <p>Выбираете дополнительную активность к программе по желанию.</p>
+        </div>
+        <div class="party-step">
+          <div class="party-step__num">3</div>
+          <p>Праздник превращается в сплошное веселье, где каждый ребёнок становится частью истории!</p>
+        </div>
+      </div>
+
+      <h4>Выберите одну активность к программе (мегачелленджи)</h4>
+      <ul class="party-activities-list">
+        <li>Нащупай-шоу</li>
+        <li>Трясуны</li>
+        <li>Коробка фортуны</li>
+        <li>Торт в лицо</li>
+        <li>Мыльный салют (тысяча пузыриков, самый яркий элемент шоу)</li>
+        <li>Серебряный салют (3 кг лент)</li>
+        <li>Цветной салют (3 кг лент)</li>
+        <li>Салют из подушек</li>
+        <li>Коронация</li>
+      </ul>
+
+      <div class="party-price-row">
+        <span class="meta-chip">60 мин</span>
+        <span class="meta-chip meta-chip--price">7 100 ₽</span>
+      </div>
+      <p class="party-note">*Можно заказать программу на 50 минут без активности за 4800 ₽. Дополнительно: пиньята, аквагрим, оформление шарами, фотосессия, торт.<br>Доплата за героя в костюме Премиум — 2300 ₽, Ультра — 1200 ₽ (герои с пометкой работают по предзаказу за 7–10 дней).</p>
     </div>
+
+    <div class="party-filters" id="partyFilters"></div>
+    <div class="party-grid" id="partyGrid"></div>
   </div>
 </section>
+
+<div class="lightbox" id="partyLightbox">
+  <div class="lightbox__inner">
+    <button class="lightbox__close" type="button" id="partyLightboxClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img id="partyLightboxImg" src="" alt="">
+    <div class="lightbox__name" id="partyLightboxName"></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
@@ -1112,9 +1159,10 @@
     </div>
     <div>
       <h4>Разделы</h4>
-      <a href="index.html#">Кафе</a>
       <a href="animations.html">Анимации</a>
-      <a href="index.html#">Доп. услуги</a>
+      <a href="index.html#">Дополнения</a>
+      <a href="index.html#">Меню</a>
+      <a href="index.html#">Торты</a>
     </div>
     <div>
       <h4>Контакты</h4>
@@ -1173,6 +1221,139 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   sections.forEach(s => observer.observe(s));
 
   if (location.hash) setActive(location.hash.slice(1));
+})();
+</script>
+
+<script>
+/* ===== Вечеринки: каталог персонажей (фильтры + сетка + лайтбокс) ===== */
+(function () {
+  const CATEGORIES = [
+    { id: 'all', label: 'Все' },
+    { id: 'princesses', label: 'Принцессы' },
+    { id: 'cartoon', label: 'Мульт-герои' },
+    { id: 'hosts', label: 'Ведущие' },
+    { id: 'super', label: 'Супергерои' },
+    { id: 'games', label: 'Герои игр' },
+    { id: 'kino', label: 'Герои кино' },
+  ];
+
+  const CHARACTERS = [
+    // Принцессы (№ 7-15)
+    { cat: 'princesses', num: '7', img: 'alice' },
+    { cat: 'princesses', num: '8', img: 'elsa-white' },
+    { cat: 'princesses', num: '9', img: 'belle' },
+    { cat: 'princesses', num: '10', img: 'elsa-coat' },
+    { cat: 'princesses', num: '11', img: 'ariel' },
+    { cat: 'princesses', num: '12', img: 'anna' },
+    { cat: 'princesses', num: '13', img: 'jasmine' },
+    { cat: 'princesses', num: '14', img: 'rapunzel' },
+    { cat: 'princesses', num: '15', img: 'elsa-blue-gown' },
+    // Мульт-герои (№ 16-30)
+    { cat: 'cartoon', num: '16', img: 'pony' },
+    { cat: 'cartoon', num: '17', img: 'unicorn-fairy' },
+    { cat: 'cartoon', num: '18', img: 'gift-box' },
+    { cat: 'cartoon', num: '19', img: 'barbie' },
+    { cat: 'cartoon', num: '20', img: 'robot-tv' },
+    { cat: 'cartoon', num: '21', img: 'dino' },
+    { cat: 'cartoon', num: '22', img: 'bunny-white' },
+    { cat: 'cartoon', num: '23', img: 'joy' },
+    { cat: 'cartoon', num: '24', img: 'labubu' },
+    { cat: 'cartoon', num: '25', img: 'cars' },
+    { cat: 'cartoon', num: '26', img: 'jester' },
+    { cat: 'cartoon', num: '27', img: 'grinch' },
+    { cat: 'cartoon', num: '28', img: 'bunny-beige' },
+    { cat: 'cartoon', num: '29', img: 'ninja-turtle-red' },
+    { cat: 'cartoon', num: '30', img: 'bumblebee' },
+    // Ведущие (№ 31-37)
+    { cat: 'hosts', num: '31', img: 'green-gold-couple' },
+    { cat: 'hosts', num: '32', img: 'cat-maid' },
+    { cat: 'hosts', num: '33', img: 'gold-host' },
+    { cat: 'hosts', num: '34', img: 'neon-host' },
+    { cat: 'hosts', num: '35', img: 'challenge-girl' },
+    { cat: 'hosts', num: '36–37', img: 'tiktok-couple' },
+    // Супергерои (№ 38-42)
+    { cat: 'super', num: '38', img: 'spiderman-miles' },
+    { cat: 'super', num: '39', img: 'supergirl' },
+    { cat: 'super', num: '40', img: 'batman' },
+    { cat: 'super', num: '41', img: 'harley' },
+    { cat: 'super', num: '42', img: 'spiderman-classic' },
+    // Герои игр (№ 43-51)
+    { cat: 'games', num: '43', img: 'sonic' },
+    { cat: 'games', num: '44', img: 'creeper' },
+    { cat: 'games', num: '45', img: 'minecraft-girl' },
+    { cat: 'games', num: '46', img: 'among-us-blue' },
+    { cat: 'games', num: '47', img: 'among-us-red' },
+    { cat: 'games', num: '48', img: 'huggy-wuggy' },
+    { cat: 'games', num: '49', img: 'pikachu' },
+    { cat: 'games', num: '50', img: 'roblox-blue' },
+    { cat: 'games', num: '51', img: 'cat-troublemaker' },
+    // Герои кино (№ 52-69)
+    { cat: 'kino', num: '52', img: 'harry-potter' },
+    { cat: 'kino', num: '53', img: 'hermione' },
+    { cat: 'kino', num: '54', img: 'draco' },
+    { cat: 'kino', num: '55', img: 'jack-sparrow' },
+    { cat: 'kino', num: '56', img: 'wednesday-black' },
+    { cat: 'kino', num: '57', img: 'squid-game' },
+    { cat: 'kino', num: '58', img: 'wednesday-school' },
+    { cat: 'kino', num: '59–60', img: 'retro-couple' },
+    { cat: 'kino', num: '61–62', img: 'chef-couple' },
+    { cat: 'kino', num: '63', img: 'pirate-solo' },
+    { cat: 'kino', num: '64–65', img: 'captain-pirate-couple' },
+    { cat: 'kino', num: '66–67', img: 'safari-couple' },
+    { cat: 'kino', num: '68', img: 'wednesday-purple' },
+    { cat: 'kino', num: '69', img: 'trex' },
+  ];
+
+  const filtersEl = document.getElementById('partyFilters');
+  const gridEl = document.getElementById('partyGrid');
+  if (!filtersEl || !gridEl) return;
+
+  const counts = { all: CHARACTERS.length };
+  CHARACTERS.forEach(c => { counts[c.cat] = (counts[c.cat] || 0) + 1; });
+
+  filtersEl.innerHTML = CATEGORIES.map((c, i) =>
+    `<button class="party-filter${i === 0 ? ' active' : ''}" type="button" data-cat="${c.id}">${c.label} (${counts[c.id] || 0})</button>`
+  ).join('');
+
+  function renderGrid(activeCat) {
+    const list = activeCat === 'all' ? CHARACTERS : CHARACTERS.filter(c => c.cat === activeCat);
+    gridEl.innerHTML = list.map(c =>
+      `<button class="party-thumb" type="button" data-img="images/party/${c.img}.webp" data-num="${c.num}">
+        <span class="party-thumb__num">№ ${c.num}</span>
+        <img src="images/party/${c.img}.webp" alt="Персонаж № ${c.num}" loading="lazy">
+      </button>`
+    ).join('');
+  }
+
+  filtersEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.party-filter');
+    if (!btn) return;
+    filtersEl.querySelectorAll('.party-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGrid(btn.dataset.cat);
+  });
+
+  renderGrid('all');
+
+  // Лайтбокс
+  const lightbox = document.getElementById('partyLightbox');
+  const lightboxImg = document.getElementById('partyLightboxImg');
+  const lightboxName = document.getElementById('partyLightboxName');
+  const lightboxClose = document.getElementById('partyLightboxClose');
+
+  gridEl.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.party-thumb');
+    if (!thumb) return;
+    lightboxImg.src = thumb.dataset.img;
+    lightboxImg.alt = 'Персонаж № ' + thumb.dataset.num;
+    lightboxName.textContent = '№ ' + thumb.dataset.num;
+    lightbox.classList.add('open');
+  });
+
+  function closeLightbox() { lightbox.classList.remove('open'); }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 })();
 </script>
 </body>

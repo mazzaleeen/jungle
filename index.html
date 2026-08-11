@@ -40,10 +40,6 @@
     <div class="container main-bar__inner">
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
       <nav class="nav" id="nav">
-        <div class="nav-item">
-          <a class="nav-btn" href="#">Кафе</a>
-        </div>
-
         <!-- АНИМАЦИИ: кнопка + выпадающее меню категорий -->
         <div class="nav-item">
           <button class="nav-btn" type="button" data-flyout-trigger="anim-nav">
@@ -63,9 +59,14 @@
           </div>
         </div>
 
-        <div class="nav-item">
-          <a class="nav-btn" href="#">Доп. услуги</a>
-        </div>
+        <div class="nav-item"><a class="nav-btn" href="#">Дополнения</a></div>
+        <div class="nav-item"><a class="nav-btn" href="#">Меню</a></div>
+        <div class="nav-item"><a class="nav-btn" href="#">Торты</a></div>
+
+        <!-- Скрытые пока разделы: подготовлены в коде, но не показываются на сайте -->
+        <div class="nav-item is-hidden"><a class="nav-btn" href="#">Выпускной</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="#">Не анимация</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="#">Новогоднее веселье</a></div>
       </nav>
       <button class="burger" id="burger" aria-label="Меню">☰</button>
     </div>
@@ -73,17 +74,52 @@
 </header>
 
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
+  <div class="container">
+    <div class="hero-top">
       <h1>Джунгли Сити</h1>
-      <p>Детский развлекательный парк, где каждый день — настоящее приключение!</p>
-      <div class="hero-stats">
-        <div class="stat"><strong>1950 м²</strong><span>игровой зоны</span></div>
-        <div class="stat"><strong>20+</strong><span>активностей</span></div>
+      <div class="mascot-box mascot-box--small">
+        <img src="images/mascot.png" alt="Маскот">
       </div>
     </div>
-    <div class="mascot-box">
-      <img src="images/mascot.png" alt="Маскот">
+
+    <div class="journey journey--hero">
+      <h2 class="journey-title">Собери свой праздник</h2>
+      <div class="journey-trail">
+
+        <div class="journey-step">
+          <div class="journey-step__paw">🏠</div>
+          <h3 class="journey-step__title">Комната для праздника — бесплатно</h3>
+        </div>
+
+        <span class="journey-paw" aria-hidden="true">🐾</span>
+
+        <div class="journey-step">
+          <div class="journey-step__paw">🎭</div>
+          <h3 class="journey-step__title">Выберите анимационную программу</h3>
+        </div>
+
+        <span class="journey-paw" aria-hidden="true">🐾</span>
+
+        <div class="journey-step">
+          <div class="journey-step__paw">🎈</div>
+          <h3 class="journey-step__title">Добавьте ярких деталей</h3>
+        </div>
+
+        <span class="journey-paw" aria-hidden="true">🐾</span>
+
+        <div class="journey-step">
+          <div class="journey-step__paw">🍕</div>
+          <h3 class="journey-step__title">Не забудьте про вкусные угощения</h3>
+        </div>
+
+        <span class="journey-paw" aria-hidden="true">🐾</span>
+
+        <div class="journey-step">
+          <div class="journey-step__paw">✨</div>
+          <h3 class="journey-step__title">А всё остальное создадут наши феи праздника!</h3>
+        </div>
+
+      </div>
     </div>
   </div>
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
@@ -94,10 +130,8 @@
 <section class="quick-nav">
   <div class="container">
     <div class="quick-nav-card">
-      <h2 class="qn-title">Навигационные кнопки</h2>
+      <h2 class="qn-title">Создайте свой праздник</h2>
       <div class="nav-grid">
-        <a href="#" class="nav-card"><h3>Кафе</h3></a>
-
         <!-- АНИМАЦИИ: та же логика flyout, что и в шапке -->
         <div class="nav-card-slot">
           <button class="nav-card" type="button" data-flyout-trigger="anim-card">
@@ -116,7 +150,14 @@
           </div>
         </div>
 
-        <a href="#" class="nav-card"><h3>Доп. услуги</h3></a>
+        <a href="#" class="nav-card"><h3>Дополнения</h3></a>
+        <a href="#" class="nav-card"><h3>Меню</h3></a>
+        <a href="#" class="nav-card"><h3>Торты</h3></a>
+
+        <!-- Скрытые пока разделы -->
+        <a href="#" class="nav-card is-hidden"><h3>Выпускной</h3></a>
+        <a href="#" class="nav-card is-hidden"><h3>Не анимация</h3></a>
+        <a href="#" class="nav-card is-hidden"><h3>Новогоднее веселье</h3></a>
       </div>
     </div>
   </div>
@@ -130,9 +171,10 @@
     </div>
     <div>
       <h4>Разделы</h4>
-      <a href="#">Кафе</a>
       <a href="animations.html">Анимации</a>
-      <a href="#">Доп. услуги</a>
+      <a href="#">Дополнения</a>
+      <a href="#">Меню</a>
+      <a href="#">Торты</a>
     </div>
     <div>
       <h4>Контакты</h4>
