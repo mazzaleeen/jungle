@@ -149,7 +149,8 @@ button{font-family:inherit}
 
 /* КАРТОЧКИ ПРОГРАММ (разворачивающиеся) */
 .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.program-grid--mixed{align-items:start}
+.program-grid--mixed{align-items:stretch}
+.program-grid__break{grid-column:1/-1;height:0;margin:0}
 .program-grid--single{grid-template-columns:minmax(260px,380px)}
 .program-grid--single .program-card.expanded{flex-direction:column}
 .program-grid--single .program-card.expanded .program-card__photo{flex:none;aspect-ratio:3/4;max-height:none}
@@ -184,11 +185,14 @@ button{font-family:inherit}
 .program-card__body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
 .program-card__body--no-photo{padding-top:26px}
 .program-card__title{font-size:19px;text-transform:uppercase;color:var(--purple-1);line-height:1.25}
+.program-grid--mixed .program-card__title{min-height:2.5em}
 .program-card__meta{display:flex;gap:8px;flex-wrap:wrap}
 .meta-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:6px 13px;border-radius:999px;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
 .meta-chip--price{background:var(--green);color:#fff}
 
 .program-card__teaser{font-size:14px;opacity:.85;font-weight:700;line-height:1.55}
+.program-card__desc{font-size:14px;opacity:.85;font-weight:700;line-height:1.6}
+.program-card__note{font-size:12px;opacity:.7;font-weight:700;font-style:italic;margin-top:-6px}
 .program-card__full{display:none;font-size:14px;opacity:.9;font-weight:700;line-height:1.65}
 .program-card__full p + p{margin-top:10px}
 .program-card__full ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:12px}
