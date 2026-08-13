@@ -193,6 +193,14 @@ button{font-family:inherit}
 .program-card__teaser{font-size:14px;opacity:.85;font-weight:700;line-height:1.55}
 .program-card__desc{font-size:14px;opacity:.85;font-weight:700;line-height:1.6}
 .program-card__note{font-size:12px;opacity:.7;font-weight:700;font-style:italic;margin-top:-6px}
+
+/* Строки-варианты цены внутри карточки (Шоу-программы) */
+.show-variants{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-top:2px}
+.show-variant{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.show-variant__name{font-weight:800;color:var(--purple-1);font-size:13px;text-transform:uppercase;letter-spacing:.01em}
+.show-variant__info{display:flex;gap:6px;flex:none}
+.show-variant__duration{font-size:11px;font-weight:800;color:var(--purple-1);background:var(--bg-lavender);padding:4px 9px;border-radius:999px;white-space:nowrap}
+.show-variant__price{font-size:11px;font-weight:800;color:#fff;background:var(--green);padding:4px 9px;border-radius:999px;white-space:nowrap}
 .program-card__full{display:none;font-size:14px;opacity:.9;font-weight:700;line-height:1.65}
 .program-card__full p + p{margin-top:10px}
 .program-card__full ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:12px}
