@@ -147,6 +147,8 @@ button{font-family:inherit}
 .pkg-card__price-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .pkg-card__price-row span{font-size:13px;font-weight:700;opacity:.7}
 .pkg-card__price-row strong{font-size:21px;color:var(--purple-1);font-weight:900}
+.pkg-card__price-old{font-size:13px;text-decoration:line-through;opacity:.45;font-weight:700;margin-left:8px}
+.pkg-card__perk{font-size:12.5px;font-weight:800;color:var(--green-dark);text-transform:uppercase;letter-spacing:.02em}
 
 /* КАРТОЧКИ ПРОГРАММ (разворачивающиеся) */
 .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
