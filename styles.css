@@ -62,6 +62,8 @@ button{font-family:inherit}
 @media(max-width:860px){
   .flyout{left:0;right:0;transform:translateY(-8px);min-width:0}
   .flyout.open{transform:translateY(0)}
+  .top-text strong{font-size:13px}
+  .top-text small{font-size:9.5px}
 }
 
 /* HERO (главная) */
