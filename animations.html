@@ -118,31 +118,31 @@
     </div>
 
     <div class="room-grid">
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/skazochnyj-les.jpg" data-name="Сказочный лес">
         <img src="images/domiki/skazochnyj-les.jpg" alt="Сказочный лес" loading="lazy">
         <span class="room-card__label">Сказочный лес</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/podvodnyj-mir.jpg" data-name="Подводный мир">
         <img src="images/domiki/podvodnyj-mir.jpg" alt="Подводный мир" loading="lazy">
         <span class="room-card__label">Подводный мир</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/peshera-sokrovisch.jpg" data-name="Пещера сокровищ">
         <img src="images/domiki/peshera-sokrovisch.jpg" alt="Пещера сокровищ" loading="lazy">
         <span class="room-card__label">Пещера сокровищ</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/polyana-chudes.jpg" data-name="Поляна чудес">
         <img src="images/domiki/polyana-chudes.jpg" alt="Поляна чудес" loading="lazy">
         <span class="room-card__label">Поляна чудес</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/magicheskij-prud.jpg" data-name="Магический пруд">
         <img src="images/domiki/magicheskij-prud.jpg" alt="Магический пруд" loading="lazy">
         <span class="room-card__label">Магический пруд</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/volshebnoe-podzemele.jpg" data-name="Волшебное подземелье">
         <img src="images/domiki/volshebnoe-podzemele.jpg" alt="Волшебное подземелье" loading="lazy">
         <span class="room-card__label">Волшебное подземелье</span>
       </div>
-      <div class="room-card">
+      <div class="room-card room-card--clickable" data-img="images/domiki/tainstvennoe-ozero.jpg" data-name="Таинственное озеро">
         <img src="images/domiki/tainstvennoe-ozero.jpg" alt="Таинственное озеро" loading="lazy">
         <span class="room-card__label">Таинственное озеро</span>
       </div>
@@ -153,6 +153,16 @@
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="roomLightbox">
+  <div class="lightbox__inner">
+    <button class="lightbox__close" type="button" id="roomLightboxClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img id="roomLightboxImg" src="" alt="">
+    <div class="lightbox__name" id="roomLightboxName"></div>
+  </div>
+</div>
 
 <section class="category pattern-dots-light" id="new" style="background:var(--bg-lavender)">
   <div class="container">
@@ -1701,6 +1711,26 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Лайтбокс для фото домиков
+  const roomLightbox = document.getElementById('roomLightbox');
+  const roomLightboxImg = document.getElementById('roomLightboxImg');
+  const roomLightboxName = document.getElementById('roomLightboxName');
+  const roomLightboxClose = document.getElementById('roomLightboxClose');
+
+  document.querySelectorAll('.room-card--clickable').forEach(card => {
+    card.addEventListener('click', () => {
+      roomLightboxImg.src = card.dataset.img;
+      roomLightboxImg.alt = card.dataset.name;
+      roomLightboxName.textContent = card.dataset.name;
+      roomLightbox.classList.add('open');
+    });
+  });
+
+  function closeRoomLightbox() { roomLightbox.classList.remove('open'); }
+  roomLightboxClose.addEventListener('click', closeRoomLightbox);
+  roomLightbox.addEventListener('click', (e) => { if (e.target === roomLightbox) closeRoomLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeRoomLightbox(); });
 })();
 </script>
 </body>
