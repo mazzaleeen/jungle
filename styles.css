@@ -59,6 +59,14 @@ button{font-family:inherit}
 .flyout--card{left:0;right:0;top:calc(100% + 14px);transform:translateY(-8px);min-width:0}
 .flyout--card.open{transform:translateY(0)}
 
+/* Бургер-меню теперь работает всегда: контейнер шапки ограничен 1140px,
+   и семь пунктов навигации физически не помещаются в пилюли на любой ширине экрана */
+.burger{display:flex}
+.nav{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;background:var(--purple-1);border-radius:16px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);z-index:20}
+.nav.open{display:flex}
+.nav-item{width:100%}
+.nav-btn{width:100%;justify-content:center}
+
 @media(max-width:860px){
   .flyout{left:0;right:0;transform:translateY(-8px);min-width:0}
   .flyout.open{transform:translateY(0)}
@@ -287,6 +295,33 @@ button{font-family:inherit}
 .lightbox__close:hover{background:#E8D9FF}
 .lightbox__close svg{width:18px;height:18px}
 
+/* Галерея-лайтбокс с перелистыванием (Дополнения) */
+.program-card--gallery{cursor:pointer}
+.program-card--gallery:hover{box-shadow:0 18px 42px rgba(74,17,133,.18);transform:translateY(-3px)}
+.program-card__gallery-hint{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--purple-1);opacity:.75;margin-top:-4px}
+.program-card__gallery-hint svg{width:15px;height:15px;flex:none}
+.gallery-lightbox{position:fixed;inset:0;background:rgba(46,11,94,.9);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.gallery-lightbox.open{display:flex}
+.gallery-lightbox__inner{background:#fff;border-radius:28px;padding:28px;max-width:520px;width:100%;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.gallery-lightbox__stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:280px}
+.gallery-lightbox__stage img{max-width:100%;max-height:52vh;object-fit:contain;border-radius:18px;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
+.gallery-lightbox__title{margin-top:16px;font-size:20px;text-transform:uppercase;color:var(--purple-1)}
+.gallery-lightbox__counter{margin-top:6px;font-size:13px;font-weight:800;opacity:.6}
+.gallery-lightbox__close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:var(--bg-lavender);border:none;color:var(--purple-1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2}
+.gallery-lightbox__close:hover{background:#E8D9FF}
+.gallery-lightbox__close svg{width:18px;height:18px}
+.gallery-lightbox__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:var(--purple-1);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;z-index:2;flex:none}
+.gallery-lightbox__arrow:hover{background:var(--purple-2)}
+.gallery-lightbox__arrow svg{width:20px;height:20px}
+.gallery-lightbox__arrow--prev{left:-4px}
+.gallery-lightbox__arrow--next{right:-4px}
+@media(max-width:640px){
+  .gallery-lightbox__inner{padding:20px 44px}
+  .gallery-lightbox__arrow{width:38px;height:38px}
+  .gallery-lightbox__arrow--prev{left:-8px}
+  .gallery-lightbox__arrow--next{right:-8px}
+}
+
 /* СОБЕРИ СВОЙ ПРАЗДНИК (маршрут из 5 лапок) */
 .journey--hero{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:34px 32px 30px}
 .journey-title{text-align:center;color:#fff;text-transform:uppercase;font-size:22px;margin-bottom:32px;font-weight:700;letter-spacing:.04em}
@@ -342,11 +377,6 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .mascot-box--full img{max-width:400px}
 .hero-stats{justify-content:center}
 .top-divider{display:none}
-.burger{display:flex}
-.nav{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;background:var(--purple-1);border-radius:16px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);z-index:20}
-.nav.open{display:flex}
-.nav-item{width:100%}
-.nav-btn{width:100%;justify-content:center}
 .nav-grid{grid-template-columns:1fr}
 .grid-3{grid-template-columns:1fr}
 .quick-nav-card{padding:32px 24px}
