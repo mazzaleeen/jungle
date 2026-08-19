@@ -56,10 +56,11 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeAllFlyouts();
 });
 
-/* ===== Умная шапка: прячется при скролле вниз, появляется при скролле вверх =====
-   Кнопка-бургер всегда рядом — не нужно скроллить наверх, чтобы сменить раздел. */
+/* ===== Умная фиолетовая полоса: прячется при скролле вниз, появляется при скролле вверх =====
+   Зелёная полоса с расписанием остаётся обычной (уходит вместе со страницей) —
+   а кнопка-бургер в фиолетовой полосе всегда рядом, не нужно скроллить наверх. */
 (function () {
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector('.main-bar');
   if (!header) return;
   const subnav = document.querySelector('.subnav');
 
@@ -78,7 +79,7 @@ document.addEventListener('keydown', (e) => {
   setHeaderHeight();
   window.addEventListener('resize', setHeaderHeight);
 
-  const TOP_THRESHOLD = 60; // у самого верха страницы шапка всегда видна
+  const TOP_THRESHOLD = 60; // у самого верха страницы полоса всегда видна
   let lastY = window.scrollY;
   let ticking = false;
 

@@ -20,9 +20,6 @@ button{font-family:inherit}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
 
 /* ШАПКА */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:transform .35s ease}
-.site-header.header--hidden{transform:translateY(-100%)}
-body{padding-top:var(--header-h,140px)}
 .top-bar{background:var(--green);color:#fff;position:relative;padding:12px 0 34px}
 .top-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .top-item{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
@@ -37,7 +34,8 @@ body{padding-top:var(--header-h,140px)}
 .top-divider{width:1px;height:34px;background:rgba(255,255,255,.4)}
 .top-wave{position:absolute;left:0;bottom:-1px;width:100%;height:26px;display:block}
 
-.main-bar{background:linear-gradient(90deg,var(--purple-1),var(--purple-2))}
+.main-bar{background:linear-gradient(90deg,var(--purple-1),var(--purple-2));position:sticky;top:0;z-index:100;transition:transform .35s ease}
+.main-bar.header--hidden{transform:translateY(-100%)}
 .main-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:relative}
 .logo img{height:58px;display:block}
 
