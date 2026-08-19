@@ -46,7 +46,6 @@
     <div class="container main-bar__inner">
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
       <nav class="nav" id="nav">
-        <!-- АНИМАЦИИ: активный раздел на этой странице -->
         <div class="nav-item">
           <button class="nav-btn active" type="button" data-flyout-trigger="anim-nav">
             Анимации
@@ -70,7 +69,6 @@
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Меню</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Торты</a></div>
 
-        <!-- Скрытые пока разделы: подготовлены в коде, но не показываются на сайте -->
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Выпускной</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
@@ -89,7 +87,6 @@
   </svg>
 </section>
 
-<!-- Локальная навигация по категориям -->
 <nav class="subnav" id="subnav" aria-label="Категории анимаций">
   <div class="subnav__inner" id="subnavInner">
     <a href="#domiki">Домики для праздника</a>
@@ -1485,7 +1482,6 @@
     <div class="quick-nav-card">
       <h2 class="qn-title">Куда дальше?</h2>
       <div class="nav-grid">
-        <a href="animations.html#domiki" class="nav-card"><h3>Анимации</h3></a>
         <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
         <a href="index.html#" class="nav-card is-hidden"><h3>Меню</h3></a>
         <a href="index.html#" class="nav-card is-hidden"><h3>Торты</h3></a>
@@ -1524,7 +1520,6 @@
 
 <script src="main.js"></script>
 <script>
-/* ===== Разворачивание карточек программ («Подробнее») ===== */
 document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   btn.addEventListener('click', () => {
     const card = btn.closest('.program-card');
@@ -1539,7 +1534,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
 </script>
 
 <script>
-/* ===== Scrollspy: подсвечиваем активную категорию в локальном меню ===== */
 (function () {
   const sections = document.querySelectorAll('section.category[id]');
   const links = document.querySelectorAll('#subnavInner a');
@@ -1568,7 +1562,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
 </script>
 
 <script>
-/* ===== Вечеринки: каталог персонажей (фильтры + сетка + лайтбокс) ===== */
 (function () {
   const CATEGORIES = [
     { id: 'all', label: 'Все' },
@@ -1581,7 +1574,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   ];
 
   const CHARACTERS = [
-    // Принцессы (№ 7-15)
     { cat: 'princesses', num: '7', img: 'alice' },
     { cat: 'princesses', num: '8', img: 'elsa-white' },
     { cat: 'princesses', num: '9', img: 'belle' },
@@ -1591,7 +1583,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
     { cat: 'princesses', num: '13', img: 'jasmine' },
     { cat: 'princesses', num: '14', img: 'rapunzel' },
     { cat: 'princesses', num: '15', img: 'elsa-blue-gown' },
-    // Мульт-герои (№ 16-30)
     { cat: 'cartoon', num: '16', img: 'pony' },
     { cat: 'cartoon', num: '17', img: 'unicorn-fairy' },
     { cat: 'cartoon', num: '18', img: 'gift-box' },
@@ -1607,20 +1598,17 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
     { cat: 'cartoon', num: '28', img: 'bunny-beige' },
     { cat: 'cartoon', num: '29', img: 'ninja-turtle-red' },
     { cat: 'cartoon', num: '30', img: 'bumblebee' },
-    // Ведущие (№ 31-37)
     { cat: 'hosts', num: '31', img: 'green-gold-couple' },
     { cat: 'hosts', num: '32', img: 'cat-maid' },
     { cat: 'hosts', num: '33', img: 'gold-host' },
     { cat: 'hosts', num: '34', img: 'neon-host' },
     { cat: 'hosts', num: '35', img: 'challenge-girl' },
     { cat: 'hosts', num: '36–37', img: 'tiktok-couple' },
-    // Супергерои (№ 38-42)
     { cat: 'super', num: '38', img: 'spiderman-miles' },
     { cat: 'super', num: '39', img: 'supergirl' },
     { cat: 'super', num: '40', img: 'batman' },
     { cat: 'super', num: '41', img: 'harley' },
     { cat: 'super', num: '42', img: 'spiderman-classic' },
-    // Герои игр (№ 43-51)
     { cat: 'games', num: '43', img: 'sonic' },
     { cat: 'games', num: '44', img: 'creeper' },
     { cat: 'games', num: '45', img: 'minecraft-girl' },
@@ -1630,7 +1618,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
     { cat: 'games', num: '49', img: 'pikachu' },
     { cat: 'games', num: '50', img: 'roblox-blue' },
     { cat: 'games', num: '51', img: 'cat-troublemaker' },
-    // Герои кино (№ 52-69)
     { cat: 'kino', num: '52', img: 'harry-potter' },
     { cat: 'kino', num: '53', img: 'hermione' },
     { cat: 'kino', num: '54', img: 'draco' },
@@ -1678,7 +1665,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
 
   renderGrid('all');
 
-  // Лайтбокс
   const lightbox = document.getElementById('partyLightbox');
   const lightboxImg = document.getElementById('partyLightboxImg');
   const lightboxName = document.getElementById('partyLightboxName');
@@ -1698,7 +1684,6 @@ document.querySelectorAll('[data-toggle-card]').forEach(btn => {
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Лайтбокс для фото домиков
   const roomLightbox = document.getElementById('roomLightbox');
   const roomLightboxImg = document.getElementById('roomLightboxImg');
   const roomLightboxName = document.getElementById('roomLightboxName');

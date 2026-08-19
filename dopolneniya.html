@@ -69,7 +69,6 @@
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Меню</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Торты</a></div>
 
-        <!-- Скрытые пока разделы: подготовлены в коде, но не показываются на сайте -->
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Выпускной</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
@@ -231,7 +230,6 @@
 
 <script src="main.js"></script>
 <script>
-/* ===== Галерея-лайтбокс с перелистыванием (Дополнения) ===== */
 (function () {
   const GALLERIES = {
     shary: {
@@ -316,7 +314,6 @@
     if (e.key === 'ArrowRight') step(1);
   });
 
-  /* Свайп на мобильном */
   let touchStartX = null;
   const stage = document.querySelector('.gallery-lightbox__stage');
   stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });

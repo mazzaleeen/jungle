@@ -1,11 +1,9 @@
-/* ===== Кнопка "наверх" ===== */
 const toTop = document.getElementById('toTop');
 if (toTop) {
   window.addEventListener('scroll', () => toTop.classList.toggle('visible', window.scrollY > 400));
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ===== Бургер-меню (мобилка) ===== */
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 if (burger && nav) {
@@ -13,10 +11,6 @@ if (burger && nav) {
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 }
 
-/* ===== Выпадающие меню категорий (flyout) =====
-   Разметка триггера: <button data-flyout-trigger="ID">
-   Разметка панели:   <div data-flyout="ID">
-   Работает для любого количества пар триггер/панель на странице. */
 const flyoutTriggers = document.querySelectorAll('[data-flyout-trigger]');
 const allFlyouts = document.querySelectorAll('[data-flyout]');
 
@@ -56,9 +50,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeAllFlyouts();
 });
 
-/* ===== Умная фиолетовая полоса: прячется при скролле вниз, появляется при скролле вверх =====
-   Зелёная полоса с расписанием остаётся обычной (уходит вместе со страницей) —
-   а кнопка-бургер в фиолетовой полосе всегда рядом, не нужно скроллить наверх. */
 (function () {
   const header = document.querySelector('.main-bar');
   if (!header) return;
@@ -79,7 +70,7 @@ document.addEventListener('keydown', (e) => {
   setHeaderHeight();
   window.addEventListener('resize', setHeaderHeight);
 
-  const TOP_THRESHOLD = 60; // у самого верха страницы полоса всегда видна
+  const TOP_THRESHOLD = 60;
   let lastY = window.scrollY;
   let ticking = false;
 
