@@ -55,3 +55,51 @@ document.addEventListener('click', () => closeAllFlyouts());
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeAllFlyouts();
 });
+
+/* ===== Умная шапка: прячется при скролле вниз, появляется при скролле вверх =====
+   Кнопка-бургер всегда рядом — не нужно скроллить наверх, чтобы сменить раздел. */
+(function () {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const subnav = document.querySelector('.subnav');
+
+  function setHeaderHeight() {
+    const h = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+    document.documentElement.style.setProperty('--subnav-top', (header.classList.contains('header--hidden') ? 0 : h) + 'px');
+  }
+
+  function setHidden(hidden) {
+    header.classList.toggle('header--hidden', hidden);
+    const h = header.offsetHeight;
+    document.documentElement.style.setProperty('--subnav-top', (hidden ? 0 : h) + 'px');
+  }
+
+  setHeaderHeight();
+  window.addEventListener('resize', setHeaderHeight);
+
+  const TOP_THRESHOLD = 60; // у самого верха страницы шапка всегда видна
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (y <= TOP_THRESHOLD) {
+      setHidden(false);
+    } else if (y > lastY + 4) {
+      setHidden(true);
+      if (nav) nav.classList.remove('open');
+    } else if (y < lastY - 4) {
+      setHidden(false);
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+})();

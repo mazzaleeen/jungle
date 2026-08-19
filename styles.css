@@ -20,6 +20,9 @@ button{font-family:inherit}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
 
 /* ШАПКА */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:transform .35s ease}
+.site-header.header--hidden{transform:translateY(-100%)}
+body{padding-top:var(--header-h,140px)}
 .top-bar{background:var(--green);color:#fff;position:relative;padding:12px 0 34px}
 .top-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .top-item{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
@@ -47,7 +50,9 @@ button{font-family:inherit}
 .nav-btn__caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .25s;flex:none}
 .nav-btn[aria-expanded="true"] .nav-btn__caret{transform:rotate(225deg)}
 
-.burger{display:none;width:44px;height:44px;border:none;border-radius:12px;background:rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer;align-items:center;justify-content:center}
+.burger{display:none;height:44px;padding:0 20px;border:none;border-radius:999px;background:rgba(255,255,255,.15);color:#fff;font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;align-items:center;justify-content:center;gap:9px;transition:background .2s}
+.burger:hover{background:rgba(255,255,255,.25)}
+.burger svg{width:19px;height:19px;flex:none}
 
 /* ВЫПАДАЮЩЕЕ МЕНЮ КАТЕГОРИЙ (flyout) */
 .flyout{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-8px);background:#fff;border-radius:20px;padding:10px;min-width:280px;box-shadow:0 20px 50px rgba(74,17,133,.28);opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s ease,visibility .22s;z-index:60}
@@ -89,7 +94,7 @@ button{font-family:inherit}
 .mascot-box img{width:100%;max-width:260px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.25))}
 .mascot-box--small{flex:none}
 .mascot-box--small img{max-width:120px}
-.mascot-box--full{width:100%;margin:-10px 0 -6px;display:flex;justify-content:center}
+.mascot-box--full{width:100%;margin:28px 0 0;display:flex;justify-content:center}
 .mascot-box--full img{width:100%;max-width:800px}
 
 /* PAGE HERO (внутренние страницы, напр. animations.html) */
@@ -110,7 +115,7 @@ button{font-family:inherit}
 .nav-card h3{font-size:17px;color:#4a1185;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin:0;display:flex;align-items:center;gap:8px}
 
 /* SUBNAV (локальная навигация по категориям на странице анимаций) */
-.subnav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(74,17,133,.07)}
+.subnav{position:sticky;top:var(--subnav-top,140px);z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(74,17,133,.07);transition:top .35s ease}
 .subnav__inner{display:flex;gap:8px;overflow-x:auto;padding:14px 24px;max-width:1140px;margin:0 auto;scrollbar-width:thin}
 .subnav__inner::-webkit-scrollbar{height:5px}
 .subnav__inner::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
@@ -325,15 +330,19 @@ button{font-family:inherit}
 }
 
 /* СОБЕРИ СВОЙ ПРАЗДНИК (маршрут из 5 лапок) */
+.journey-row{display:flex;align-items:flex-end;gap:12px}
+.journey-row .journey--hero{flex:1;min-width:0}
+.journey-row__mascot{flex:none;align-self:flex-end;margin-bottom:-4px}
+.journey-row__mascot img{display:block;height:230px;width:auto;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28))}
 .journey--hero{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:34px 32px 30px}
 .journey-title{text-align:center;color:#fff;text-transform:uppercase;font-size:22px;margin-bottom:32px;font-weight:700;letter-spacing:.04em}
 
 .journey-trail{position:relative;display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:0}
-.journey-step{display:flex;flex-direction:column;align-items:center;text-align:center;width:172px;padding:0 4px}
+.journey-step{display:flex;flex-direction:column;align-items:center;text-align:center;width:145px;padding:0 3px}
 .journey-step__paw{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex:none}
 .journey-step__paw svg{width:29px;height:29px}
 .journey-step__title{font-size:13.5px;color:#fff;text-transform:uppercase;font-weight:700;line-height:1.35}
-.journey-paw{flex:none;width:34px;display:flex;justify-content:center;align-items:flex-start;margin-top:14px;color:rgba(255,255,255,.38)}
+.journey-paw{flex:none;width:26px;display:flex;justify-content:center;align-items:flex-start;margin-top:14px;color:rgba(255,255,255,.38)}
 .journey-paw svg{width:19px;height:19px;transform:rotate(90deg)}
 
 @media(max-width:960px){
@@ -342,6 +351,8 @@ button{font-family:inherit}
   .journey-trail{flex-direction:column;align-items:center;gap:0}
   .journey-step{width:100%;max-width:320px}
   .journey-paw{margin:2px 0;width:auto}
+  .journey-row{display:block}
+  .journey-row__mascot{display:none}
   .journey-paw svg{transform:rotate(0deg)}
 }
 
