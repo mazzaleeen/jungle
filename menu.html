@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Меню — Джунгли Сити</title>
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container top-bar__inner">
+      <div class="top-item">
+        <span class="top-icon top-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="top-text">
+          <small>Работаем</small>
+          <strong>ежедневно с 10:00 до 22:00 (в ПН с 12:00)</strong>
+        </span>
+      </div>
+      <span class="top-divider"></span>
+      <a href="tel:+79625097493" class="top-item">
+        <span class="top-text top-text--right">
+          <small>Позвонить</small>
+          <strong>+7 (962) 509-74-93</strong>
+        </span>
+        <span class="top-icon top-icon--white">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        </span>
+      </a>
+    </div>
+    <svg class="top-wave" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a1185"/><stop offset="1" stop-color="#6b2cc0"/></linearGradient></defs>
+      <path fill="url(#gh)" d="M0,30 C160,46 340,8 540,16 C740,24 900,46 1100,32 C1260,21 1370,26 1440,32 L1440,52 L0,52 Z"/>
+    </svg>
+  </div>
+</header>
+
+<div class="main-bar">
+    <div class="container main-bar__inner">
+      <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
+      <nav class="nav" id="nav">
+        <div class="nav-item">
+          <button class="nav-btn" type="button" data-flyout-trigger="anim-nav">
+            Анимации
+            <span class="nav-btn__caret" aria-hidden="true"></span>
+          </button>
+          <div class="flyout" data-flyout="anim-nav">
+            <a href="animations.html#domiki">Домики для праздника</a>
+            <a href="animations.html#new">Новинки</a>
+            <a href="animations.html#quests">Активити и квесты</a>
+            <a href="animations.html#masterclass">Мастер-классы</a>
+            <a href="animations.html#shows">Шоу-программы</a>
+            <a href="animations.html#kids">Малышник</a>
+            <a href="animations.html#parties">Вечеринки</a>
+            <a href="animations.html#heroes">Любимые герои</a>
+            <a href="animations.html#premium">Premium герои</a>
+            <a href="animations.html#offers">Пакетные предложения</a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-btn" href="denznaniy.html">День знаний</a></div>
+        <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
+        <div class="nav-item"><a class="nav-btn active" href="menu.html">Меню</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Торты</a></div>
+
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Выпускной</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
+      </nav>
+      <button class="burger" id="burger" aria-label="Разделы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Разделы</button>
+    </div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Меню ресторана</h1>
+    <p>Всё, чем можно подкрепиться в Джунгли Сити — от лёгких закусок до десертов.</p>
+  </div>
+  <svg class="page-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FFFDF9" d="M0,40 C240,60 480,10 720,26 C960,42 1200,14 1440,34 L1440,60 L0,60 Z"/>
+  </svg>
+</section>
+
+<div id="menuAnchor" aria-hidden="true"></div>
+<nav class="menu-filters" id="menuFilters" aria-label="Категории меню">
+  <div class="menu-filters__inner">
+      <button class="menu-filter active" type="button" data-menu-filter="holodnye-zakuski">Холодные закуски</button>
+      <button class="menu-filter" type="button" data-menu-filter="goryachie-zakuski">Горячие закуски</button>
+      <button class="menu-filter" type="button" data-menu-filter="salaty">Салаты</button>
+      <button class="menu-filter" type="button" data-menu-filter="detskoe-menu">Детское меню</button>
+      <button class="menu-filter" type="button" data-menu-filter="supy">Супы</button>
+      <button class="menu-filter" type="button" data-menu-filter="pasta">Паста</button>
+      <button class="menu-filter" type="button" data-menu-filter="picca">Пицца</button>
+      <button class="menu-filter" type="button" data-menu-filter="burgery">Бургеры</button>
+      <button class="menu-filter" type="button" data-menu-filter="pelmeni">Пельмени</button>
+      <button class="menu-filter" type="button" data-menu-filter="vtorye-blyuda">Вторые блюда</button>
+      <button class="menu-filter" type="button" data-menu-filter="garniry">Гарниры</button>
+      <button class="menu-filter" type="button" data-menu-filter="na-kompaniyu">Блюда на компанию</button>
+      <button class="menu-filter" type="button" data-menu-filter="bliny">Блины</button>
+      <button class="menu-filter" type="button" data-menu-filter="deserty">Десерты</button>
+      <button class="menu-filter" type="button" data-menu-filter="napitki">Напитки</button>
+      <button class="menu-filter" type="button" data-menu-filter="specmenu">СпецМеню</button>
+      <button class="menu-filter" type="button" data-menu-filter="azia">МенюАзия</button>
+  </div>
+</nav>
+
+<section class="category pattern-dots" style="background:var(--bg);padding-top:36px">
+  <div class="container">
+
+  <div class="menu-category active" data-menu-category="holodnye-zakuski">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/assorti-reletiki.jpg" alt="Ассорти мясных рулетиков с сырной начинкой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Ассорти мясных рулетиков с сырной начинкой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">230 г</span>
+          </div>
+          <p class="dish-card__desc">буженина, ветчина, карбонад с сырной начинкой</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/kuriczy.jpg" alt="Сэндвич с куриным филе" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сэндвич с куриным филе</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">180 г</span>
+          </div>
+          <p class="dish-card__desc">тостовой хлеб, соус, салат айсберг, томат, сыр чеддер, куриное филе</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/myasnaya-tarelka.jpg" alt="Мясная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Мясная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">260/40 г</span>
+          </div>
+          <p class="dish-card__desc">буженина, куриный рулет с курагой, карбонад, подаётся с соусом хрен-сливочный и горчицей</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/ovoshhnaya.jpg" alt="Овощная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Овощная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">310 ₽</span>
+            <span class="dish-card__weight">140/60 г</span>
+          </div>
+          <p class="dish-card__desc">томаты свежие, огурец свежий, перец болгарский свежий, подаётся с соусом тартар</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/syrnaya.jpg" alt="Сырная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сырная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">595 ₽</span>
+            <span class="dish-card__weight">140/60 г</span>
+          </div>
+          <p class="dish-card__desc">сыр пармезан, дор-блю, чеддер, копчёный сулугуни, виноград, грецкий орех, мёд</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/holodnye-zakuski/vetchina.jpg" alt="Сэндвич с ветчиной" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сэндвич с ветчиной</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">180 г</span>
+          </div>
+          <p class="dish-card__desc">тостовой хлеб, соус, салат айсберг, томат, сыр чеддер, ветчина</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="goryachie-zakuski">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/goryachie-zakuski/grenki-rzhanye.jpg" alt="Гренки ржаные с чесночным соусом" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Гренки ржаные с чесночным соусом</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">245 ₽</span>
+            <span class="dish-card__weight">150/30 г</span>
+          </div>
+          <p class="dish-card__desc">ржаные гренки, обжаренные во фритюре, подаются со сливочным соусом и сыром пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/goryachie-zakuski/krylyshki-ostrye.jpg" alt="Острые крылышки фри" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Острые крылышки фри</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">220/30 г</span>
+          </div>
+          <p class="dish-card__desc">куриные крылышки, маринованные в остром маринаде, обжаренные во фритюре, подаются с соусом тартар</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/goryachie-zakuski/syrnye-palochki.jpg" alt="Сырные палочки" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сырные палочки</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">550 ₽</span>
+            <span class="dish-card__weight">200/30 г</span>
+          </div>
+          <p class="dish-card__desc">сырные палочки, обжаренные во фритюре, подаются с соусом из пряной клюквы</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/goryachie-zakuski/zolotaya-kompaniya.jpg" alt="Золотая компания" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Золотая компания</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">470 ₽</span>
+            <span class="dish-card__weight">120/150/30 г</span>
+          </div>
+          <p class="dish-card__desc">рыбные палочки, куриный попкорн, подаётся с соусом тартар</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="salaty">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/czezao-s-kuriczej.jpg" alt="Цезарь с куриным филе" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Цезарь с куриным филе</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">220 г</span>
+          </div>
+          <p class="dish-card__desc">салат микс, соус цезарь, филе куриное запечённое, яйцо перепелиное, черри, сухари цезарь, сыр пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/czezar-s-krevetkoj.jpg" alt="Цезарь с креветками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Цезарь с креветками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">575 ₽</span>
+            <span class="dish-card__weight">220 г</span>
+          </div>
+          <p class="dish-card__desc">салат микс, тигровые креветки, пшеничные гренки, соус цезарь, пармезан, перепелиное яйцо и томаты черри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/goa.jpg" alt="Острый салат с говядиной и перцем" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Острый салат с говядиной и перцем</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">440 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">отварная говядина, перец болгарский, лук красный, айсберг, соус от Шефа</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/grecheskij.jpg" alt="Греческий" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Греческий</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">430 ₽</span>
+            <span class="dish-card__weight">255 г</span>
+          </div>
+          <p class="dish-card__desc">томаты свежие, огурец свежий, болгарский перец, маслины, оливки, заправка греческая, сыр фета, лук красный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/krevetka-i-avokado.jpg" alt="С креветками и авокадо" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">С креветками и авокадо</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">150 г</span>
+          </div>
+          <p class="dish-card__desc">микс салата, тигровая креветка, авокадо, аджика, помидорка черри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/letnij-so-smetanoj.jpg" alt="Летний со сметаной" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Летний со сметаной</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">250 ₽</span>
+            <span class="dish-card__weight">200 г</span>
+          </div>
+          <p class="dish-card__desc">томаты, огурец, редис, перец болгарский, зелень, сметана</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/s-lososem.jpg" alt="С сёмгой и сыром фета" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">С сёмгой и сыром фета</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">микс салата, огурец свежий, томаты черри, сёмга с/с, заправка цитрусовая</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/s-osminogami.jpg" alt="Зелёный с осьминогами" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Зелёный с осьминогами</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">микс салата, осьминоги, черри, редис, огурец, маслины, лук красный, фирменная заправка на основе оливкового масла</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/s-perepelinyjm-yajkczoj.jpg" alt="Перепелиное гнездо" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Перепелиное гнездо</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">440 ₽</span>
+            <span class="dish-card__weight">220 г</span>
+          </div>
+          <p class="dish-card__desc">филе куриное запечённое, ветчина, яблоко, яйцо перепелиное, томат свежий, заправка майонез</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/salaty/teplyj.jpg" alt="Тёплый салат с курицей" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Тёплый салат с курицей</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">550 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">филе куриное, огурец свежий, шампиньоны, романо, айсберг, черри, пармезан, заправляется ореховым соусом</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="detskoe-menu">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/18-scaled.jpg" alt="«Светофор»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">«Светофор»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">9 шт.</span>
+          </div>
+          <p class="dish-card__desc">красные, жёлтые и зелёные пельмешки собственного производства</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/19-scaled.jpg" alt="Салат «Друг Крош»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Салат «Друг Крош»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">290 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">филе куриное, картофель запечённый, яйцо перепелиное, огурчик консервированный, сметана</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/23-scaled.jpg" alt="«Ушастик»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">«Ушастик»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">410 ₽</span>
+            <span class="dish-card__weight">260 г</span>
+          </div>
+          <p class="dish-card__desc">куриные котлетки, картофельное пюре с маслом сливочным, подаётся в оформлении</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/33-scaled.jpg" alt="Бургер с куриной котлетой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с куриной котлетой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">495 ₽</span>
+            <span class="dish-card__weight">260/50/30 г</span>
+          </div>
+          <p class="dish-card__desc">котлета куриная в сухарях панко, томат свежий, айсберг, огурчик маринованный, соус Мисти, сыр чеддер, картофель фри, соус томатный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/34-scaled.jpg" alt="Бургер с мясной котлетой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с мясной котлетой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">260/50/30 г</span>
+          </div>
+          <p class="dish-card__desc">котлета мясная из мраморного мяса, томат свежий, айсберг, огурчик маринованный, соус Мисти, горчица зернистая, сыр чеддер, картофель фри, соус томатный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/salat-krab-palych.jpg" alt="Салат «Краб-Палыч»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Салат «Краб-Палыч»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">290 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">крабовые палочки, яйцо перепелиное, кукуруза, огурец свежий, сметана</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/osminozhki.jpg" alt="«Осьминожки»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">«Осьминожки»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">отварные макароны с маслом сливочным, сосиски молочные, подаются с соусом томатным</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/ovoshhi-gril.jpg" alt="Овощи гриль" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Овощи гриль</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">375 ₽</span>
+            <span class="dish-card__weight">260/10 г</span>
+          </div>
+          <p class="dish-card__desc">томат свежий, перец болгарский, шампиньоны, картофель запечённый, лук красный, подаётся с соусом песто</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/assorti.jpg" alt="Ассорти «Сафари»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Ассорти «Сафари»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">495 ₽</span>
+            <span class="dish-card__weight">120/120 г</span>
+          </div>
+          <p class="dish-card__desc">наггетсы куриные в панировке, картофель фри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/dsc_9658-scaled.jpg" alt="Бургер «Джуси»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер «Джуси»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">490 ₽</span>
+            <span class="dish-card__weight">190/50 г</span>
+          </div>
+          <p class="dish-card__desc">котлета мясная, свежие томаты, сыр чеддер, соус Джуси, картофель фри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/nagetsya.jpg" alt="Наггетсы куриные" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Наггетсы куриные</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">335 ₽</span>
+            <span class="dish-card__weight">120 г</span>
+          </div>
+          <p class="dish-card__desc">куриные наггетсы в панировке</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/ot-babushki-scaled.jpg" alt="Суп «От бабушки»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Суп «От бабушки»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">290 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">лапша яичная, филе куриное, морковь, бульон куриный натуральный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/s-frikadelkami-scaled.jpg" alt="Суп с фрикадельками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Суп с фрикадельками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">290 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">фрикадельки мясные, картофель, лучок, бульон куриный натуральный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/s-kurinym.jpg" alt="Бургер с куриным шницелем" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с куриным шницелем</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">500 ₽</span>
+            <span class="dish-card__weight">320 г</span>
+          </div>
+          <p class="dish-card__desc">булочка с кунжутом, томаты, сыр чеддер, филе цыплёнка, микс салата, соус тар-тар</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/detskoe-menu/zvezdochka-scaled.jpg" alt="Суп «Звёздочка»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Суп «Звёздочка»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">290 ₽</span>
+            <span class="dish-card__weight">200 г</span>
+          </div>
+          <p class="dish-card__desc">макарошки «звёздочка», филе куриное, яйцо перепелиное, бульон куриный натуральный</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="supy">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/borshh.jpg" alt="Борщ с мясом" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Борщ с мясом</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">440 ₽</span>
+            <span class="dish-card__weight">300/30 г</span>
+          </div>
+          <p class="dish-card__desc">классический борщ с говядиной, подаётся с чесночной булочкой и сметаной</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/gribnoj.jpg" alt="Грибной крем-суп" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Грибной крем-суп</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">390 ₽</span>
+            <span class="dish-card__weight">300/20 г</span>
+          </div>
+          <p class="dish-card__desc">шампиньоны, картофель, натуральный куриный бульон, сливки, подаётся с сухариками</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/solyanka.jpg" alt="Солянка сборная" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Солянка сборная</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">440 ₽</span>
+            <span class="dish-card__weight">300/30 г</span>
+          </div>
+          <p class="dish-card__desc">подаётся с булочкой и сметаной</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/syrnyj.jpg" alt="Сырный крем-суп" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сырный крем-суп</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">390 ₽</span>
+            <span class="dish-card__weight">300/20 г</span>
+          </div>
+          <p class="dish-card__desc">сыр моцарелла, картофель, морковь, чеснок, натуральный куриный бульон, подаётся с сухариками</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/tom-yam.jpg" alt="Том Ям" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Том Ям</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">590 ₽</span>
+            <span class="dish-card__weight">300 г</span>
+          </div>
+          <p class="dish-card__desc">креветка, кальмар, шампиньоны, помидор черри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/supy/uha.jpg" alt="Уха с красной рыбкой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Уха с красной рыбкой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">410 ₽</span>
+            <span class="dish-card__weight">300 г</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="pasta">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pasta/pasta-karbonara.jpg" alt="Карбонара" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Карбонара</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">525 ₽</span>
+            <span class="dish-card__weight">290 г</span>
+          </div>
+          <p class="dish-card__desc">лапша, бекон с/к, лук репчатый, масло сливочное, чеснок, сливки, желток куриный, сыр пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pasta/pasta-s-kuricey.jpg" alt="Спагетти с куриным филе в сливочно-грибном соусе" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Спагетти с куриным филе в сливочно-грибном соусе</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">290 г</span>
+          </div>
+          <p class="dish-card__desc">лапша, сливки, шампиньоны, филе куриное, сыр пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pasta/pasta-s-kalmarom.jpg" alt="С кальмаром и креветками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">С кальмаром и креветками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">290 г</span>
+          </div>
+          <p class="dish-card__desc">лапша, креветки, кальмары, томат с/с, сливки, чеснок, сыр пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pasta/pasta-s-lososem.jpg" alt="С лососем в сливочно-шпинатном соусе" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">С лососем в сливочно-шпинатном соусе</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">595 ₽</span>
+            <span class="dish-card__weight">290 г</span>
+          </div>
+          <p class="dish-card__desc">лапша, лосось, шпинат, сливки, сыр пармезан, черри</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="picca">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/czezar.jpg" alt="Пицца Цезарь" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Пицца Цезарь</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">680 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус Цезарь, куриное филе, бекон, ветчина, маслины, сыр моцарелла</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/gaavajskaya.jpg" alt="Гавайская" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Гавайская</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">650 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус сливочный, сыр моцарелла, ананасы консервированные, филе куриное, ветчина</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/italyanskoe-assorti.jpg" alt="Итальянское ассорти" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Итальянское ассорти</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">650 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">на сливочном или томатном соусе: пепперони, ветчина, куриное филе, шампиньоны, томаты, перец болгарский</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/milanskaya.jpg" alt="Миланская" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Миланская</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">710 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">на сливочном или томатном соусе: сыр моцарелла, ветчина, филе куриное, колбаски охотничьи, шампиньоны свежие, бекон, перец сладкий, томаты свежие</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/morskaya.jpg" alt="Морская" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Морская</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">730 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">на сливочном или томатном соусе: сыр моцарелла, креветки, кальмары, мидии, ветчина</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/myasnaya.jpg" alt="Мясная" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Мясная</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">690 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус сливочно-томатный, буженина, колбаски охотничьи, томат свежий, сыр</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/neappolitanskya.jpg" alt="Неаполитанская" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Неаполитанская</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">690 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус цезарь, куриное филе, бекон, ветчина, маслины, оливки, сыр моцарелла</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/parmkaya.jpg" alt="Пармская" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Пармская</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">650 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">на сливочном соусе: сыр моцарелла, филе куриное, томаты свежие, ветчина, укроп</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/picca/piczcza-czezar.jpg" alt="Греческая" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Греческая</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">690 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус сливочный и соус песто: филе куриное, томаты, маслины, перец болгарский, сыр фета, микс салата</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="burgery">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/33-scaled.jpg" alt="Бургер с куриной котлетой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с куриной котлетой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">495 ₽</span>
+            <span class="dish-card__weight">260/50/30 г</span>
+          </div>
+          <p class="dish-card__desc">котлета куриная в сухарях панко, томат свежий, айсберг, огурчик маринованный, соус Мисти, сыр чеддер, картофель фри, соус томатный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/34-scaled.jpg" alt="Бургер с мясной котлетой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с мясной котлетой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">260/50/30 г</span>
+          </div>
+          <p class="dish-card__desc">котлета мясная из мраморного мяса, томат свежий, айсберг, огурчик маринованный, соус Мисти, горчица зернистая, сыр чеддер, картофель фри, соус томатный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/dsc_9658-scaled.jpg" alt="Бургер «Джуси»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер «Джуси»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">490 ₽</span>
+            <span class="dish-card__weight">190/50 г</span>
+          </div>
+          <p class="dish-card__desc">котлета мясная, свежие томаты, сыр чеддер, соус Джуси, картофель фри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/kuriczy.jpg" alt="Сэндвич с куриным филе" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сэндвич с куриным филе</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">180 г</span>
+          </div>
+          <p class="dish-card__desc">тостовой хлеб, соус, салат айсберг, томат, сыр чеддер, куриное филе</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/s-kurinym.jpg" alt="Бургер с куриным шницелем" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер с куриным шницелем</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">500 ₽</span>
+            <span class="dish-card__weight">320 г</span>
+          </div>
+          <p class="dish-card__desc">булочка с кунжутом, томаты, сыр чеддер, филе цыплёнка, микс салата, соус тар-тар</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/burgery/vetchina.jpg" alt="Сэндвич с ветчиной" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сэндвич с ветчиной</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">180 г</span>
+          </div>
+          <p class="dish-card__desc">тостовой хлеб, соус, салат айсберг, томат, сыр чеддер, ветчина</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="pelmeni">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pelmeni/17-scaled.jpg" alt="Пельмени ручной лепки" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Пельмени ручной лепки</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">390 ₽</span>
+            <span class="dish-card__weight">200/30 г</span>
+          </div>
+          <p class="dish-card__desc">пельмешки собственного производства из свинины и говядины, подаются со сметаной</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/pelmeni/18-scaled.jpg" alt="«Светофор»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">«Светофор»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">350 ₽</span>
+            <span class="dish-card__weight">9 шт.</span>
+          </div>
+          <p class="dish-card__desc">красные, жёлтые и зелёные пельмешки собственного производства</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="vtorye-blyuda">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/lyulya-kebab.jpg" alt="Люля-кебаб из говядины" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Люля-кебаб из говядины</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">660 ₽</span>
+            <span class="dish-card__weight">200/80/30 г</span>
+          </div>
+          <p class="dish-card__desc">мраморное мясо говядины с нотками кинзы, подаётся со свежими овощами, маринованным луком, булочкой и соусом шашлычным</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/befstroganov-2.jpg" alt="Бефстроганов из говядины" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бефстроганов из говядины</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">475 ₽</span>
+            <span class="dish-card__weight">150/150 г</span>
+          </div>
+          <p class="dish-card__desc">с грибами и жареной картошкой: говядина, лук репчатый, шампиньоны, сливки, сметана, бэби-картофель</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/dsc_9658-scaled.jpg" alt="Бургер «Джуси»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бургер «Джуси»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">490 ₽</span>
+            <span class="dish-card__weight">190/50 г</span>
+          </div>
+          <p class="dish-card__desc">котлета мясная, свежие томаты, сыр чеддер, соус Джуси, картофель фри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/hlebnaya-korzina.jpg" alt="Хлебная корзина" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Хлебная корзина</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">170 ₽</span>
+            <span class="dish-card__weight">160 г, 4 шт.</span>
+          </div>
+          <p class="dish-card__desc">булочки: тёмная, с кориандром, французская</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/myaso.jpg" alt="Стейк из свиной шеи" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Стейк из свиной шеи</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">630 ₽</span>
+            <span class="dish-card__weight">170/80/30 г</span>
+          </div>
+          <p class="dish-card__desc">подаётся со свежими овощами, маринованным луком, булочкой и соусом шашлычным, готовится на электрогриле</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/uznat-2.jpg" alt="Куриный шницель в стиле Цезарь" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Куриный шницель в стиле Цезарь</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">450 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">филе куриное, микс салата, черри, соус Цезарь, пармезан</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/zharenaya.jpg" alt="Сковорода жареной картошки со свиной вырезкой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сковорода жареной картошки со свиной вырезкой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">530 ₽</span>
+            <span class="dish-card__weight">380 г</span>
+          </div>
+          <p class="dish-card__desc">картофель, вырезка свиная, бекон, грудинка копчёная, подаётся с луком фри и солёным огурчиком</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/vtorye-blyuda/zharkoe.jpg" alt="Жаркое со свининой и овощами" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Жаркое со свининой и овощами</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">490 ₽</span>
+            <span class="dish-card__weight">400 г</span>
+          </div>
+          <p class="dish-card__desc">картофель бэби, шампиньоны, свинина, томаты, подаётся под сырной шапкой</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="garniry">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/garniry/21-scaled.jpg" alt="Картофельное пюре" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Картофельное пюре</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">165 ₽</span>
+            <span class="dish-card__weight">150 г</span>
+          </div>
+          <p class="dish-card__desc">подаётся со сливочным маслом и зеленью</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/garniry/32-scaled.jpg" alt="Соус в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Соус в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">65 ₽</span>
+            <span class="dish-card__weight">40 г</span>
+          </div>
+          <p class="dish-card__desc">томатный, сырный, чесночный, цезарь, шашлычный, BBQ, тартар, майонез, кисло-сладкий, сметана</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/garniry/fri.jpg" alt="Картофель фри" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Картофель фри</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">245 ₽</span>
+            <span class="dish-card__weight">120 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/garniry/po-derevenski.jpg" alt="Бэби-картофель по-деревенски" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Бэби-картофель по-деревенски</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">235 ₽</span>
+            <span class="dish-card__weight">120 г</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="na-kompaniyu">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/na-kompaniyu/assorti-reletiki.jpg" alt="Ассорти мясных рулетиков с сырной начинкой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Ассорти мясных рулетиков с сырной начинкой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">510 ₽</span>
+            <span class="dish-card__weight">230 г</span>
+          </div>
+          <p class="dish-card__desc">буженина, ветчина, карбонад с сырной начинкой</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/na-kompaniyu/myasnaya-tarelka.jpg" alt="Мясная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Мясная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">260/40 г</span>
+          </div>
+          <p class="dish-card__desc">буженина, куриный рулет с курагой, карбонад, подаётся с соусом хрен-сливочный и горчицей</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/na-kompaniyu/ovoshhnaya.jpg" alt="Овощная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Овощная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">310 ₽</span>
+            <span class="dish-card__weight">140/60 г</span>
+          </div>
+          <p class="dish-card__desc">томаты свежие, огурец свежий, перец болгарский свежий, подаётся с соусом тартар</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/na-kompaniyu/syrnaya.jpg" alt="Сырная тарелка" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сырная тарелка</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">595 ₽</span>
+            <span class="dish-card__weight">140/60 г</span>
+          </div>
+          <p class="dish-card__desc">сыр пармезан, дор-блю, чеддер, копчёный сулугуни, виноград, грецкий орех, мёд</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="bliny">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/bliny/s-mussom.jpg" alt="Блины с творожно-банановым муссом" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Блины с творожно-банановым муссом</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">235 ₽</span>
+            <span class="dish-card__weight">130 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/bliny/s-topingom.jpg" alt="Блины с топпингом на выбор" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Блины с топпингом на выбор</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">275 ₽</span>
+            <span class="dish-card__weight">180/30 г</span>
+          </div>
+          <p class="dish-card__desc">сметана, сгущённое молоко, джем клубничный</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/bliny/sajt-bliny-768x768.png" alt="Блины с ветчиной, сыром и сметаной" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Блины с ветчиной, сыром и сметаной</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">330 ₽</span>
+            <span class="dish-card__weight">180/30 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/bliny/syrniki-1.jpg" alt="Сырники с джемом" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сырники с джемом</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">315 ₽</span>
+            <span class="dish-card__weight">160/40 г</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="deserty">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/4-scaled.jpg" alt="Мороженое в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Мороженое в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">235 ₽</span>
+            <span class="dish-card__weight">100 г</span>
+          </div>
+          <p class="dish-card__desc">ваниль, клубника, шоколад, шоколадная крошка, фисташка, бабл-гам</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/8-scaled.jpg" alt="Попкорн" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Попкорн</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">165 ₽</span>
+            <span class="dish-card__weight">350 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/shokoladnyj-fondan.jpg" alt="Шоколадный фондан" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Шоколадный фондан</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">375 ₽</span>
+            <span class="dish-card__weight">80/30 г</span>
+          </div>
+          <p class="dish-card__desc">подаётся с шариком ванильного мороженого</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/fruktovaya-tarelka.jpg" alt="Фруктовая тарелка «Жар-птица»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Фруктовая тарелка «Жар-птица»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">575 ₽</span>
+            <span class="dish-card__weight">500 г</span>
+          </div>
+          <p class="dish-card__desc">апельсин, яблоко, груша, виноград, киви, мандарин</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/dornat.jpg" alt="Донат в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Донат в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">225 ₽</span>
+            <span class="dish-card__weight">65 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/eskimo.jpeg" alt="Эскимо на палочке" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Эскимо на палочке</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">285 ₽</span>
+            <span class="dish-card__weight">1 шт.</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/kek-pops.jpeg" alt="Кейк-попс «Шоколад»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Кейк-попс «Шоколад»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">260 ₽</span>
+            <span class="dish-card__weight">40 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/raduga.jpeg" alt="Торт «Радуга»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Торт «Радуга»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">415 ₽</span>
+            <span class="dish-card__weight">130 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/trajfl.jpeg" alt="Трайфл в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Трайфл в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">415 ₽</span>
+            <span class="dish-card__weight">120 г</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/uznat-4.jpg" alt="Вафли бельгийские" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Вафли бельгийские</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">410 ₽</span>
+            <span class="dish-card__weight">215 г</span>
+          </div>
+          <p class="dish-card__desc">подаются с шариком сливочного мороженого и топпингом из фруктов</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/deserty/zharenoe-morozhenoe1-scaled.jpg" alt="Жареное мороженое" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Жареное мороженое</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">310 ₽</span>
+            <span class="dish-card__weight">150 г</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="napitki">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/2-scaled.jpg" alt="Чай в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Чай в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">235 ₽</span>
+            <span class="dish-card__weight">800 мл</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/3-scaled.jpg" alt="Лимонад в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Лимонад в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">420 ₽</span>
+            <span class="dish-card__weight">1 л</span>
+          </div>
+          <p class="dish-card__desc">подаётся со льдом</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/5-scaled.jpg" alt="Молочный коктейль в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Молочный коктейль в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">385 ₽</span>
+            <span class="dish-card__weight">270 мл</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/6-scaled.jpg" alt="Морс домашний 1 л" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Морс домашний 1 л</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">420 ₽</span>
+            <span class="dish-card__weight">1 л</span>
+          </div>
+          <p class="dish-card__desc">клюква, чёрная смородина</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/7-scaled.jpg" alt="Сок 1 л в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сок 1 л в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">420 ₽</span>
+            <span class="dish-card__weight">1 л</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/DSC_2588-768x768.jpg" alt="Сок 0,2 л в ассортименте" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сок 0,2 л в ассортименте</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">130 ₽</span>
+            <span class="dish-card__weight">0,2 л</span>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/napitki/DSC_2609-768x768.jpg" alt="Морс домашний 0,2 л" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Морс домашний 0,2 л</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">130 ₽</span>
+            <span class="dish-card__weight">0,2 л</span>
+          </div>
+          <p class="dish-card__desc">клюква, чёрная смородина</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="specmenu">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/bruketa.jpg" alt="Брускетта с сёмгой или бужениной и красным луком" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Брускетта с сёмгой или бужениной и красным луком</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">370 ₽</span>
+            <span class="dish-card__weight">1 шт.</span>
+          </div>
+          <p class="dish-card__desc">чиабатта, сёмга с/с (или буженина с красным луком), микс салата, черри</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/kvadrat.jpg" alt="Кушияки с креветками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Кушияки с креветками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">480 ₽</span>
+            <span class="dish-card__weight">120/30 г</span>
+          </div>
+          <p class="dish-card__desc">японский шашлычок</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/letnij-so-smetanoj.jpg" alt="Летний со сметаной" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Летний со сметаной</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">250 ₽</span>
+            <span class="dish-card__weight">200 г</span>
+          </div>
+          <p class="dish-card__desc">томаты, огурец, редис, перец болгарский, зелень, сметана</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/piczcza-czezar.jpg" alt="Греческая" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Греческая</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">690 ₽</span>
+            <span class="dish-card__weight">550 г</span>
+          </div>
+          <p class="dish-card__desc">соус сливочный и соус песто: филе куриное, томаты, маслины, перец болгарский, сыр фета, микс салата</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/s-osminogami.jpg" alt="Зелёный с осьминогами" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Зелёный с осьминогами</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">170 г</span>
+          </div>
+          <p class="dish-card__desc">микс салата, осьминоги, черри, редис, огурец, маслины, лук красный, фирменная заправка на основе оливкового масла</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/zharkoe.jpg" alt="Жаркое со свининой и овощами" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Жаркое со свининой и овощами</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">490 ₽</span>
+            <span class="dish-card__weight">400 г</span>
+          </div>
+          <p class="dish-card__desc">картофель бэби, шампиньоны, свинина, томаты, подаётся под сырной шапкой</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/specmenu/zolotaya-kompaniya.jpg" alt="Золотая компания" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Золотая компания</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">470 ₽</span>
+            <span class="dish-card__weight">120/150/30 г</span>
+          </div>
+          <p class="dish-card__desc">рыбные палочки, куриный попкорн, подаётся с соусом тартар</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-category" data-menu-category="azia">
+    <div class="menu-grid">
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/dsc_6711-scaled.jpg" alt="Поке с лососем" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Поке с лососем</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">350 г</span>
+          </div>
+          <p class="dish-card__desc">лосось с/с, рис, авокадо, огурец, чука-салат, кукуруза консервированная, соус ореховый, нори, зелень</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/dsc_6715-scaled.jpg" alt="Поке с креветками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Поке с креветками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">610 ₽</span>
+            <span class="dish-card__weight">350 г</span>
+          </div>
+          <p class="dish-card__desc">креветки тигровые, рис, авокадо, огурец, чука-салат, кукуруза консервированная, соус ореховый, нори, зелень</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/dsc_6770-scaled.jpg" alt="Горячий ролл с креветками" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Горячий ролл с креветками</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">550 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">авокадо, сыр сливочный, креветка</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/filadelfiya-scaled.jpg" alt="Филадельфия" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Филадельфия</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">550 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">сыр сливочный, лосось с/с</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/kaliforniya-s-lososyam--scaled.jpg" alt="Калифорния с лососем" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Калифорния с лососем</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">550 ₽</span>
+            <span class="dish-card__weight">250 г</span>
+          </div>
+          <p class="dish-card__desc">авокадо, майонез, огурец св., икра летучей рыбы, лосось с/с / креветка</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/lapsha.jpg" alt="Лапша с курицей или свининой" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Лапша с курицей или свининой</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">410 ₽</span>
+            <span class="dish-card__weight">320 г</span>
+          </div>
+          <p class="dish-card__desc">лапша, куриное филе (или свинина), морковь свежая, черри, лук репчатый, зелень</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/poke-s-kuriczej-scaled.jpg" alt="Поке с курицей" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Поке с курицей</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">570 ₽</span>
+            <span class="dish-card__weight">350 г</span>
+          </div>
+          <p class="dish-card__desc">филе бедра, рис, авокадо, огурец, чука-салат, кукуруза консервированная, соус ореховый, нори, зелень</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/set-2.jpg" alt="Сет «Морское наслаждение»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сет «Морское наслаждение»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">1200 ₽</span>
+            <span class="dish-card__weight">700 г</span>
+          </div>
+          <p class="dish-card__desc">филадельфия, запечённый ролл с креветкой, маки с авокадо, маки с огурцом</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/set.jpg" alt="Сет «Запечённый восторг»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сет «Запечённый восторг»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">1350 ₽</span>
+            <span class="dish-card__weight">750 г</span>
+          </div>
+          <p class="dish-card__desc">запечённый ролл с креветкой, запечённый ролл с лососем, ролл Тори</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/set1.jpg" alt="Сет «Изобилие»" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Сет «Изобилие»</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">1850 ₽</span>
+            <span class="dish-card__weight">1000 г</span>
+          </div>
+          <p class="dish-card__desc">горячий ролл с креветкой, горячая филадельфия, запечённый ролл с лососем, калифорния с креветкой</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/shashalyk-osminogi.jpg" alt="Кушияки с осьминогом" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Кушияки с осьминогом</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">700 ₽</span>
+            <span class="dish-card__weight">120/30 г</span>
+          </div>
+          <p class="dish-card__desc">японские шашлычки</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-card__photo"><img src="images/menu/azia/shashlyk-losos.jpg" alt="Кушияки лосось" loading="lazy"></div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Кушияки лосось</h3>
+          <div class="dish-card__meta">
+            <span class="dish-card__price">620 ₽</span>
+            <span class="dish-card__weight">120/30 г</span>
+          </div>
+          <p class="dish-card__desc">японский шашлычок</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="quick-nav quick-nav--bottom">
+  <div class="container">
+    <div class="quick-nav-card">
+      <h2 class="qn-title">Куда дальше?</h2>
+      <div class="nav-grid">
+        <a href="animations.html#domiki" class="nav-card"><h3>Анимации</h3></a>
+        <a href="denznaniy.html" class="nav-card"><h3>День знаний</h3></a>
+        <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
+        <a href="index.html#" class="nav-card is-hidden"><h3>Торты</h3></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="images/image.png" alt="Джунгли Сити"></div>
+      <p>Детский развлекательный парк, где дети растут счастливыми, а родители отдыхают спокойно.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <a href="animations.html">Анимации</a>
+      <a href="denznaniy.html">День знаний</a>
+      <a href="dopolneniya.html">Впечатления</a>
+      <a href="menu.html">Меню</a>
+      <a href="index.html#" class="is-hidden">Торты</a>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <a href="#">г. Нижний Новгород, ул. Коминтерна, д. 11, ТЦ «Лента», 1 этаж</a>
+      <a href="tel:+79625097493">+7 (962) 509-74-93</a>
+      <a href="#">Ежедневно 10:00–22:00 (в ПН с 12:00)</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span>Наверх</span>
+</button>
+
+<script src="main.js"></script>
+<script>
+(function () {
+  const filterButtons = document.querySelectorAll('[data-menu-filter]');
+  const categoryPanels = document.querySelectorAll('[data-menu-category]');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const slug = btn.getAttribute('data-menu-filter');
+      filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+      categoryPanels.forEach(p => p.classList.toggle('active', p.getAttribute('data-menu-category') === slug));
+      window.scrollTo({ top: document.getElementById('menuAnchor').offsetTop, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
