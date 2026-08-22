@@ -65,9 +65,9 @@
           </div>
         </div>
 
-        <div class="nav-item"><a class="nav-btn active" href="denznaniy.html">День знаний</a></div>
         <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
-        <div class="nav-item"><a class="nav-btn" href="menu.html">Меню</a></div>
+        <div class="nav-item"><a class="nav-btn active" href="denznaniy.html">День знаний</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="menu.html">Меню</a></div>
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Торты</a></div>
 
         <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Выпускной</a></div>
@@ -79,34 +79,27 @@
 </div>
 
 <section class="promo-hero">
-  <div class="container promo-hero__grid">
-    <div class="promo-hero__text">
-      <h1>Отмечай начало учебного года в Джунгли Сити</h1>
-
-      <div class="promo-price-tag">
-        <span class="promo-price-tag__label">Билет</span>
-        <span class="promo-price-tag__new">1 190 ₽</span>
-        <span class="promo-price-tag__old">1 340 ₽</span>
-      </div>
-
-      <ul>
-        <li>Отдельная комната для компании</li>
-        <li>Подарки детям</li>
-        <li>Большая праздничная программа</li>
-        <li>Выгода при предварительном заказе меню</li>
-      </ul>
-    </div>
-
-    <div class="promo-hero__media" data-photo-slot="hero">
-      Здесь будет фото: Джуси с ребятами, праздничная атмосфера
-    </div>
-  </div>
-</section>
-
-<section class="category pattern-dots-light" style="background:var(--bg-lavender)">
   <div class="container">
+    <div class="promo-hero__grid">
+      <div class="promo-hero__text">
+        <h1>Отмечай начало учебного года в Джунгли Сити</h1>
 
-    <div class="benefits-row">
+        <div class="promo-price-tag">
+          <span class="promo-price-tag__label">Билет</span>
+          <span class="promo-price-tag__new">1 190 ₽</span>
+          <span class="promo-price-tag__old">1 340 ₽</span>
+        </div>
+
+        <ul>
+          <li>Отдельная комната для компании</li>
+          <li>Подарки детям</li>
+          <li>Большая праздничная программа</li>
+          <li>Выгода при предварительном заказе меню</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="benefits-row benefits-row--card">
       <div class="benefit-item">
         <div class="benefit-item__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 5l8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M10 20v-5h4v5"/></svg>
@@ -116,7 +109,7 @@
       </div>
       <div class="benefit-item">
         <div class="benefit-item__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20 4.6 5.9a1 1 0 0 1 .9-1.4h13a1 1 0 0 1 .9 1.4L12 20Z"/><path d="M7.3 9c2.7-1 6.7-1 9.4 0"/><circle cx="10.3" cy="12.2" r="1.15" fill="currentColor" stroke="none"/><circle cx="13.6" cy="14.5" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="9.5" rx="1"/><path d="M4 14.5h16"/><path d="M12 10.5v9.5"/><path d="M12 10.5c-1.2-3.2-5.2-3-5 .3.1 0-.2-.3 5-.3Z"/><path d="M12 10.5c1.2-3.2 5.2-3 5 .3-.1 0 .2-.3-5-.3Z"/></svg>
         </div>
         <div class="benefit-item__title">Подарки детям</div>
         <div class="benefit-item__desc">Каждому маленькому гостю</div>
@@ -136,6 +129,11 @@
         <div class="benefit-item__desc">При предварительном заказе</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="category pattern-dots-light" style="background:var(--bg-lavender)">
+  <div class="container">
 
     <div class="promo-note">Предложения действительны при предварительном заказе блюд</div>
 
@@ -199,8 +197,6 @@
               <span class="promo-pkg__bd-value"><strong>от 6 000 ₽</strong><span class="promo-pkg__bd-note">со скидкой 500 ₽</span></span>
             </div>
           </div>
-
-          <p class="promo-pkg__disclaimer">Фотография блюд носит рекламный характер</p>
         </div>
         <div class="promo-pkg__foot">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
@@ -341,11 +337,6 @@
       </div>
 
     </div>
-
-    <div class="promo-cta">
-      <h3>До праздника один шаг — выбирайте дату и бронируйте!</h3>
-      <a href="tel:+79625097493" class="nav-btn" style="display:inline-flex;background:#fff;color:var(--purple-1)">Позвонить и забронировать</a>
-    </div>
   </div>
 </section>
 
@@ -356,7 +347,7 @@
       <div class="nav-grid">
         <a href="animations.html#domiki" class="nav-card"><h3>Анимации</h3></a>
         <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
-        <a href="menu.html" class="nav-card"><h3>Меню</h3></a>
+        <a href="menu.html" class="nav-card is-hidden"><h3>Меню</h3></a>
       </div>
     </div>
   </div>
@@ -371,9 +362,9 @@
     <div>
       <h4>Разделы</h4>
       <a href="animations.html">Анимации</a>
-      <a href="denznaniy.html">День знаний</a>
       <a href="dopolneniya.html">Впечатления</a>
-      <a href="menu.html">Меню</a>
+      <a href="denznaniy.html">День знаний</a>
+      <a href="menu.html" class="is-hidden">Меню</a>
     </div>
     <div>
       <h4>Контакты</h4>
