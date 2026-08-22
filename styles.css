@@ -153,6 +153,10 @@ button{font-family:inherit}
 .pkg-card__perk{font-size:12.5px;font-weight:800;color:var(--green-dark);text-transform:uppercase;letter-spacing:.02em}
 
 .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.program-grid--4col{grid-template-columns:repeat(4,1fr);gap:18px}
+.program-grid--4col .program-card__title{font-size:16px}
+.program-grid--4col .program-card__desc{font-size:12.5px}
+.program-grid--4col .program-card__body{padding:16px 18px 20px}
 .program-grid--mixed{align-items:stretch}
 .program-grid__break{grid-column:1/-1;height:0;margin:0}
 .program-grid--single{grid-template-columns:minmax(260px,380px)}
@@ -215,8 +219,13 @@ button{font-family:inherit}
 .program-card__toggle svg{width:13px;height:13px;transition:transform .25s}
 .program-card.expanded .program-card__toggle svg{transform:rotate(180deg)}
 
+@media(max-width:1100px){
+  .program-grid--4col{grid-template-columns:repeat(2,1fr)}
+}
+
 @media(max-width:860px){
   .program-grid{grid-template-columns:1fr}
+  .program-grid--4col{grid-template-columns:1fr}
   .program-card.expanded{flex-direction:column}
   .program-card.expanded .program-card__photo{flex:none;aspect-ratio:3/4;max-height:none}
 }
