@@ -486,3 +486,59 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .footer-inner{flex-direction:column;text-align:center;gap:32px}
 .footer-logo{justify-content:center}
 }
+
+/* ===== Промо-страница "Выпускные" ===== */
+.price-tiers{display:flex;flex-direction:column;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:18px 22px;margin:18px 0 22px}
+.price-tier{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:14px;font-weight:700}
+.price-tier__new{font-size:22px;font-weight:900;color:#fff}
+.price-tier__old{font-size:14px;font-weight:700;text-decoration:line-through;opacity:.5}
+.price-tiers small{opacity:.65;font-size:11.5px;font-weight:700;margin-top:2px}
+
+.booking-calendar{background:#fff;border:2px solid var(--line);border-radius:28px;padding:28px 32px;margin:36px 0}
+.booking-calendar__title{text-align:center;font-size:19px;color:var(--purple-1);text-transform:uppercase;margin-bottom:22px}
+.booking-calendar__row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.booking-day{display:flex;flex-direction:column;align-items:center;gap:6px;width:64px}
+.booking-day__paw{width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.booking-day__paw svg{width:26px;height:26px}
+.booking-day--low .booking-day__paw{color:var(--purple-1)}
+.booking-day--high .booking-day__paw{color:#e0316b}
+.booking-day__label{font-size:13px;font-weight:900;color:var(--purple-1)}
+.booking-calendar__legend{display:flex;justify-content:center;gap:28px;margin-top:20px;flex-wrap:wrap}
+.booking-calendar__legend span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;opacity:.75}
+.booking-calendar__legend svg{width:18px;height:18px}
+.booking-calendar__note{text-align:center;font-size:12px;font-weight:700;opacity:.55;margin-top:16px}
+
+.program-pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;align-items:stretch}
+.program-pkg{background:#fff;border:2px solid var(--line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.program-pkg__head{padding:16px 24px;background:var(--bg-lavender);display:flex;flex-direction:column;gap:4px}
+.program-pkg__title{font-size:18px;text-transform:uppercase;color:var(--purple-1);line-height:1.25}
+.program-pkg__subtitle{font-size:12px;font-weight:700;opacity:.7;width:100%}
+.program-pkg__photo{position:relative;width:100%;padding-top:56%;background:linear-gradient(180deg,var(--bg-lavender),#fff);overflow:hidden}
+.program-pkg__photo img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:105%;width:auto;max-width:none;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(74,17,133,.18))}
+.program-pkg__body{padding:22px 24px}
+.program-pkg__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.program-pkg__desc{font-size:13.5px;font-weight:700;opacity:.8;line-height:1.55;margin-bottom:14px}
+.program-pkg__list-title{font-size:13px;font-weight:900;color:var(--purple-1);text-transform:uppercase;margin-bottom:10px}
+.program-pkg__list{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.program-pkg__list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;font-weight:700}
+.program-pkg__list svg{flex:none;width:18px;height:18px;color:var(--green-dark);margin-top:1px}
+.program-pkg__bonus{display:flex;align-items:center;gap:10px;background:var(--bg-lavender);border-radius:14px;padding:12px 16px;font-size:13px;font-weight:800;color:var(--purple-1);margin-bottom:14px}
+.program-pkg__bonus svg{flex:none;width:20px;height:20px;color:var(--green-dark)}
+.program-pkg__addons{border-top:1px dashed var(--line);padding-top:14px;margin-top:2px}
+.program-pkg__addons-title{font-size:12.5px;font-weight:900;color:var(--purple-1);text-transform:uppercase;margin-bottom:8px}
+.program-pkg__addons ul{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.program-pkg__addons li{font-size:12.5px;font-weight:700;opacity:.75;padding-left:16px;position:relative}
+.program-pkg__addons li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--purple-2)}
+.program-pkg__price{font-size:18px;font-weight:900;color:var(--green-dark)}
+
+.program-pkg--soon{align-items:center;justify-content:center;text-align:center;padding:40px 24px;background:var(--bg-lavender);border-style:dashed}
+.program-pkg--soon .program-pkg__soon-icon{width:56px;height:56px;border-radius:50%;background:#fff;color:var(--purple-1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.program-pkg--soon .program-pkg__soon-icon svg{width:26px;height:26px}
+.program-pkg--soon h3{font-size:16px;color:var(--purple-1);text-transform:uppercase;margin-bottom:8px}
+.program-pkg--soon p{font-size:13px;font-weight:700;opacity:.65}
+
+@media(max-width:960px){
+  .program-pkg-grid{grid-template-columns:1fr}
+  .booking-day{width:44px}
+  .booking-day__label{font-size:11px}
+}
