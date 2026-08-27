@@ -509,6 +509,7 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .booking-calendar__note{text-align:center;font-size:12px;font-weight:700;opacity:.55;margin-top:16px}
 
 .program-pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;align-items:stretch}
+.program-pkg-grid:has(.program-pkg:only-child){grid-template-columns:1fr;max-width:600px;margin:0 auto}
 .program-pkg{background:#fff;border:2px solid var(--line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
 .program-pkg__head{padding:16px 24px;background:var(--bg-lavender);display:flex;flex-direction:column;gap:4px}
 .program-pkg__title{font-size:18px;text-transform:uppercase;color:var(--purple-1);line-height:1.25}
