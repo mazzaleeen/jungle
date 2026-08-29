@@ -543,3 +543,55 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
   .booking-day{width:44px}
   .booking-day__label{font-size:11px}
 }
+
+/* ===== Страница "Торты" ===== */
+.cake-search{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:999px;padding:14px 22px;max-width:480px;margin:0 0 26px;box-shadow:0 8px 20px rgba(74,17,133,.06)}
+.cake-search svg{width:20px;height:20px;color:var(--purple-1);opacity:.5;flex:none}
+.cake-search input{border:none;outline:none;font-size:15px;font-weight:700;color:var(--purple-1);width:100%;background:transparent;font-family:inherit}
+.cake-search input::placeholder{color:var(--purple-1);opacity:.4}
+
+.cake-fillings-banner{background:var(--bg-lavender);border-radius:24px;padding:22px 26px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cake-fillings-banner__text{font-weight:800;color:var(--purple-1);font-size:15px}
+.cake-fillings-banner__text span{display:block;font-size:12.5px;opacity:.65;font-weight:700;margin-top:4px}
+.cake-fillings-banner__btn{background:var(--purple-1);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-weight:800;font-size:13px;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+.cake-fillings-banner__btn:hover{background:var(--purple-2)}
+
+.cake-tile-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cake-tile{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;cursor:pointer;box-shadow:0 8px 20px rgba(74,17,133,.10);border:none;padding:0;transition:transform .2s,box-shadow .2s}
+.cake-tile:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(74,17,133,.18)}
+.cake-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.cake-tile__label{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,rgba(20,0,40,.82),transparent 70%);color:#fff;font-weight:900;font-size:12.5px;text-transform:uppercase;padding:26px 10px 10px;text-align:center;line-height:1.25}
+.cake-tile.is-hidden-search{display:none}
+.cake-empty{display:none;text-align:center;padding:40px;color:var(--purple-1);opacity:.5;font-weight:700}
+.cake-empty.is-visible{display:block}
+
+.cake-lightbox{position:fixed;inset:0;background:rgba(46,11,94,.9);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.cake-lightbox.open{display:flex}
+.cake-lightbox__inner{background:#fff;border-radius:28px;padding:28px;max-width:460px;width:100%;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.cake-lightbox__close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:var(--bg-lavender);border:none;color:var(--purple-1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2}
+.cake-lightbox__close:hover{background:#E8D9FF}
+.cake-lightbox__close svg{width:18px;height:18px}
+.cake-lightbox__title{font-size:20px;text-transform:uppercase;color:var(--purple-1);margin-bottom:16px}
+.cake-lightbox__img{max-width:100%;max-height:52vh;border-radius:18px;object-fit:contain;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
+.cake-lightbox__vk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;background:#0077FF;color:#fff;padding:14px;border-radius:14px;font-weight:800;text-transform:uppercase;font-size:13.5px;text-decoration:none}
+.cake-lightbox__vk:hover{background:#0066dd}
+.cake-lightbox__vk svg{width:17px;height:17px}
+
+.fillings-section{margin-top:12px}
+.fillings-group{margin-bottom:28px}
+.fillings-group__title{font-size:15px;color:var(--purple-1);text-transform:uppercase;font-weight:900;margin-bottom:12px}
+.filling-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.filling-row__name{font-weight:800;color:var(--purple-1);font-size:14px}
+.filling-row__price{background:var(--green);color:#fff;font-weight:900;font-size:13px;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.fillings-formula{background:var(--bg-lavender);border-radius:16px;padding:16px 20px;font-size:13px;font-weight:700;color:var(--purple-1);text-align:center;margin-top:8px}
+
+@media(max-width:1100px){
+  .cake-tile-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:860px){
+  .cake-tile-grid{grid-template-columns:repeat(3,1fr)}
+  .cake-tile__label{font-size:11px;padding:20px 6px 8px}
+}
+@media(max-width:640px){
+  .cake-tile-grid{grid-template-columns:repeat(2,1fr)}
+}

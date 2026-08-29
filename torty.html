@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Торты — Джунгли Сити</title>
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container top-bar__inner">
+      <div class="top-item">
+        <span class="top-icon top-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="top-text">
+          <small>Работаем</small>
+          <strong>ежедневно с 10:00 до 22:00 (в ПН с 12:00)</strong>
+        </span>
+      </div>
+      <span class="top-divider"></span>
+      <a href="tel:+79625097493" class="top-item">
+        <span class="top-text top-text--right">
+          <small>Позвонить</small>
+          <strong>+7 (962) 509-74-93</strong>
+        </span>
+        <span class="top-icon top-icon--white">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+        </span>
+      </a>
+    </div>
+    <svg class="top-wave" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a1185"/><stop offset="1" stop-color="#6b2cc0"/></linearGradient></defs>
+      <path fill="url(#gh)" d="M0,30 C160,46 340,8 540,16 C740,24 900,46 1100,32 C1260,21 1370,26 1440,32 L1440,52 L0,52 Z"/>
+    </svg>
+  </div>
+</header>
+
+<div class="main-bar">
+    <div class="container main-bar__inner">
+      <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
+      <nav class="nav" id="nav">
+        <div class="nav-item">
+          <button class="nav-btn" type="button" data-flyout-trigger="anim-nav">
+            Анимации
+            <span class="nav-btn__caret" aria-hidden="true"></span>
+          </button>
+          <div class="flyout" data-flyout="anim-nav">
+            <a href="animations.html#domiki">Домики для праздника</a>
+            <a href="animations.html#new">Новинки</a>
+            <a href="animations.html#quests">Активити и квесты</a>
+            <a href="animations.html#masterclass">Мастер-классы</a>
+            <a href="animations.html#shows">Шоу-программы</a>
+            <a href="animations.html#kids">Малышник</a>
+            <a href="animations.html#parties">Вечеринки</a>
+            <a href="animations.html#heroes">Любимые герои</a>
+            <a href="animations.html#premium">Premium герои</a>
+            <a href="animations.html#offers">Пакетные предложения</a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
+        <div class="nav-item"><a class="nav-btn" href="denznaniy.html">День знаний</a></div>
+        <div class="nav-item"><a class="nav-btn" href="vypusknoy.html">Выпускные</a></div>
+        <div class="nav-item"><a class="nav-btn active" href="torty.html">Торты</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="menu.html">Меню</a></div>
+
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
+        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
+      </nav>
+      <button class="burger" id="burger" aria-label="Разделы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Разделы</button>
+    </div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Торты</h1>
+    <p>Выберите оформление</p>
+  </div>
+  <svg class="page-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FFFDF9" d="M0,40 C240,60 480,10 720,26 C960,42 1200,14 1440,34 L1440,60 L0,60 Z"/>
+  </svg>
+</section>
+
+<section class="category pattern-dots" style="background:var(--bg)">
+  <div class="container">
+
+    <div class="cake-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="cakeSearch" placeholder="Например: единорог, лего, роблокс...">
+    </div>
+
+    <div class="cake-fillings-banner">
+      <div class="cake-fillings-banner__text">Начинки и стоимость торта
+        <span>Йогуртовая, Медовик, Красный бархат и другие варианты — цена за кг</span>
+      </div>
+      <a href="#fillings" class="cake-fillings-banner__btn">Смотреть начинки</a>
+    </div>
+
+    <div class="cake-tile-grid" id="cakeTileGrid">
+      <div class="cake-tile" data-name="щенячий патруль" data-slug="schenyachiy-patrul" data-vk="https://vk.com/album-184632420_279101059">
+        <img src="assets/torty/schenyachiy-patrul.webp" alt="Щенячий патруль" loading="lazy">
+        <span class="cake-tile__label">Щенячий патруль</span>
+      </div>
+
+      <div class="cake-tile" data-name="динозавры" data-slug="dinozavry" data-vk="https://vk.com/album-184632420_279101077">
+        <img src="assets/torty/dinozavry.webp" alt="Динозавры" loading="lazy">
+        <span class="cake-tile__label">Динозавры</span>
+      </div>
+
+      <div class="cake-tile" data-name="черепашки ниндзя" data-slug="cherepashki-nindzya" data-vk="https://vk.com/album-184632420_279101082">
+        <img src="assets/torty/cherepashki-nindzya.webp" alt="Черепашки ниндзя" loading="lazy">
+        <span class="cake-tile__label">Черепашки ниндзя</span>
+      </div>
+
+      <div class="cake-tile" data-name="единорог" data-slug="edinorog" data-vk="https://vk.com/album-184632420_279101091">
+        <img src="assets/torty/edinorog.webp" alt="Единорог" loading="lazy">
+        <span class="cake-tile__label">Единорог</span>
+      </div>
+
+      <div class="cake-tile" data-name="литл пони" data-slug="litl-poni" data-vk="https://vk.com/album-184632420_279101095">
+        <img src="assets/torty/litl-poni.webp" alt="Литл пони" loading="lazy">
+        <span class="cake-tile__label">Литл пони</span>
+      </div>
+
+      <div class="cake-tile" data-name="лего" data-slug="lego" data-vk="https://vk.com/album-184632420_279101103">
+        <img src="assets/torty/lego.webp" alt="Лего" loading="lazy">
+        <span class="cake-tile__label">Лего</span>
+      </div>
+
+      <div class="cake-tile" data-name="гарри поттер" data-slug="garri-potter" data-vk="https://vk.com/album-184632420_279174068">
+        <img src="assets/torty/garri-potter.webp" alt="Гарри Поттер" loading="lazy">
+        <span class="cake-tile__label">Гарри Поттер</span>
+      </div>
+
+      <div class="cake-tile" data-name="куклы лол" data-slug="kukly-lol" data-vk="https://vk.com/album-184632420_279101119">
+        <img src="assets/torty/kukly-lol.webp" alt="Куклы ЛОЛ" loading="lazy">
+        <span class="cake-tile__label">Куклы ЛОЛ</span>
+      </div>
+
+      <div class="cake-tile" data-name="девочки-принцессы" data-slug="devochki-princessy" data-vk="https://vk.com/album-184632420_279101148">
+        <img src="assets/torty/devochki-princessy.webp" alt="Девочки-принцессы" loading="lazy">
+        <span class="cake-tile__label">Девочки-принцессы</span>
+      </div>
+
+      <div class="cake-tile" data-name="звёздные войны" data-slug="zvezdnye-voyny" data-vk="https://vk.com/album-184632420_279101124">
+        <img src="assets/torty/zvezdnye-voyny.webp" alt="Звёздные войны" loading="lazy">
+        <span class="cake-tile__label">Звёздные войны</span>
+      </div>
+
+      <div class="cake-tile" data-name="космос" data-slug="kosmos" data-vk="https://vk.com/album-184632420_279101126">
+        <img src="assets/torty/kosmos.webp" alt="Космос" loading="lazy">
+        <span class="cake-tile__label">Космос</span>
+      </div>
+
+      <div class="cake-tile" data-name="леди баг" data-slug="ledi-bag" data-vk="https://vk.com/album-184632420_279101129">
+        <img src="assets/torty/ledi-bag.webp" alt="Леди Баг" loading="lazy">
+        <span class="cake-tile__label">Леди Баг</span>
+      </div>
+
+      <div class="cake-tile" data-name="пираты" data-slug="piraty" data-vk="https://vk.com/album-184632420_279101145">
+        <img src="assets/torty/piraty.webp" alt="Пираты" loading="lazy">
+        <span class="cake-tile__label">Пираты</span>
+      </div>
+
+      <div class="cake-tile" data-name="миньоны" data-slug="minony" data-vk="https://vk.com/album-184632420_279101134">
+        <img src="assets/torty/minony.webp" alt="Миньоны" loading="lazy">
+        <span class="cake-tile__label">Миньоны</span>
+      </div>
+
+      <div class="cake-tile" data-name="соник" data-slug="sonik" data-vk="https://vk.com/album-184632420_284129546">
+        <img src="assets/torty/sonik.webp" alt="Соник" loading="lazy">
+        <span class="cake-tile__label">Соник</span>
+      </div>
+
+      <div class="cake-tile" data-name="барби" data-slug="barbi" data-vk="https://vk.com/album-184632420_279101148">
+        <img src="assets/torty/barbi.webp" alt="Барби" loading="lazy">
+        <span class="cake-tile__label">Барби</span>
+      </div>
+
+      <div class="cake-tile" data-name="микки и минни маус" data-slug="mikki-i-minni-maus" data-vk="https://vk.com/album-184632420_279101151">
+        <img src="assets/torty/mikki-i-minni-maus.webp" alt="Микки и Минни Маус" loading="lazy">
+        <span class="cake-tile__label">Микки и Минни Маус</span>
+      </div>
+
+      <div class="cake-tile" data-name="русалочка" data-slug="rusalochka" data-vk="https://vk.com/album-184632420_279101154">
+        <img src="assets/torty/rusalochka.webp" alt="Русалочка" loading="lazy">
+        <span class="cake-tile__label">Русалочка</span>
+      </div>
+
+      <div class="cake-tile" data-name="дисней принцессы" data-slug="disney-princessy" data-vk="https://vk.com/album-184632420_279101163">
+        <img src="assets/torty/disney-princessy.webp" alt="Дисней принцессы" loading="lazy">
+        <span class="cake-tile__label">Дисней принцессы</span>
+      </div>
+
+      <div class="cake-tile" data-name="человек-паук" data-slug="chelovek-pauk" data-vk="https://vk.com/album-184632420_279101172">
+        <img src="assets/torty/chelovek-pauk.webp" alt="Человек-паук" loading="lazy">
+        <span class="cake-tile__label">Человек-паук</span>
+      </div>
+
+      <div class="cake-tile" data-name="супергерои марвел" data-slug="supergeroi-marvel" data-vk="https://vk.com/album-184632420_279101172">
+        <img src="assets/torty/supergeroi-marvel.webp" alt="Супергерои Марвел" loading="lazy">
+        <span class="cake-tile__label">Супергерои Марвел</span>
+      </div>
+
+      <div class="cake-tile" data-name="гонки" data-slug="gonki" data-vk="https://vk.com/album-184632420_279128942">
+        <img src="assets/torty/gonki.webp" alt="Гонки" loading="lazy">
+        <span class="cake-tile__label">Гонки</span>
+      </div>
+
+      <div class="cake-tile" data-name="тачки маквин" data-slug="tachki-makvin" data-vk="https://vk.com/album-184632420_279102017">
+        <img src="assets/torty/tachki-makvin.webp" alt="Тачки Маквин" loading="lazy">
+        <span class="cake-tile__label">Тачки Маквин</span>
+      </div>
+
+      <div class="cake-tile" data-name="спорт" data-slug="sport" data-vk="https://vk.com/album-184632420_279102022">
+        <img src="assets/torty/sport.webp" alt="Спорт" loading="lazy">
+        <span class="cake-tile__label">Спорт</span>
+      </div>
+
+      <div class="cake-tile" data-name="зверята" data-slug="zveryata" data-vk="https://vk.com/album-184632420_279102011">
+        <img src="assets/torty/zveryata.webp" alt="Зверята" loading="lazy">
+        <span class="cake-tile__label">Зверята</span>
+      </div>
+
+      <div class="cake-tile" data-name="спанч боб" data-slug="spanch-bob" data-vk="https://vk.com/album-184632420_283983332">
+        <img src="assets/torty/spanch-bob.webp" alt="Спанч Боб" loading="lazy">
+        <span class="cake-tile__label">Спанч Боб</span>
+      </div>
+
+      <div class="cake-tile" data-name="майнкрафт" data-slug="maynkraft" data-vk="https://vk.com/album-184632420_279102103">
+        <img src="assets/torty/maynkraft.webp" alt="Майнкрафт" loading="lazy">
+        <span class="cake-tile__label">Майнкрафт</span>
+      </div>
+
+      <div class="cake-tile" data-name="бравл старс" data-slug="bravl-stars" data-vk="https://vk.com/album-184632420_279103963">
+        <img src="assets/torty/bravl-stars.webp" alt="Бравл Старс" loading="lazy">
+        <span class="cake-tile__label">Бравл Старс</span>
+      </div>
+
+      <div class="cake-tile" data-name="тока бока" data-slug="toka-boka" data-vk="https://vk.com/album-184632420_307188452">
+        <img src="assets/torty/toka-boka.webp" alt="Тока Бока" loading="lazy">
+        <span class="cake-tile__label">Тока Бока</span>
+      </div>
+
+      <div class="cake-tile" data-name="фортнайт" data-slug="fortnayt" data-vk="https://vk.com/album-184632420_307188452">
+        <img src="assets/torty/fortnayt.webp" alt="Фортнайт" loading="lazy">
+        <span class="cake-tile__label">Фортнайт</span>
+      </div>
+
+      <div class="cake-tile" data-name="радужные друзья" data-slug="raduzhnye-druzya" data-vk="https://vk.com/album-184632420_307188452">
+        <img src="assets/torty/raduzhnye-druzya.webp" alt="Радужные друзья" loading="lazy">
+        <span class="cake-tile__label">Радужные друзья</span>
+      </div>
+
+      <div class="cake-tile" data-name="роблокс" data-slug="robloks" data-vk="https://vk.com/album-184632420_296876475">
+        <img src="assets/torty/robloks.webp" alt="Роблокс" loading="lazy">
+        <span class="cake-tile__label">Роблокс</span>
+      </div>
+
+      <div class="cake-tile" data-name="игра в кальмара" data-slug="igra-v-kalmara" data-vk="https://vk.com/album-184632420_296876465">
+        <img src="assets/torty/igra-v-kalmara.webp" alt="Игра в кальмара" loading="lazy">
+        <span class="cake-tile__label">Игра в кальмара</span>
+      </div>
+
+      <div class="cake-tile" data-name="торт-цифра" data-slug="tort-cifra" data-vk="https://vk.com/album-184632420_279102045">
+        <img src="assets/torty/tort-cifra.webp" alt="Торт-цифра" loading="lazy">
+        <span class="cake-tile__label">Торт-цифра</span>
+      </div>
+
+      <div class="cake-tile" data-name="соц.сети" data-slug="socseti" data-vk="https://vk.com/album-184632420_279102082">
+        <img src="assets/torty/socseti.webp" alt="Соц.сети" loading="lazy">
+        <span class="cake-tile__label">Соц.сети</span>
+      </div>
+
+      <div class="cake-tile" data-name="девочки" data-slug="devochki" data-vk="https://vk.com/album-184632420_307188829">
+        <img src="assets/torty/devochki.webp" alt="Девочки" loading="lazy">
+        <span class="cake-tile__label">Девочки</span>
+      </div>
+
+      <div class="cake-tile" data-name="стенд офф" data-slug="stend-off" data-vk="https://vk.com/album-184632420_307215853">
+        <img src="assets/torty/stend-off.webp" alt="Стенд Офф" loading="lazy">
+        <span class="cake-tile__label">Стенд Офф</span>
+      </div>
+
+      <div class="cake-tile" data-name="торт с ягодами" data-slug="tort-s-yagodami" data-vk="https://vk.com/album-184632420_279102064">
+        <img src="assets/torty/tort-s-yagodami.webp" alt="Торт с ягодами" loading="lazy">
+        <span class="cake-tile__label">Торт с ягодами</span>
+      </div>
+
+      <div class="cake-tile" data-name="торт с фигуркой из шоколада" data-slug="tort-s-figurkoy-iz-shokolada" data-vk="https://vk.com/album-184632420_279133058">
+        <img src="assets/torty/tort-s-figurkoy-iz-shokolada.webp" alt="Торт с фигуркой из шоколада" loading="lazy">
+        <span class="cake-tile__label">Торт с фигуркой из шоколада</span>
+      </div>
+
+      <div class="cake-tile" data-name="фигурки" data-slug="figurki">
+        <img src="assets/torty/figurki.webp" alt="Фигурки" loading="lazy">
+        <span class="cake-tile__label">Фигурки</span>
+      </div>
+
+      <div class="cake-tile" data-name="кэнди бар" data-slug="kendi-bar" data-vk="https://vk.com/album-184632420_279133068">
+        <img src="assets/torty/kendi-bar.webp" alt="Кэнди Бар" loading="lazy">
+        <span class="cake-tile__label">Кэнди Бар</span>
+      </div>
+
+    </div>
+    <p class="cake-empty" id="cakeEmpty">Ничего не нашлось — попробуйте другой запрос</p>
+
+  </div>
+</section>
+
+<section class="category pattern-dots-light" id="fillings" style="background:var(--bg-lavender)">
+  <div class="container fillings-section">
+    <h2>Начинки</h2>
+    <div class="category-intro">
+      <p>Стоимость торта = цена начинки за кг + цена оформления за кг, умноженные на вес торта.</p>
+    </div>
+
+    <div class="fillings-group">
+      <p class="fillings-group__title">Классические начинки</p>
+      <div class="filling-row"><span class="filling-row__name">Йогуртовая начинка</span><span class="filling-row__price">1 900 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Молочная девочка</span><span class="filling-row__price">2 100 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Крем-чиз с клубникой</span><span class="filling-row__price">2 200 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Крем-чиз с малиной</span><span class="filling-row__price">2 200 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Медовик</span><span class="filling-row__price">2 000 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Шоколадность</span><span class="filling-row__price">2 300 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Сникерс</span><span class="filling-row__price">2 000 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Карамельная девочка</span><span class="filling-row__price">2 100 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Детская начинка «Агуша»</span><span class="filling-row__price">1 900 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Чизкейк</span><span class="filling-row__price">2 300 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Радужная начинка</span><span class="filling-row__price">2 200 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Красный бархат</span><span class="filling-row__price">2 200 ₽/кг</span></div>
+    </div>
+
+    <div class="fillings-group">
+      <p class="fillings-group__title">Парфе (с растительными сливками)</p>
+      <div class="filling-row"><span class="filling-row__name">Ореховое парфе</span><span class="filling-row__price">1 700 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Вишнёвое парфе</span><span class="filling-row__price">1 700 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Парфе Бабл-Гам</span><span class="filling-row__price">1 700 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Клубничное парфе</span><span class="filling-row__price">1 700 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Манго-Маракуйя</span><span class="filling-row__price">2 300 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Чёрный лес</span><span class="filling-row__price">2 200 ₽/кг</span></div>
+      <div class="filling-row"><span class="filling-row__name">Манго-Маракуйя-Шоколад</span><span class="filling-row__price">2 300 ₽/кг</span></div>
+    </div>
+
+    <div class="fillings-formula">Стоимость торта = (цена начинки + цена оформления) × вес торта</div>
+  </div>
+</section>
+
+<div class="cake-lightbox" id="cakeLightbox">
+  <div class="cake-lightbox__inner">
+    <button class="cake-lightbox__close" type="button" id="cakeLightboxClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="cake-lightbox__title" id="cakeLightboxTitle"></div>
+    <img class="cake-lightbox__img" id="cakeLightboxImg" src="" alt="">
+    <a class="cake-lightbox__vk" id="cakeLightboxVk" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12.5C2 7.3 2 4.7 3.6 3.1 5.2 1.5 7.8 1.5 13 1.5h-2c5.2 0 7.8 0 9.4 1.6C22 4.7 22 7.3 22 12.5s0 7.8-1.6 9.4c-1.6 1.6-4.2 1.6-9.4 1.6h2c-5.2 0-7.8 0-9.4-1.6C2 20.3 2 17.7 2 12.5Z"/></svg>
+      Ещё примеры
+    </a>
+  </div>
+</div>
+
+<section class="quick-nav quick-nav--bottom">
+  <div class="container">
+    <div class="quick-nav-card">
+      <h2 class="qn-title">Куда дальше?</h2>
+      <div class="nav-grid">
+        <a href="animations.html#domiki" class="nav-card"><h3>Анимации</h3></a>
+        <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
+        <a href="denznaniy.html" class="nav-card"><h3>День знаний</h3></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="images/image.png" alt="Джунгли Сити"></div>
+      <p>Детский развлекательный парк, где дети растут счастливыми, а родители отдыхают спокойно.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <a href="animations.html">Анимации</a>
+      <a href="dopolneniya.html">Впечатления</a>
+      <a href="denznaniy.html">День знаний</a>
+      <a href="vypusknoy.html">Выпускные</a>
+      <a href="torty.html">Торты</a>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <a href="#">г. Нижний Новгород, ул. Коминтерна, д. 11, ТЦ «Лента», 1 этаж</a>
+      <a href="tel:+79625097493">+7 (962) 509-74-93</a>
+      <a href="#">Ежедневно 10:00–22:00 (в ПН с 12:00)</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <span>Наверх</span>
+</button>
+
+<script src="main.js"></script>
+<script>
+(function () {
+  const tiles = document.querySelectorAll('.cake-tile');
+  const searchInput = document.getElementById('cakeSearch');
+  const emptyMsg = document.getElementById('cakeEmpty');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    tiles.forEach(tile => {
+      const match = tile.getAttribute('data-name').includes(q);
+      tile.classList.toggle('is-hidden-search', !match);
+      if (match) visibleCount++;
+    });
+    emptyMsg.classList.toggle('is-visible', visibleCount === 0);
+  });
+
+  const lightbox = document.getElementById('cakeLightbox');
+  const lightboxImg = document.getElementById('cakeLightboxImg');
+  const lightboxTitle = document.getElementById('cakeLightboxTitle');
+  const lightboxVk = document.getElementById('cakeLightboxVk');
+  const lightboxClose = document.getElementById('cakeLightboxClose');
+
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const img = tile.querySelector('img');
+      const name = tile.querySelector('.cake-tile__label').textContent;
+      const vk = tile.getAttribute('data-vk');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = name;
+      lightboxTitle.textContent = name;
+      if (vk) {
+        lightboxVk.href = vk;
+        lightboxVk.style.display = 'flex';
+      } else {
+        lightboxVk.style.display = 'none';
+      }
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() { lightbox.classList.remove('open'); }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
