@@ -573,9 +573,10 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .cake-lightbox__close svg{width:18px;height:18px}
 .cake-lightbox__title{font-size:20px;text-transform:uppercase;color:var(--purple-1);margin-bottom:16px}
 .cake-lightbox__img{max-width:100%;max-height:52vh;border-radius:18px;object-fit:contain;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
-.cake-lightbox__vk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;background:#0077FF;color:#fff;padding:14px;border-radius:14px;font-weight:800;text-transform:uppercase;font-size:13.5px;text-decoration:none}
-.cake-lightbox__vk:hover{background:#0066dd}
-.cake-lightbox__vk svg{width:17px;height:17px}
+.cake-lightbox__price{margin-top:14px;font-weight:900;font-size:16px;color:var(--green-dark)}
+.cake-lightbox__vk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;background:var(--purple-1);color:#fff;padding:14px;border-radius:14px;font-weight:800;text-transform:uppercase;font-size:13.5px;text-decoration:none;transition:background .2s}
+.cake-lightbox__vk:hover{background:var(--purple-2)}
+.cake-lightbox__vk svg{width:17px;height:17px;flex:none}
 
 .fillings-section{margin-top:12px}
 .fillings-group{margin-bottom:28px}
@@ -584,7 +585,7 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .filling-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);break-inside:avoid}
 .filling-row__name{font-weight:800;color:var(--purple-1);font-size:14px}
 .filling-row__price{background:var(--green);color:#fff;font-weight:900;font-size:13px;padding:6px 14px;border-radius:999px;white-space:nowrap}
-.fillings-formula{background:var(--bg-lavender);border-radius:16px;padding:16px 20px;font-size:13px;font-weight:700;color:var(--purple-1);text-align:center;margin-top:8px}
+.fillings-formula{background:var(--bg-lavender);border-radius:16px;padding:18px 22px;font-size:17px;font-weight:800;color:var(--purple-1);text-align:center;margin-top:8px}
 
 @media(max-width:640px){
   .fillings-group__rows{columns:1}
