@@ -561,6 +561,17 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .cake-tile:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(74,17,133,.18)}
 .cake-tile img{width:100%;height:100%;object-fit:cover;display:block}
 .cake-tile__label{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,rgba(20,0,40,.82),transparent 70%);color:#fff;font-weight:900;font-size:12.5px;text-transform:uppercase;padding:26px 10px 10px;text-align:center;line-height:1.25}
+
+.cake-tile--cutout{background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;flex-direction:column;aspect-ratio:auto}
+.cake-tile--cutout .cake-tile__photo{position:relative;width:100%;aspect-ratio:1/1;padding:12%;box-sizing:border-box}
+.cake-tile--cutout .cake-tile__photo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(74,17,133,.18))}
+.cake-tile--cutout .cake-tile__label{position:static;background:none;color:var(--purple-1);text-shadow:none;padding:0 10px 14px;flex:none}
+.cake-tile__num{position:absolute;top:8px;left:8px;z-index:2;background:var(--purple-1);color:#fff;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:999px;letter-spacing:.01em}
+
+.cake-tile--framed{background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;flex-direction:column;aspect-ratio:auto}
+.cake-tile--framed .cake-tile__photo{position:relative;width:100%;aspect-ratio:1/1;padding:8%;box-sizing:border-box}
+.cake-tile--framed .cake-tile__photo img{width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 8px 16px rgba(74,17,133,.14)}
+.cake-tile--framed .cake-tile__label{position:static;background:none;color:var(--purple-1);text-shadow:none;padding:0 10px 14px;flex:none}
 .cake-tile.is-hidden-search{display:none}
 .cake-empty{display:none;text-align:center;padding:40px;color:var(--purple-1);opacity:.5;font-weight:700}
 .cake-empty.is-visible{display:block}
