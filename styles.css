@@ -515,7 +515,7 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .program-pkg__photo{flex:none;width:150px;position:relative;background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;align-items:flex-end;justify-content:center;padding:14px 8px 0;overflow:hidden}
 .program-pkg__photo img{max-width:100%;max-height:190px;width:auto;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(74,17,133,.18))}
 .program-pkg__headtext{flex:1;min-width:0;padding:18px 22px 18px 6px;display:flex;flex-direction:column;justify-content:center;gap:4px}
-.program-pkg__title{font-size:18px;text-transform:uppercase;color:var(--purple-1);line-height:1.25;overflow-wrap:break-word;word-break:break-word}
+.program-pkg__title{font-size:18px;text-transform:uppercase;color:var(--purple-1);line-height:1.25;overflow-wrap:break-word}
 .program-pkg__subtitle{font-size:12px;font-weight:700;opacity:.7;width:100%}
 .program-pkg__body{padding:22px 24px}
 .program-pkg__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
