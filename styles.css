@@ -493,6 +493,11 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .price-tier__new{font-size:22px;font-weight:900;color:#fff}
 .price-tier__old{font-size:14px;font-weight:700;text-decoration:line-through;opacity:.5}
 .price-tiers small{opacity:.65;font-size:11.5px;font-weight:700;margin-top:2px}
+.price-tiers--light{background:var(--bg-lavender);border:1px solid var(--line);margin:22px 0}
+.price-tiers--light .price-tier{color:var(--purple-1)}
+.price-tiers--light .price-tier__new{color:var(--purple-1)}
+.price-tiers--light .price-tier__old{color:var(--purple-1);opacity:.4}
+.price-tiers--light small{color:var(--purple-1);opacity:.6}
 
 .booking-calendar{background:#fff;border:2px solid var(--line);border-radius:28px;padding:28px 32px;margin:36px 0}
 .booking-calendar__title{text-align:center;font-size:19px;color:var(--purple-1);text-transform:uppercase;margin-bottom:22px}
