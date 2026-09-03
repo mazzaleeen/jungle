@@ -595,7 +595,14 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .cake-lightbox__close:hover{background:#E8D9FF}
 .cake-lightbox__close svg{width:18px;height:18px}
 .cake-lightbox__title{font-size:20px;text-transform:uppercase;color:var(--purple-1);margin-bottom:16px}
+.cake-lightbox__stage{display:flex;align-items:center;justify-content:center;gap:10px;position:relative}
+.cake-lightbox__photo{position:relative;display:flex;align-items:center;justify-content:center;min-width:0}
 .cake-lightbox__img{max-width:100%;max-height:52vh;border-radius:18px;object-fit:contain;filter:drop-shadow(0 16px 20px rgba(74,17,133,.20))}
+.cake-lightbox__num{position:absolute;top:8px;left:8px;z-index:2;background:var(--purple-1);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px}
+.cake-lightbox__arrow{flex:none;width:38px;height:38px;border-radius:50%;background:var(--bg-lavender);border:none;color:var(--purple-1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.cake-lightbox__arrow:hover{background:#E8D9FF}
+.cake-lightbox__arrow svg{width:20px;height:20px}
+.cake-lightbox__counter{text-align:center;font-size:12px;font-weight:800;color:var(--purple-1);opacity:.55;margin-top:10px}
 .cake-lightbox__price{margin-top:14px;font-weight:900;font-size:16px;color:var(--green-dark)}
 .cake-lightbox__vk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;background:var(--purple-1);color:#fff;padding:14px;border-radius:14px;font-weight:800;text-transform:uppercase;font-size:13.5px;text-decoration:none;transition:background .2s}
 .cake-lightbox__vk:hover{background:var(--purple-2)}
