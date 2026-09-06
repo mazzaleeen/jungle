@@ -577,7 +577,7 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .cake-tile--cutout{background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;flex-direction:column;aspect-ratio:auto}
 .cake-tile--cutout .cake-tile__photo{position:relative;width:100%;aspect-ratio:1/1;padding:12%;box-sizing:border-box}
 .cake-tile--cutout .cake-tile__photo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(74,17,133,.18))}
-.cake-tile--cutout .cake-tile__label{position:static;background:none;color:var(--purple-1);text-shadow:none;padding:0 10px 14px;flex:none}
+.cake-tile--cutout .cake-tile__label{position:static;background:none;color:var(--purple-1);text-shadow:none;padding:0 10px 14px;flex:none;min-height:41px;display:flex;align-items:center;justify-content:center}
 .cake-tile__num{position:absolute;top:8px;left:8px;z-index:2;background:var(--purple-1);color:#fff;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:999px;letter-spacing:.01em}
 
 .cake-tile--framed{background:linear-gradient(180deg,var(--bg-lavender),#fff);display:flex;flex-direction:column;aspect-ratio:auto}
