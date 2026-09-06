@@ -376,6 +376,7 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .dish-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column}
 .dish-card__photo{position:relative;width:100%;height:0;padding-top:75%;background:linear-gradient(180deg,var(--bg-lavender),#fff)}
 .dish-card__photo img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.menu-category[data-menu-category="napitki"] .dish-card__photo img{object-fit:contain;padding:8%;box-sizing:border-box}
 .dish-card__body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .dish-card__title{font-size:16px;text-transform:uppercase;color:var(--purple-1);line-height:1.25;font-weight:900}
 .dish-card__meta{display:flex;align-items:center;justify-content:space-between;gap:10px}
