@@ -374,6 +374,14 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .menu-category.active{display:block}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .dish-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column}
+.dish-textblock{grid-column:1 / -1;background:#fff;border-radius:24px;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);padding:24px 28px}
+.dish-textblock__title{font-size:19px;font-weight:900;color:var(--purple-1);text-transform:uppercase;margin:0 0 14px}
+.dish-textblock__list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 32px}
+.dish-textblock__row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.dish-textblock__name{font-weight:700;color:var(--text);font-size:14.5px}
+.dish-textblock__note{display:block;font-weight:400;font-size:12px;color:var(--text);opacity:.6;margin-top:2px}
+.dish-textblock__price{font-weight:900;color:var(--green-dark);white-space:nowrap;font-size:15px}
+@media(max-width:720px){.dish-textblock__list{grid-template-columns:1fr}}
 .dish-card__photo{position:relative;width:100%;height:0;padding-top:75%;background:linear-gradient(180deg,var(--bg-lavender),#fff)}
 .dish-card__photo img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
 .menu-category[data-menu-category="napitki"] .dish-card__photo img{object-fit:contain;padding:8%;box-sizing:border-box}
