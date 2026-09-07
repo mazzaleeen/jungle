@@ -374,7 +374,10 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .menu-category.active{display:block}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .dish-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column}
-.dish-textblock{grid-column:1 / -1;background:#fff;border-radius:24px;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);padding:24px 28px}
+.dish-textblock{grid-column:span 2;background:#fff;border-radius:24px;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);padding:22px 26px}
+.dish-textblock--single{grid-column:span 1}
+.dish-textblock--single .dish-textblock__list{grid-template-columns:1fr}
+@media(max-width:960px){.dish-textblock,.dish-textblock--single{grid-column:1 / -1}}
 .dish-textblock__title{font-size:19px;font-weight:900;color:var(--purple-1);text-transform:uppercase;margin:0 0 14px}
 .dish-textblock__list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 32px}
 .dish-textblock__row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
