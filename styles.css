@@ -375,6 +375,9 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .dish-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column}
 .dish-textblock{grid-column:span 2;background:#fff;border-radius:24px;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);padding:22px 26px}
+.dish-textblock-pair{grid-column:1 / -1;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.dish-textblock-pair .dish-textblock{grid-column:auto}
+@media(max-width:720px){.dish-textblock-pair{grid-template-columns:1fr}}
 .dish-textblock--single{grid-column:span 1}
 .dish-textblock--single .dish-textblock__list{grid-template-columns:1fr}
 @media(max-width:960px){.dish-textblock,.dish-textblock--single{grid-column:1 / -1}}
