@@ -12,9 +12,9 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-weight:700;display:flex;flex-direction:column;min-height:100vh;overflow-anchor:none}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-weight:500;display:flex;flex-direction:column;min-height:100vh;overflow-anchor:none}
 footer{margin-top:auto}
-h1,h2,h3{font-weight:700;letter-spacing:-0.02em}
+h1,h2,h3{font-weight:800;letter-spacing:-0.025em}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
@@ -762,4 +762,24 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
   .cake-page .cake-tile{border-radius:18px}
   .cake-page .cake-tile__label{min-height:40px;padding:9px 10px 3px;font-size:13px}
   .cake-page .cake-tile__price{padding:4px 10px 13px;font-size:13px}
+}
+
+
+/* ===== Typography polish v1 ===== */
+body{
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.hero p,.page-hero p,.category-intro p{
+  font-weight:500;
+}
+.hero h1,.page-hero h1{
+  letter-spacing:-0.03em;
+}
+.section-subhead h3{
+  font-weight:800;
+  letter-spacing:-0.015em;
+}
+.qn-title{
+  font-weight:800;
 }
