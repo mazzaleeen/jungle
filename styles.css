@@ -103,15 +103,15 @@ button{font-family:inherit}
 .page-hero p{margin-top:10px;font-size:16px;opacity:.9;max-width:560px;margin-left:auto;margin-right:auto}
 .page-hero-wave{position:absolute;left:0;bottom:-1px;width:100%;height:36px;display:block}
 
-.quick-nav{padding:40px 24px 60px}
-.quick-nav-card{background:#fff;border-radius:32px;padding:40px 36px 44px;box-shadow:0 12px 40px rgba(71,12,148,.10);border:1px solid #E8E0F5}
-.qn-title{text-align:center;color:var(--purple-1);text-transform:uppercase;font-size:22px;margin-bottom:32px;font-weight:700;letter-spacing:.04em}
-.nav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.quick-nav{padding:52px 24px 72px}
+.quick-nav-card{background:linear-gradient(145deg,#fff,#fbf9ff);border-radius:32px;padding:44px 40px 48px;box-shadow:0 16px 46px rgba(71,12,148,.10);border:1px solid #E8E0F5}
+.qn-title{text-align:center;color:var(--purple-1);text-transform:uppercase;font-size:21px;line-height:1.25;margin:0 0 34px;font-weight:800;letter-spacing:.06em}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
 .is-hidden{display:none !important}
 .nav-card-slot{position:relative}
-.nav-card{background:#F0E6FF;border:1.5px solid #D4C4F0;border-radius:24px;padding:28px 20px;text-align:center;transition:all .3s ease;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:90px;width:100%}
-.nav-card:hover{background:#E8D9FF;border-color:var(--purple-1);transform:translateY(-4px);box-shadow:0 8px 24px rgba(74,17,133,.12)}
-.nav-card h3{font-size:17px;color:#4a1185;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin:0;display:flex;align-items:center;gap:8px}
+.nav-card{background:linear-gradient(145deg,#F4ECFF,#EEE4FF);border:1.5px solid #D9C9F3;border-radius:22px;padding:24px 20px;text-align:center;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:102px;width:100%;box-shadow:0 5px 16px rgba(74,17,133,.06)}
+.nav-card:hover{background:linear-gradient(145deg,#F7F0FF,#EDE1FF);border-color:var(--purple-1);transform:translateY(-3px);box-shadow:0 10px 26px rgba(74,17,133,.12)}
+.nav-card h3{font-size:16px;line-height:1.35;color:#4a1185;text-transform:uppercase;letter-spacing:.06em;font-weight:800;margin:0;display:flex;align-items:center;justify-content:center;gap:8px}
 
 .subnav{position:sticky;top:var(--subnav-top,140px);z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(74,17,133,.07);transition:top .35s ease}
 .subnav__inner{display:flex;gap:8px;overflow-x:auto;padding:14px 24px;max-width:1140px;margin:0 auto;scrollbar-width:thin}
@@ -504,8 +504,10 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
 .hero-stats{justify-content:center}
 .top-divider{display:none}
 .nav-grid{grid-template-columns:1fr}
+.quick-nav{padding:40px 18px 56px}
 .grid-3{grid-template-columns:1fr}
-.quick-nav-card{padding:32px 24px}
+.quick-nav-card{padding:32px 24px 36px}
+.nav-card{min-height:88px}
 .footer-inner{flex-direction:column;text-align:center;gap:32px}
 .footer-logo{justify-content:center}
 }
