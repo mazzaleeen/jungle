@@ -96,6 +96,17 @@
       <input type="text" id="cakeSearch" placeholder="Поиск по названию или номеру — например, «единорог» или 565">
     </div>
 
+    <div class="cake-builder" id="cakeBuilder">
+      <div class="cake-builder__head">
+        <div>
+          <h2>Собрать свой торт</h2>
+          <p>Выберите оформление, начинку и сладкие дополнения</p>
+        </div>
+        <button class="cake-builder__open" type="button" id="cakeBuilderOpen">Собрать торт</button>
+      </div>
+      <div class="cake-builder__summary" id="cakeBuilderSummary" aria-live="polite"></div>
+    </div>
+
     <div class="cake-fillings-banner">
       <div class="cake-fillings-banner__text">Начинки и стоимость
         <span>Все варианты начинок и цена за 1 кг</span>
@@ -418,6 +429,42 @@
   </div>
 </section>
 
+<div class="cake-builder__modal" id="cakeBuilderModal" aria-hidden="true">
+  <div class="cake-builder__panel" role="dialog" aria-modal="true" aria-labelledby="cakeBuilderTitle">
+    <div class="cake-builder__panel-head">
+      <h3 id="cakeBuilderTitle">Соберите торт</h3>
+      <button class="cake-builder__close" type="button" id="cakeBuilderClose" aria-label="Закрыть">×</button>
+    </div>
+    <div class="cake-builder__body">
+      <div class="builder-step">
+        <div class="builder-step__title"><strong>1. Оформление</strong><span>выберите номер</span></div>
+        <div class="builder-options" id="builderDecorations"></div>
+      </div>
+      <div class="builder-step">
+        <div class="builder-step__title"><strong>2. Начинка</strong><span>цена указана за 1 кг</span></div>
+        <div class="builder-options" id="builderFillings"></div>
+      </div>
+      <div class="builder-step">
+        <div class="builder-step__title"><strong>3. Вес</strong><span>нужен для расчёта</span></div>
+        <div class="builder-weight">
+          <input id="builderWeight" type="number" min="0.5" step="0.1" value="1" aria-label="Вес торта в килограммах">
+          <span>кг</span>
+        </div>
+      </div>
+      <div class="builder-step">
+        <div class="builder-step__title"><strong>4. Дополнения</strong><span>можно выбрать количество</span></div>
+        <div class="builder-options" id="builderExtras"></div>
+      </div>
+      <div class="builder-total">
+        <div><div class="builder-total__label">Ориентировочная стоимость</div><div class="builder-total__value" id="builderTotal">—</div></div>
+        <div class="builder-total__hint">Расчёт: (начинка + оформление) × вес + выбранные дополнения.</div>
+      </div>
+      <div class="builder-result" id="builderResult">Выберите оформление и начинку — здесь появится итоговый состав.</div>
+      <button class="builder-action" type="button" id="builderApply">Добавить в мой выбор</button>
+    </div>
+  </div>
+</div>
+
 <div class="cake-lightbox" id="cakeLightbox">
   <div class="cake-lightbox__inner">
     <button class="cake-lightbox__close" type="button" id="cakeLightboxClose" aria-label="Закрыть">
@@ -438,6 +485,11 @@
     </div>
     <div class="cake-lightbox__counter" id="cakeLightboxCounter"></div>
     <div class="cake-lightbox__price" id="cakeLightboxPrice"></div>
+    <button class="builder-action cake-lightbox__choose" type="button" id="cakeLightboxChoose">Выбрать это оформление</button>
+    <a class="cake-lightbox__vk" id="cakeLightboxVk" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5C3 4.1 4.1 3 5.5 3h13C19.9 3 21 4.1 21 5.5v13c0 1.4-1.1 2.5-2.5 2.5h-13C4.1 21 3 19.9 3 18.5v-13Zm4.1 3.2c.1 2.9 1.6 5.1 4.2 5.1h.2v-3c.9.1 1.8.9 2.2 1.8h1.9c-.5-1.7-1.5-2.6-2.2-3.1.7-.4 1.6-1.4 1.9-2.8h-1.7c-.3 1-1 1.9-2.1 2v-2H9.8v6.1c-1.1-.3-2.2-1.5-2.4-4.1H7.1Z"/></svg>
+      Смотреть больше примеров во ВКонтакте
+    </a>
   </div>
 </div>
 
@@ -447,9 +499,6 @@
       <h2 class="qn-title">Куда дальше?</h2>
       <div class="nav-grid">
         <a href="animations.html#domiki" class="nav-card"><h3>Анимации</h3></a>
-        <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
-        <a href="menu.html" class="nav-card"><h3>Ресторан</h3></a>
-        <a href="vypusknoy.html" class="nav-card"><h3>Выпускные</h3></a>
       </div>
     </div>
   </div>
@@ -525,9 +574,12 @@
   const lightboxPrev = document.getElementById('cakeLightboxPrev');
   const lightboxNext = document.getElementById('cakeLightboxNext');
   const lightboxCounter = document.getElementById('cakeLightboxCounter');
+  const lightboxVk = document.getElementById('cakeLightboxVk');
+  const lightboxChoose = document.getElementById('cakeLightboxChoose');
 
   let currentPhotos = [];
   let currentIndex = 0;
+  let currentTile = null;
 
   function renderPhoto() {
     const photo = currentPhotos[currentIndex];
@@ -546,12 +598,16 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tile.click(); }
     });
     tile.addEventListener('click', () => {
+      currentTile = tile;
       const img = tile.querySelector('img');
       const name = tile.querySelector('.cake-tile__label').textContent;
       const price = tile.getAttribute('data-price');
       const slug = tile.getAttribute('data-slug');
       const mainNumEl = tile.querySelector('.cake-tile__num');
       const mainNum = mainNumEl ? mainNumEl.textContent.replace('№', '').trim() : '';
+      const vk = tile.getAttribute('data-vk') || '';
+      lightboxVk.href = vk || '#';
+      lightboxVk.style.display = vk ? 'flex' : 'none';
 
       currentPhotos = [{ img: img.src, num: mainNum }];
       if (slug && GALLERY_DATA[slug]) {
@@ -586,6 +642,119 @@
     if (e.key === 'ArrowLeft') lightboxPrev.click();
     if (e.key === 'ArrowRight') lightboxNext.click();
   });
+
+  // Конструктор: использует только данные, уже присутствующие на странице.
+  const builderModal = document.getElementById('cakeBuilderModal');
+  const builderOpen = document.getElementById('cakeBuilderOpen');
+  const builderClose = document.getElementById('cakeBuilderClose');
+  const builderDecorations = document.getElementById('builderDecorations');
+  const builderFillings = document.getElementById('builderFillings');
+  const builderExtras = document.getElementById('builderExtras');
+  const builderWeight = document.getElementById('builderWeight');
+  const builderTotal = document.getElementById('builderTotal');
+  const builderResult = document.getElementById('builderResult');
+  const builderApply = document.getElementById('builderApply');
+  const builderSummary = document.getElementById('cakeBuilderSummary');
+  let selectedDecoration = null;
+  let selectedFilling = null;
+  const selectedExtras = new Map();
+
+  function rubles(value) { return `${Math.round(value).toLocaleString('ru-RU')} ₽`; }
+  function parsePrice(text) {
+    const match = String(text || '').replace(/\s/g, '').match(/(\d+(?:[.,]\d+)?)/);
+    return match ? Number(match[1].replace(',', '.')) : 0;
+  }
+  function addOption(container, {key, label, price, kind, number, quantity=false}) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'builder-option';
+    button.dataset.key = key;
+    button.innerHTML = `<span>${label}</span><small>${number ? `№ ${number} · ` : ''}${price ? (kind === 'extra' ? rubles(price) + ' / шт' : rubles(price) + ' / кг') : ''}</small>`;
+    button.addEventListener('click', () => {
+      if (quantity) {
+        const current = selectedExtras.get(key) || 0;
+        const next = current >= 10 ? 0 : current + 1;
+        if (next) selectedExtras.set(key, next); else selectedExtras.delete(key);
+        button.classList.toggle('is-selected', !!next);
+        button.querySelector('small').textContent = next ? `${rubles(price)} / шт · ${next} шт` : `${rubles(price)} / шт`;
+      } else {
+        container.querySelectorAll('.builder-option').forEach(el => el.classList.remove('is-selected'));
+        button.classList.add('is-selected');
+        if (kind === 'decoration') selectedDecoration = {key, label, price, number};
+        if (kind === 'filling') selectedFilling = {key, label, price};
+      }
+      updateBuilder();
+    });
+    container.appendChild(button);
+  }
+
+  tiles.forEach(tile => {
+    const name = tile.querySelector('.cake-tile__label')?.textContent.trim() || tile.dataset.name || '';
+    const num = tile.querySelector('.cake-tile__num')?.textContent.replace('№','').trim() || '';
+    const price = parsePrice(tile.dataset.price);
+    addOption(builderDecorations, {key: tile.dataset.slug || name, label: name, price, kind: 'decoration', number: num});
+  });
+
+  document.querySelectorAll('.fillings-group').forEach(group => {
+    const title = group.querySelector('.fillings-group__title')?.textContent.trim() || '';
+    group.querySelectorAll('.filling-row').forEach(row => {
+      const label = row.querySelector('.filling-row__name')?.textContent.trim() || '';
+      const priceText = row.querySelector('.filling-row__price')?.textContent || '';
+      const price = parsePrice(priceText);
+      const isExtra = /Десерты/i.test(title) || /шт/i.test(priceText);
+      addOption(isExtra ? builderExtras : builderFillings, {key: label, label, price, kind: isExtra ? 'extra' : 'filling', quantity: isExtra});
+    });
+  });
+
+  function updateBuilder() {
+    const weight = Number(builderWeight.value) || 0;
+    const base = selectedDecoration && selectedFilling ? (selectedDecoration.price + selectedFilling.price) * weight : 0;
+    let extrasTotal = 0;
+    selectedExtras.forEach((qty, key) => {
+      const btn = builderExtras.querySelector(`[data-key="${CSS.escape(key)}"]`);
+      if (btn) extrasTotal += parsePrice(btn.querySelector('small')?.textContent) * qty;
+    });
+    builderTotal.textContent = base || extrasTotal ? rubles(base + extrasTotal) : '—';
+    const parts = [];
+    if (selectedDecoration) parts.push(`Оформление: ${selectedDecoration.number ? '№ ' + selectedDecoration.number + ' — ' : ''}${selectedDecoration.label}`);
+    if (selectedFilling) parts.push(`Начинка: ${selectedFilling.label}`);
+    if (weight) parts.push(`Вес: ${weight.toLocaleString('ru-RU')} кг`);
+    selectedExtras.forEach((qty, key) => {
+      const btn = builderExtras.querySelector(`[data-key="${CSS.escape(key)}"]`);
+      if (btn) parts.push(`${btn.querySelector('span').textContent} × ${qty}`);
+    });
+    builderResult.textContent = parts.length ? parts.join(' · ') : 'Выберите оформление и начинку — здесь появится итоговый состав.';
+  }
+  builderWeight.addEventListener('input', updateBuilder);
+
+  function selectDecorationFromTile(tile) {
+    if (!tile) return;
+    builderDecorations.querySelectorAll('.builder-option').forEach(el => el.classList.remove('is-selected'));
+    const key = tile.dataset.slug || tile.querySelector('.cake-tile__label')?.textContent.trim() || '';
+    const option = builderDecorations.querySelector(`[data-key=\"${CSS.escape(key)}\"]`);
+    if (option) option.click();
+  }
+  function openBuilder() { builderModal.classList.add('open'); builderModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; updateBuilder(); }
+  function closeBuilder() { builderModal.classList.remove('open'); builderModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  builderOpen.addEventListener('click', openBuilder);
+  builderClose.addEventListener('click', closeBuilder);
+  builderModal.addEventListener('click', e => { if (e.target === builderModal) closeBuilder(); });
+  lightboxChoose.addEventListener('click', () => { closeLightbox(); openBuilder(); selectDecorationFromTile(currentTile); });
+  builderApply.addEventListener('click', () => {
+    if (!selectedDecoration || !selectedFilling) { builderResult.textContent = 'Сначала выберите оформление и начинку.'; return; }
+    builderSummary.innerHTML = '';
+    const items = [
+      selectedDecoration.number ? `Оформление № ${selectedDecoration.number}` : `Оформление: ${selectedDecoration.label}`,
+      `Начинка: ${selectedFilling.label}`,
+      `Вес: ${Number(builderWeight.value || 1).toLocaleString('ru-RU')} кг`
+    ];
+    selectedExtras.forEach((qty,key) => { const btn=builderExtras.querySelector(`[data-key="${CSS.escape(key)}"]`); if(btn) items.push(`${btn.querySelector('span').textContent} × ${qty}`); });
+    items.forEach(text => { const pill=document.createElement('span'); pill.className='cake-builder__pill'; pill.textContent=text; builderSummary.appendChild(pill); });
+    builderSummary.classList.add('is-visible');
+    closeBuilder();
+    document.getElementById('cakeBuilder').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && builderModal.classList.contains('open')) closeBuilder(); });
 })();
 </script>
 </body>
