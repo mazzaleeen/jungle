@@ -881,3 +881,43 @@ a.nav-btn:focus-visible,
   .hero h1{font-size:clamp(32px,8vw,48px)}
   .hero p{font-size:16px;margin-top:10px}
 }
+
+/* ===== Image presentation polish v1 ===== */
+.program-card__photo{
+  position:relative;
+  isolation:isolate;
+  background:linear-gradient(145deg,var(--bg-lavender),#fff);
+}
+.program-card__photo img{
+  transition:transform .28s ease,filter .28s ease;
+}
+.program-card:hover .program-card__photo img{
+  transform:scale(1.018);
+}
+.program-card__photo--cover img{
+  transition:transform .3s ease,filter .3s ease;
+}
+.program-card:hover .program-card__photo--cover img{
+  transform:scale(1.025);
+}
+.hero-card img{
+  transition:transform .3s ease,filter .3s ease;
+}
+.hero-card:hover img{
+  transform:scale(1.018);
+}
+
+/* Keep image corners and spacing consistent in catalog tiles */
+.cake-page .cake-tile img{
+  transition:transform .28s ease,filter .28s ease;
+}
+.cake-page .cake-tile:hover img{
+  filter:saturate(1.02) contrast(1.01);
+}
+
+@media(max-width:860px){
+  .program-card__photo img{transition:none}
+  .program-card:hover .program-card__photo img,
+  .program-card:hover .program-card__photo--cover img,
+  .hero-card:hover img{transform:none}
+}
