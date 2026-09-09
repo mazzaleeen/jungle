@@ -702,3 +702,64 @@ footer p{font-size:14px;opacity:.85;margin-top:18px;max-width:280px;font-weight:
   .cake-page .cake-fillings-banner{align-items:flex-start}
   .cake-page .cake-fillings-banner__btn{width:100%;text-align:center}
 }
+
+/* ===== Cake cards: visual polish v1 ===== */
+.cake-page .cake-tile{
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(74,17,133,.08);
+  border-radius:20px;
+  box-shadow:0 5px 18px rgba(74,17,133,.055);
+  background:#fff;
+}
+.cake-page .cake-tile__photo{
+  flex:none;
+  background:linear-gradient(145deg,#faf8fd,#fff);
+}
+.cake-page .cake-tile--cutout .cake-tile__photo{
+  padding-top:100%;
+}
+.cake-page .cake-tile--cutout .cake-tile__photo img{
+  top:8%;
+  left:8%;
+  width:84%;
+  height:84%;
+  filter:drop-shadow(0 9px 14px rgba(74,17,133,.11));
+}
+.cake-page .cake-tile__label{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px 3px;
+  line-height:1.25;
+  text-align:center;
+}
+.cake-page .cake-tile__num{
+  top:10px;
+  left:10px;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:10px;
+  line-height:1;
+  background:rgba(74,17,133,.88);
+  box-shadow:0 3px 8px rgba(74,17,133,.14);
+}
+.cake-page .cake-tile__price{
+  margin-top:auto;
+  padding:4px 14px 15px;
+  font-size:14px;
+  line-height:1.2;
+  letter-spacing:-.01em;
+}
+.cake-page .cake-tile:hover,
+.cake-page .cake-tile:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px rgba(74,17,133,.10);
+}
+
+@media(max-width:860px){
+  .cake-page .cake-tile{border-radius:18px}
+  .cake-page .cake-tile__label{min-height:40px;padding:9px 10px 3px;font-size:13px}
+  .cake-page .cake-tile__price{padding:4px 10px 13px;font-size:13px}
+}
