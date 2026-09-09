@@ -80,7 +80,7 @@
 <section class="page-hero">
   <div class="container">
     <h1>Торты</h1>
-    <p>Выберите оформление</p>
+    <p>Выберите понравившееся оформление — номер торта пригодится при оформлении заказа</p>
   </div>
   <svg class="page-hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
     <path fill="#FFFDF9" d="M0,40 C240,60 480,10 720,26 C960,42 1200,14 1440,34 L1440,60 L0,60 Z"/>
@@ -90,9 +90,19 @@
 <section class="category pattern-dots" style="background:var(--bg)">
   <div class="container">
 
+    <div class="cake-catalog-head">
+      <div class="cake-catalog-head__copy">
+        <span class="cake-catalog-head__eyebrow">Каталог оформлений</span>
+        <h2>Найдите торт для вашего праздника</h2>
+        <p>Нажмите на понравившийся торт, чтобы рассмотреть его крупнее и посмотреть другие примеры оформления.</p>
+      </div>
+      <div class="cake-result-count" id="cakeResultCount" aria-live="polite"></div>
+    </div>
+
     <div class="cake-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" id="cakeSearch" placeholder="Например: единорог, лего, роблокс...">
+      <input type="text" id="cakeSearch" placeholder="Например: единорог, лего, роблокс..." autocomplete="off">
+      <button class="cake-search__clear" id="cakeSearchClear" type="button" aria-label="Очистить поиск">×</button>
     </div>
 
     <div class="cake-fillings-banner">
@@ -495,8 +505,20 @@
   const tiles = document.querySelectorAll('.cake-tile');
   const searchInput = document.getElementById('cakeSearch');
   const emptyMsg = document.getElementById('cakeEmpty');
+  const resultCount = document.getElementById('cakeResultCount');
+  const clearSearch = document.getElementById('cakeSearchClear');
 
-  searchInput.addEventListener('input', () => {
+  tiles.forEach(tile => {
+    const price = tile.getAttribute('data-price');
+    if (price && !tile.querySelector('.cake-tile__price')) {
+      const priceEl = document.createElement('span');
+      priceEl.className = 'cake-tile__price';
+      priceEl.textContent = price;
+      tile.appendChild(priceEl);
+    }
+  });
+
+  function updateSearch() {
     const q = searchInput.value.trim().toLowerCase();
     let visibleCount = 0;
     tiles.forEach(tile => {
@@ -505,7 +527,17 @@
       if (match) visibleCount++;
     });
     emptyMsg.classList.toggle('is-visible', visibleCount === 0);
+    clearSearch.classList.toggle('is-visible', q.length > 0);
+    resultCount.textContent = q ? `Найдено: ${visibleCount}` : `Всего вариантов: ${tiles.length}`;
+  }
+
+  searchInput.addEventListener('input', updateSearch);
+  clearSearch.addEventListener('click', () => {
+    searchInput.value = '';
+    updateSearch();
+    searchInput.focus();
   });
+  updateSearch();
 
   const lightbox = document.getElementById('cakeLightbox');
   const lightboxImg = document.getElementById('cakeLightboxImg');
@@ -551,7 +583,7 @@
 
       lightboxImg.alt = name;
       lightboxTitle.textContent = name;
-      lightboxPrice.textContent = price ? `Оформление — ${price}` : '';
+      lightboxPrice.textContent = price || '';
       lightboxPrice.style.display = price ? 'block' : 'none';
       if (vk) {
         lightboxVk.href = vk;
