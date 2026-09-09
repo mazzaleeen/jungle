@@ -9,8 +9,28 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Стабильная сетка страницы «Выпускные» для планшетов */
+@media (min-width: 861px) and (max-width: 1100px){
+  .vypusknoy-page .main-bar__inner{gap:10px}
+  .vypusknoy-page .logo img{height:52px}
+  .vypusknoy-page .nav{gap:4px;flex-wrap:nowrap}
+  .vypusknoy-page .nav-btn{font-size:12px;letter-spacing:.04em;padding:11px 12px;white-space:nowrap}
+}
+
+@media (min-width: 641px) and (max-width: 960px){
+  .vypusknoy-page .program-pkg-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .vypusknoy-page .program-pkg__photo{width:110px}
+  .vypusknoy-page .program-pkg__headtext{padding:14px 14px 14px 6px}
+  .vypusknoy-page .program-pkg__body{padding:18px}
+}
+
+@media (max-width: 640px){
+  .vypusknoy-page .program-pkg-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
-<body>
+<body class="vypusknoy-page">
 
 <header class="site-header">
   <div class="top-bar">
