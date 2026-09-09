@@ -844,3 +844,40 @@ a.nav-btn:focus-visible,
   .nav-btn{min-height:46px;padding:11px 18px}
   .party-filter,.menu-filter{min-height:44px}
 }
+
+/* ===== Page hero polish v1 ===== */
+.page-hero{
+  padding:56px 0 72px;
+}
+.page-hero h1{
+  margin:0;
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.page-hero p{
+  margin-top:14px;
+  line-height:1.5;
+}
+.hero-top{
+  margin-bottom:8px;
+}
+.hero h1{
+  line-height:1.08;
+}
+.hero p{
+  line-height:1.5;
+}
+.category-intro{
+  margin-bottom:40px;
+}
+.category-intro p{
+  line-height:1.55;
+}
+@media(max-width:860px){
+  .page-hero{padding:42px 18px 58px}
+  .page-hero h1{font-size:clamp(30px,8vw,42px)}
+  .page-hero p{font-size:15px;margin-top:11px}
+  .hero{padding:42px 18px 54px}
+  .hero h1{font-size:clamp(32px,8vw,48px)}
+  .hero p{font-size:16px;margin-top:10px}
+}
