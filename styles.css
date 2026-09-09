@@ -923,3 +923,74 @@ a.nav-btn:focus-visible,
   .program-card:hover .program-card__photo--cover img,
   .hero-card:hover img{transform:none}
 }
+
+/* ===== Site motion polish v1 ===== */
+@keyframes jc-fade-up{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes jc-soft-in{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+body{
+  animation:jc-soft-in .35s ease both;
+}
+.hero,
+.page-hero{
+  animation:jc-fade-up .5s ease both;
+}
+.program-card,
+.hero-card,
+.cake-tile,
+.program-pkg,
+.menu-card,
+.party-card,
+.nav-card,
+.quick-nav-card{
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,background-color .24s ease;
+}
+.program-card:hover,
+.hero-card:hover,
+.cake-tile:hover,
+.program-pkg:hover,
+.menu-card:hover,
+.party-card:hover{
+  transform:translateY(-3px);
+}
+
+.nav-btn,
+.program-card__toggle,
+.party-filter,
+.menu-filter,
+.cake-fillings-btn,
+.burger{
+  transition:transform .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease,color .2s ease;
+}
+.nav-btn:active,
+.program-card__toggle:active,
+.party-filter:active,
+.menu-filter:active,
+.cake-fillings-btn:active,
+.burger:active{
+  transform:translateY(1px) scale(.985);
+}
+
+@media(max-width:860px){
+  .program-card:hover,
+  .hero-card:hover,
+  .cake-tile:hover,
+  .program-pkg:hover,
+  .menu-card:hover,
+  .party-card:hover{transform:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
