@@ -46,10 +46,10 @@
     <div class="container main-bar__inner">
       <div class="header-brand">
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
-      <a class="news-badge" href="https://nn.jucity.ru/" target="_blank" rel="noopener" aria-label="Новости, афиша, акции"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 01-5.8-1.8"/></svg><span>Новости, афиша, акции</span></a>
+      <a class="news-badge" href="https://nn.jucity.ru/" target="_blank" rel="noopener"><span>Новости, афиша, акции</span></a>
       </div>
       <nav class="nav" id="nav">
-        <div class="nav-item"><a class="nav-btn" href="#domiki">Комнаты</a></div>
+        <div class="nav-item"><a class="nav-btn" href="komnaty.html">Комнаты</a></div>
 
         <div class="nav-item">
           <button class="nav-btn active" type="button" data-flyout-trigger="anim-nav">
@@ -68,7 +68,7 @@
           </div>
         </div>
 
-        <div class="nav-item"><a class="nav-btn" href="#offers">Пакетные предложения</a></div>
+        <div class="nav-item"><a class="nav-btn" href="paketnye-predlozheniya.html">Пакетные предложения</a></div>
         <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
         <div class="nav-item"><a class="nav-btn" href="menu.html">Ресторан</a></div>
         <div class="nav-item"><a class="nav-btn" href="torty.html">Торты</a></div>
@@ -93,7 +93,6 @@
 
 <nav class="subnav" id="subnav" aria-label="Категории анимаций">
   <div class="subnav__inner" id="subnavInner">
-    <a href="#domiki">Домики для праздника</a>
     <a href="#new">Новинки</a>
     <a href="#quests">Активити и квесты</a>
     <a href="#masterclass">Мастер-классы</a>
@@ -102,59 +101,8 @@
     <a href="#parties">Вечеринки</a>
     <a href="#heroes">Любимые герои</a>
     <a href="#premium">Premium герои</a>
-    <a href="#offers">Пакетные предложения</a>
   </div>
 </nav>
-
-<section class="category pattern-dots" id="domiki" style="background:var(--bg)">
-  <div class="container">
-    <h2>Домики для праздника</h2>
-
-    <div class="category-intro">
-      <p>Отдельная комната — только для вашей компании.</p>
-      <div class="badge-row">
-        <span class="badge-pill">Без аренды</span>
-        <span class="badge-pill">Без депозитов</span>
-        <span class="badge-pill badge-pill--accent">Взрослым — всегда бесплатно</span>
-      </div>
-    </div>
-
-    <div class="room-grid">
-      <div class="room-card room-card--clickable" data-img="images/domiki/skazochnyj-les.jpg" data-name="Сказочный лес">
-        <img src="images/domiki/skazochnyj-les.jpg" alt="Сказочный лес" loading="lazy">
-        <span class="room-card__label">Сказочный лес</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/podvodnyj-mir.jpg" data-name="Подводный мир">
-        <img src="images/domiki/podvodnyj-mir.jpg" alt="Подводный мир" loading="lazy">
-        <span class="room-card__label">Подводный мир</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/peshera-sokrovisch.jpg" data-name="Пещера сокровищ">
-        <img src="images/domiki/peshera-sokrovisch.jpg" alt="Пещера сокровищ" loading="lazy">
-        <span class="room-card__label">Пещера сокровищ</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/polyana-chudes.jpg" data-name="Поляна чудес">
-        <img src="images/domiki/polyana-chudes.jpg" alt="Поляна чудес" loading="lazy">
-        <span class="room-card__label">Поляна чудес</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/magicheskij-prud.jpg" data-name="Магический пруд">
-        <img src="images/domiki/magicheskij-prud.jpg" alt="Магический пруд" loading="lazy">
-        <span class="room-card__label">Магический пруд</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/volshebnoe-podzemele.jpg" data-name="Волшебное подземелье">
-        <img src="images/domiki/volshebnoe-podzemele.jpg" alt="Волшебное подземелье" loading="lazy">
-        <span class="room-card__label">Волшебное подземелье</span>
-      </div>
-      <div class="room-card room-card--clickable" data-img="images/domiki/tainstvennoe-ozero.jpg" data-name="Таинственное озеро">
-        <img src="images/domiki/tainstvennoe-ozero.jpg" alt="Таинственное озеро" loading="lazy">
-        <span class="room-card__label">Таинственное озеро</span>
-      </div>
-    </div>
-
-    <div class="callout">
-      Выбирайте комнату — и мы предоставим её <strong>бесплатно на 3 часа</strong> при условии покупки минимального количества билетов.
-    </div>
-  </div>
-</section>
 
 <div class="lightbox" id="roomLightbox">
   <div class="lightbox__inner">
@@ -1396,98 +1344,13 @@
   </div>
 </section>
 
-<section class="category pattern-dots-light" id="offers" style="background:var(--bg-lavender)">
-  <div class="container">
-    <h2>Пакетные предложения</h2>
-
-    <div class="category-intro">
-      <p>Готовые пакеты на день рождения — с угощениями и залом под ключ.</p>
-    </div>
-
-    <div class="pkg-grid">
-
-      <div class="pkg-card">
-        <div class="pkg-card__top">
-          <span class="pkg-card__name">Джунгли зовут</span>
-          <span class="pkg-card__duration">4 ребёнка</span>
-        </div>
-        <div class="pkg-card__perk">+ именинник со скидкой 50%</div>
-        <ul>
-          <li>Безлимитные билеты</li>
-          <li>Вынос торта героем Джуси (15 минут)</li>
-          <li>Угощения на компанию: ассорти сафари — 2 шт, соусы на выбор — 2 шт, пицца на выбор — 2 шт, морс — 2 л</li>
-          <li>Стол в ресторане без ограничения по времени</li>
-        </ul>
-        <div class="pkg-card__prices">
-          <div class="pkg-card__price-row">
-            <span>Будний день</span>
-            <span><strong>9 660 ₽</strong><span class="pkg-card__price-old">10 375 ₽</span></span>
-          </div>
-          <div class="pkg-card__price-row">
-            <span>Выходной день</span>
-            <span><strong>10 420 ₽</strong><span class="pkg-card__price-old">12 175 ₽</span></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pkg-card pkg-card--featured">
-        <div class="pkg-card__top">
-          <span class="pkg-card__name">Большое сафари</span>
-          <span class="pkg-card__duration">6 детей</span>
-        </div>
-        <div class="pkg-card__perk">+ именинник бесплатно</div>
-        <ul>
-          <li>Безлимитные билеты</li>
-          <li>Анимационная программа (60 минут)</li>
-          <li>Угощения на компанию: ассорти сафари — 3 шт, соусы на выбор — 3 шт, пицца на выбор — 3 шт, морс — 3 л</li>
-          <li>Волшебная комната на 3 часа предоставляется бесплатно</li>
-        </ul>
-        <div class="pkg-card__prices">
-          <div class="pkg-card__price-row">
-            <span>Будний день</span>
-            <span><strong>16 050 ₽</strong><span class="pkg-card__price-old">17 120 ₽</span></span>
-          </div>
-          <div class="pkg-card__price-row">
-            <span>Выходной день</span>
-            <span><strong>18 080 ₽</strong><span class="pkg-card__price-old">19 520 ₽</span></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pkg-card">
-        <div class="pkg-card__top">
-          <span class="pkg-card__name">Тропический переполох</span>
-          <span class="pkg-card__duration">9 детей</span>
-        </div>
-        <div class="pkg-card__perk">+ именинник бесплатно</div>
-        <ul>
-          <li>Безлимитные билеты</li>
-          <li>Анимационная программа (1 час с мини-шоу)</li>
-          <li>Фонтан из шаров — 9 шт</li>
-          <li>Угощения на компанию: ассорти сафари — 4 шт, соусы на выбор — 4 шт, пицца на выбор — 4 шт, фруктовая тарелка — 2 шт, морс — 4 л</li>
-          <li>Волшебная комната на 3 часа предоставляется бесплатно</li>
-        </ul>
-        <div class="pkg-card__prices">
-          <div class="pkg-card__price-row">
-            <span>Будний день</span>
-            <span><strong>25 850 ₽</strong><span class="pkg-card__price-old">27 465 ₽</span></span>
-          </div>
-          <div class="pkg-card__price-row">
-            <span>Выходной день</span>
-            <span><strong>28 910 ₽</strong><span class="pkg-card__price-old">31 065 ₽</span></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <section class="quick-nav quick-nav--bottom">
   <div class="container">
     <div class="quick-nav-card">
       <h2 class="qn-title">Куда дальше?</h2>
       <div class="nav-grid">
+        <a href="komnaty.html" class="nav-card"><h3>Комнаты</h3></a>
+        <a href="paketnye-predlozheniya.html" class="nav-card"><h3>Пакетные предложения</h3></a>
         <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
         <a href="vypusknoy.html" class="nav-card"><h3>Выпускные</h3></a>
         <a href="menu.html" class="nav-card"><h3>Ресторан</h3></a>
@@ -1506,6 +1369,8 @@
     <div>
       <h4>Разделы</h4>
       <a href="animations.html">Анимации</a>
+      <a href="komnaty.html">Комнаты</a>
+      <a href="paketnye-predlozheniya.html">Пакетные предложения</a>
       <a href="dopolneniya.html">Впечатления</a>
       <a href="vypusknoy.html">Выпускные</a>
       <a href="menu.html">Ресторан</a>

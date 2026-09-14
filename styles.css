@@ -38,12 +38,10 @@ button{font-family:inherit}
 .main-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:relative}
 .logo img{height:58px;display:block}
 .header-brand{display:flex;align-items:center;gap:14px}
-.news-badge{display:flex;align-items:center;gap:6px;background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:9px 14px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);transition:transform .2s,background .2s}
-.news-badge:hover{transform:translateY(-2px);background:#fff}
-.news-badge svg{width:15px;height:15px;flex:none}
-@media(max-width:900px){
-  .news-badge span{display:none}
-  .news-badge{padding:9px;border-radius:50%}
+.news-badge{display:flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-size:12px;font-weight:800;padding:9px 16px;border-radius:999px;white-space:nowrap;transition:transform .2s,background .2s}
+.news-badge:hover{transform:translateY(-2px);background:var(--green-dark)}
+@media(max-width:640px){
+  .news-badge{font-size:10.5px;padding:8px 11px;white-space:normal;text-align:center;line-height:1.2;max-width:92px}
 }
 
 .nav{display:flex;gap:12px;align-items:center}
@@ -148,7 +146,7 @@ button{font-family:inherit}
 .pkg-card:hover{border-color:var(--purple-1);box-shadow:0 14px 34px rgba(74,17,133,.14);transform:translateY(-4px)}
 .pkg-card--featured{background:linear-gradient(180deg,#fff,var(--bg-lavender))}
 .pkg-card__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pkg-card__name{font-size:20px;text-transform:uppercase;color:var(--purple-1)}
+.pkg-card__name{font-size:20px;font-weight:800;text-transform:uppercase;color:var(--purple-1)}
 .pkg-card__duration{background:var(--bg-lavender);color:var(--purple-1);font-size:12px;font-weight:800;padding:6px 14px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
 .pkg-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px;font-weight:700;opacity:.9}
 .pkg-card ul li{padding-left:20px;position:relative}
