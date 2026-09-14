@@ -38,8 +38,8 @@ button{font-family:inherit}
 .main-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:relative}
 .logo img{height:58px;display:block}
 .header-brand{display:flex;align-items:center;gap:14px}
-.news-badge{display:flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-size:12px;font-weight:800;padding:9px 16px;border-radius:999px;white-space:nowrap;transition:transform .2s,background .2s}
-.news-badge:hover{transform:translateY(-2px);background:var(--green-dark)}
+.news-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:800;padding:9px 16px;border-radius:999px;white-space:nowrap;transition:transform .2s,background .2s}
+.news-badge:hover{transform:translateY(-2px);background:rgba(255,255,255,.25)}
 @media(max-width:640px){
   .news-badge{font-size:10.5px;padding:8px 11px;white-space:normal;text-align:center;line-height:1.2;max-width:92px}
 }
