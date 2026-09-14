@@ -40,8 +40,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </span>
         <span class="top-text">
-          <small>Работаем</small>
-          <strong>ежедневно с 10:00 до 22:00 (в ПН с 12:00)</strong>
+          <small>Принимаем банкеты</small>
+          <strong>ежедневно с 10:00 до 21:00 (в пн. с 12:00)</strong>
         </span>
       </div>
       <span class="top-divider"></span>
@@ -64,15 +64,19 @@
 
 <div class="main-bar">
     <div class="container main-bar__inner">
+      <div class="header-brand">
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
+      <a class="news-badge" href="https://nn.jucity.ru/" target="_blank" rel="noopener" aria-label="Новости, афиша, акции"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 01-5.8-1.8"/></svg><span>Новости, афиша, акции</span></a>
+      </div>
       <nav class="nav" id="nav">
+        <div class="nav-item"><a class="nav-btn" href="animations.html#domiki">Комнаты</a></div>
+
         <div class="nav-item">
           <button class="nav-btn" type="button" data-flyout-trigger="anim-nav">
             Анимации
             <span class="nav-btn__caret" aria-hidden="true"></span>
           </button>
           <div class="flyout" data-flyout="anim-nav">
-            <a href="animations.html#domiki">Домики для праздника</a>
             <a href="animations.html#new">Новинки</a>
             <a href="animations.html#quests">Активити и квесты</a>
             <a href="animations.html#masterclass">Мастер-классы</a>
@@ -81,10 +85,10 @@
             <a href="animations.html#parties">Вечеринки</a>
             <a href="animations.html#heroes">Любимые герои</a>
             <a href="animations.html#premium">Premium герои</a>
-            <a href="animations.html#offers">Пакетные предложения</a>
           </div>
         </div>
 
+        <div class="nav-item"><a class="nav-btn" href="animations.html#offers">Пакетные предложения</a></div>
         <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
         <div class="nav-item"><a class="nav-btn" href="menu.html">Ресторан</a></div>
         <div class="nav-item"><a class="nav-btn" href="torty.html">Торты</a></div>
@@ -393,6 +397,13 @@
   <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
 </footer>
 
+<div class="booking-widget">
+  <span class="booking-widget__label">Выбрал? Скорее бронируй</span>
+  <div class="booking-widget__buttons">
+    <a class="booking-widget__btn booking-widget__btn--max" href="https://max.ru/u/f9LHodD0cOKV9M2KDDiBx8fNEqb_g3ZmF00SS4EC49Xgkt-IOQAAAx3q99s" target="_blank" rel="noopener" aria-label="Написать в MAX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/></svg></a>
+    <a class="booking-widget__btn booking-widget__btn--tg" href="https://t.me/jucity52" target="_blank" rel="noopener" aria-label="Написать в Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 3.5L2.7 10.9c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.7l3-14.1c.3-1.2-.4-1.7-1.8-1.8z"/></svg></a>
+  </div>
+</div>
 <button class="to-top" id="toTop" aria-label="Наверх">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   <span>Наверх</span>
