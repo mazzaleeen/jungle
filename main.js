@@ -148,7 +148,7 @@ document.addEventListener('keydown', (e) => {
     '.extras-col', '.show-variant', '.price-tier',
     '.fillings-group', '.dish-textblock', '.party-step', '.booking-calendar', '.journey--hero', '.journey-row__mascot'
   ].join(',');
-  const els = [...document.querySelectorAll(SEL)].filter(el => !el.closest('#nav, .lightbox, .gallery-lightbox, .cake-lightbox'));
+  const els = [...document.querySelectorAll(SEL)].filter(el => !el.closest('#nav, .pm, .lightbox, .gallery-lightbox, .cake-lightbox'));
   const inScroller = el => {
     for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
       const ox = getComputedStyle(a).overflowX;
