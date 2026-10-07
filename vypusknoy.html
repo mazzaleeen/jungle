@@ -68,14 +68,14 @@
       <a class="logo" href="index.html"><img src="images/image.png" alt="Джунгли Сити"></a>
       <a class="news-badge" href="https://nn.jucity.ru/" target="_blank" rel="noopener"><span>Новости, афиша, акции</span></a>
       </div>
-      <nav class="nav" id="nav">
-        <div class="nav-item"><a class="nav-btn" href="komnaty.html">Комнаты</a></div>
-
+      <nav class="nav" id="nav" aria-label="Разделы сайта">
+        <div class="nav-panel__head">
+          <span class="nav-panel__title">Разделы</span>
+          <button class="nav-close" type="button" id="navClose" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <div class="nav-item"><a class="nav-btn" href="komnaty.html"><span class="nav-txt"><span class="nav-t">Комнаты</span><span class="nav-s">7 домиков бесплатно на 3 часа</span></span></a></div>
         <div class="nav-item">
-          <button class="nav-btn" type="button" data-flyout-trigger="anim-nav">
-            Анимации
-            <span class="nav-btn__caret" aria-hidden="true"></span>
-          </button>
+          <button class="nav-btn" type="button" data-flyout-trigger="anim-nav"><span class="nav-txt"><span class="nav-t">Анимации</span><span class="nav-s">Программы, герои, шоу</span></span><span class="nav-btn__caret" aria-hidden="true"></span></button>
           <div class="flyout" data-flyout="anim-nav">
             <a href="animations.html#new">Новинки</a>
             <a href="animations.html#quests">Активити и квесты</a>
@@ -87,17 +87,20 @@
             <a href="animations.html#premium">Premium герои</a>
           </div>
         </div>
-
-        <div class="nav-item"><a class="nav-btn" href="paketnye-predlozheniya.html">Пакетные предложения</a></div>
-        <div class="nav-item"><a class="nav-btn" href="dopolneniya.html">Впечатления</a></div>
-        <div class="nav-item"><a class="nav-btn" href="menu.html">Ресторан</a></div>
-        <div class="nav-item"><a class="nav-btn" href="torty.html">Торты</a></div>
-        <div class="nav-item"><a class="nav-btn active" href="vypusknoy.html">Выпускные</a></div>
-
-        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Не анимация</a></div>
-        <div class="nav-item is-hidden"><a class="nav-btn" href="index.html#">Новогоднее веселье</a></div>
+        <div class="nav-item"><a class="nav-btn" href="paketnye-predlozheniya.html"><span class="nav-txt"><span class="nav-t">Пакетные предложения</span><span class="nav-s">Готовые пакеты с угощениями</span></span></a></div>
+        <div class="nav-item"><a class="nav-btn" href="dopolneniya.html"><span class="nav-txt"><span class="nav-t">Впечатления</span><span class="nav-s">Шары, пиньята, аквагрим</span></span></a></div>
+        <div class="nav-item"><a class="nav-btn active" href="vypusknoy.html" aria-current="page"><span class="nav-txt"><span class="nav-t">Выпускные</span><span class="nav-s">Выпускной 2027</span></span></a></div>
+        <div class="nav-item"><a class="nav-btn" href="torty.html"><span class="nav-txt"><span class="nav-t">Торты</span><span class="nav-s">Каталог оформлений и начинки</span></span></a></div>
+        <div class="nav-item"><a class="nav-btn" href="menu.html"><span class="nav-txt"><span class="nav-t">Ресторан</span><span class="nav-s">Пицца, паста, детское меню</span></span></a></div>
+        <div class="nav-panel__foot">
+          <a class="nav-foot__phone" href="tel:+79625097493"><small>Бронирование</small>+7 (962) 509-74-93</a>
+          <div class="nav-foot__msg">
+            <a href="https://max.ru/u/f9LHodD0cOKV9M2KDDiBx8fNEqb_g3ZmF00SS4EC49Xgkt-IOQAAAx3q99s" target="_blank" rel="noopener" aria-label="Написать в MAX"><img src="assets/icons/max.png" alt="MAX"></a>
+            <a href="https://t.me/jucity52" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/icons/telegram.png" alt="Telegram"></a>
+          </div>
+        </div>
       </nav>
-      <button class="burger" id="burger" aria-label="Разделы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Разделы</button>
+      <button class="burger" id="burger" type="button" aria-label="Открыть разделы" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Разделы</button>
     </div>
 </div>
 
@@ -363,13 +366,13 @@
   <div class="container">
     <div class="quick-nav-card">
       <h2 class="qn-title">Куда дальше?</h2>
-      <div class="nav-grid">
-        <a href="animations.html" class="nav-card"><h3>Анимации</h3></a>
-        <a href="komnaty.html" class="nav-card"><h3>Комнаты</h3></a>
-        <a href="paketnye-predlozheniya.html" class="nav-card"><h3>Пакетные предложения</h3></a>
-        <a href="dopolneniya.html" class="nav-card"><h3>Впечатления</h3></a>
-        <a href="menu.html" class="nav-card"><h3>Ресторан</h3></a>
-        <a href="torty.html" class="nav-card"><h3>Торты</h3></a>
+      <div class="nav-grid nav-grid--home">
+        <a href="komnaty.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Комнаты</span><span class="qn-s">7 домиков бесплатно на 3 часа</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="animations.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Анимации</span><span class="qn-s">Программы, герои, шоу</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="paketnye-predlozheniya.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Пакетные предложения</span><span class="qn-s">Готовые пакеты с угощениями</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="dopolneniya.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Впечатления</span><span class="qn-s">Шары, пиньята, аквагрим</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="torty.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Торты</span><span class="qn-s">Каталог оформлений и начинки</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a href="menu.html" class="nav-card"><span class="qn-txt"><span class="qn-t">Ресторан</span><span class="qn-s">Пицца, паста, детское меню</span></span><span class="qn-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </div>
@@ -387,8 +390,8 @@
       <a href="komnaty.html">Комнаты</a>
       <a href="paketnye-predlozheniya.html">Пакетные предложения</a>
       <a href="dopolneniya.html">Впечатления</a>
-      <a href="menu.html">Ресторан</a>
       <a href="vypusknoy.html">Выпускные</a>
+      <a href="menu.html">Ресторан</a>
       <a href="torty.html">Торты</a>
     </div>
     <div>
@@ -400,6 +403,13 @@
   </div>
   <div class="footer-bottom">© 2026 Джунгли Сити. Все права защищены.</div>
 </footer>
+
+<div class="mbar" aria-label="Связаться с нами">
+  <a class="mbar__call" href="tel:+79625097493"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span>Позвонить</span></a>
+  <a class="mbar__ic" href="https://max.ru/u/f9LHodD0cOKV9M2KDDiBx8fNEqb_g3ZmF00SS4EC49Xgkt-IOQAAAx3q99s" target="_blank" rel="noopener" aria-label="Написать в MAX"><img src="assets/icons/max.png" alt=""></a>
+  <a class="mbar__ic" href="https://t.me/jucity52" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/icons/telegram.png" alt=""></a>
+  <button class="mbar__ic mbar__up" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+</div>
 
 <div class="booking-widget">
   <span class="booking-widget__label">Выбрал? Скорее бронируй</span>
