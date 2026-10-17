@@ -1269,3 +1269,8 @@ html.pm-open,html.pm-open body{overflow:hidden}
 
 /* подвал: длинный адрес не сбрасывает «Контакты» на вторую строку */
 @media(min-width:861px){.footer-inner>div:last-child{max-width:340px}}
+
+/* «Дополни соусом» в карточке блюда */
+.dish-card__addon{margin-top:10px;padding:9px 12px;border-radius:12px;background:var(--bg-lavender,#F4F0FC);font-size:12.5px;font-weight:600;line-height:1.45;color:var(--purple-1,#4a1185)}
+.dish-card__addon-t{font-weight:900}
+.dish-card__addon b{white-space:nowrap;font-weight:900}
