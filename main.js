@@ -196,3 +196,32 @@ document.addEventListener('keydown', (e) => {
   const up = document.querySelector('.mbar__up');
   if (up) up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
+
+/* ===== Видео: кнопка на карточке + окно с роликом ===== */
+(function () {
+  const holders = document.querySelectorAll('[data-video-full]');
+  if (!holders.length) return;
+  const vm = document.createElement('div');
+  vm.className = 'vm'; vm.setAttribute('aria-hidden', 'true');
+  vm.innerHTML = '<div class="vm__box"><button class="vm__close" type="button" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><p class="vm__title"></p><video controls playsinline></video></div>';
+  document.body.appendChild(vm);
+  const vid = vm.querySelector('video');
+  function close() {
+    vm.classList.remove('open'); vm.setAttribute('aria-hidden', 'true');
+    vid.pause(); vid.removeAttribute('src'); vid.load();
+    document.documentElement.classList.remove('vm-open');
+  }
+  holders.forEach(h => {
+    const btn = h.querySelector('.vplay');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      vm.querySelector('.vm__title').textContent = h.dataset.videoTitle || '';
+      vid.src = h.dataset.videoFull;
+      vm.classList.add('open'); vm.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('vm-open');
+      vid.play().catch(() => {});
+    });
+  });
+  vm.addEventListener('click', e => { if (e.target === vm || e.target.closest('.vm__close')) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && vm.classList.contains('open')) close(); });
+})();
