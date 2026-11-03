@@ -186,7 +186,8 @@ button{font-family:inherit}
 
 @media(max-width:860px){
   .feature-card{flex-direction:column}
-  .feature-card__photo{flex:none;aspect-ratio:3/4}
+  .feature-card__photo{flex:none;aspect-ratio:3/4;position:relative}
+  .feature-card__photo img{position:absolute;left:0;right:0;bottom:0;margin:0 auto;width:78%;height:94%;max-width:none;max-height:none;object-fit:contain;object-position:center bottom}
   .feature-card__body{padding:26px 24px}
 }
 .program-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 12px 32px rgba(74,17,133,.10);border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .3s}
