@@ -342,6 +342,7 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
       S.crlf = /\r\n/.test(d.content);
       const dt = d.content.match(/^\s*(<!doctype[^>]*>)/i);
       S.doctype = dt ? dt[1] : '<!DOCTYPE html>';
+      S.rootAttrs = rootAttrsOf(d.content);
       if (!opts.keepState) {
         S.undo = []; S.changes.clear(); S.uploads = [];
       }
@@ -509,8 +510,32 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
   }
   const titleOf = (p) => { const x = S.pages.find(q => q.path === p); return x ? x.title : p; };
 
-  function serializeDoc(doc, crlf, doctype) {
+  // атрибуты <html>, <head>, <body> как в исходном файле — всё, что дописали расширения браузера, не сохраняем
+  function rootAttrsOf(src) {
+    try {
+      const d = new DOMParser().parseFromString(src, 'text/html');
+      const names = (n) => new Set([...n.attributes].map(a => a.name));
+      return { html: names(d.documentElement), head: names(d.head), body: names(d.body) };
+    } catch (e) { return null; }
+  }
+  // следы расширений (блокировщики рекламы, Grammarly, Dark Reader, переводчики…)
+  const EXT_ATTR = /^(data-ab-|data-adblock|data-gr-|data-new-gr-|data-gramm|data-lt-|data-darkreader|data-kantu|data-dashlane|data-lastpass|data-1p-|data-bitwarden|data-mtl|data-translate|cz-shortcut-listen|__processed_|data-ms-editor|data-qb-)/i;
+  function stripExtensionJunk(root, attrs) {
+    const keep = (n, set) => { if (!n || !set) return; [...n.attributes].forEach(a => { if (!set.has(a.name) && a.name !== 'class' && a.name !== 'style') n.removeAttribute(a.name); }); };
+    const head = root.querySelector(':scope > head'), body = root.querySelector(':scope > body');
+    if (attrs) { keep(root, attrs.html); keep(head, attrs.head); keep(body, attrs.body); }
+    [...root.children].forEach(n => { if (n !== head && n !== body) n.remove(); });
+    root.querySelectorAll('*').forEach(n => {
+      if (n.localName.includes('-') && !n.closest('svg')) { n.remove(); return; }
+      [...n.attributes].forEach(a => { if (EXT_ATTR.test(a.name)) n.removeAttribute(a.name); });
+    });
+    [...root.attributes].forEach(a => { if (EXT_ATTR.test(a.name)) root.removeAttribute(a.name); });
+    if (head) head.querySelectorAll('.darkreader, style[id^="dark-reader"], style[class^="darkreader"], [id^="grammarly"]').forEach(n => n.remove());
+  }
+
+  function serializeDoc(doc, crlf, doctype, attrs) {
     const root = doc.documentElement.cloneNode(true);
+    stripExtensionJunk(root, attrs === undefined ? S.rootAttrs : attrs);
     root.querySelectorAll('[data-ed]').forEach(n => n.remove());
     root.querySelectorAll('[contenteditable]').forEach(n => { n.removeAttribute('contenteditable'); n.removeAttribute('spellcheck'); });
     root.querySelectorAll('[class]').forEach(n => {
@@ -680,7 +705,7 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
     const texts = [];
     while (walker.nextNode()) texts.push(walker.currentNode);
     texts.forEach(t => {
-      const v = t.nodeValue.replace(/\u00a0(?= )|(?<= )\u00a0/g, ' ').replace(/ {2,}/g, ' ');
+      const v = t.nodeValue.replace(/\u00a0(?= )|(?<= )\u00a0/g, ' ').replace(/([^\s]) {2,}/g, '$1 '); // отступы в начале строк не трогаем
       if (v !== t.nodeValue) t.nodeValue = v;
     });
     if (texts.length) {
@@ -766,6 +791,7 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
     'badge-pill': 'Плашка', 'extras-col': 'Колонка', 'journey-step': 'Шаг', 'callout': 'Плашка с текстом',
     'booking-day': 'День', 'fill-card': 'Начинка', 'filling-card': 'Начинка', 'tk-step': 'Шаг', 'pkg-card__price-row': 'Строка цены',
     'fst-it': 'Позиция фуршета', 'menu-category': 'Вкладка меню', 'menu-filter': 'Кнопка вкладки', 'tk-fill': 'Начинка', 'tk-ready': 'Готовый торт',
+    'dish-textblock': 'Список', 'dish-textblock__row': 'Строка списка', 'filling-row': 'Строка', 'dish-textblock-pair': null,
     'room-grid': null,
   };
   function keyOf(n) { return n.tagName + '.' + (n.classList[0] || ''); }
@@ -929,7 +955,7 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
     const pm = progressModal('Загружаю фото…');
     try {
       const { blob, ext } = await processImage(file);
-      const card = img.closest('.program-card,.feature-card,.cake-tile,.pkg-card,.room-card,.dish-card,section');
+      const card = img.closest('.program-card,.feature-card,.cake-tile,.pkg-card,.room-card,.dish-card,.filling-card,.tk-fill,.fst-it,section');
       const base = slug((card && excerpt(card)) || img.alt || file.name.replace(/\.\w+$/, ''));
       const path = uploadDir() + '/' + base + '-' + stamp() + '.' + ext;
       const r = await uploadFile(blob, path, pm.set);
@@ -1376,7 +1402,7 @@ body.ed-mode .fst::before{content:"Фуршет: кликните по пози�
     });
     const files = [...touched].map(d => {
       const dt = d.src.match(/^\s*(<!doctype[^>]*>)/i);
-      return { path: d.path, base: d.sha, content: serializeDoc(d.doc, /\r\n/.test(d.src), dt ? dt[1] : null) };
+      return { path: d.path, base: d.sha, content: serializeDoc(d.doc, /\r\n/.test(d.src), dt ? dt[1] : null, null) };
     });
     const names = changed.map(k => (state[k].now ? 'показан ' : 'скрыт ') + '«' + titleOf(k) + '»').join(', ');
     try {
