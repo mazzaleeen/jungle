@@ -4,7 +4,20 @@
 (function () {
   'use strict';
 
-  const CSRF = document.querySelector('meta[name="csrf"]').content;
+  let CSRF = document.querySelector('meta[name="csrf"]').content;
+  async function refreshCsrf() {
+    try {
+      const r = await fetch('api.php?action=csrf', { credentials: 'same-origin', cache: 'no-store' });
+      const d = await r.json();
+      if (r.ok && d.csrf) {
+        CSRF = d.csrf;
+        const f = document.querySelector('#logoutForm [name=csrf]');
+        if (f) f.value = CSRF;
+        return true;
+      }
+    } catch (e) { /* нет связи */ }
+    return false;
+  }
   const USER = document.getElementById('app').dataset.user;
   let SITE_BASE = new URL('../', location.href).href; // адрес сайта выбранного города
 
@@ -64,10 +77,11 @@
     const box = h('div', { class: 'modal__box' + (opts.wide ? ' modal__box--wide' : '') });
     const wrap = h('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true' }, box);
     const close = () => { wrap.remove(); document.removeEventListener('keydown', onKey); if (opts.onClose) opts.onClose(); };
-    const onKey = (e) => { if (e.key === 'Escape' && !opts.sticky) close(); };
+    const guarded = () => { if (opts.confirmClose && opts.confirmClose() && !window.confirm('Закрыть без применения изменений?')) return; close(); };
+    const onKey = (e) => { if (e.key === 'Escape' && !opts.sticky) guarded(); };
     document.addEventListener('keydown', onKey);
     if (!opts.sticky) {
-      const x = btn('', { cls: 'btn--ghost btn--sm modal__close', icon: 'close', title: 'Закрыть', onClick: close });
+      const x = btn('', { cls: 'btn--ghost btn--sm modal__close', icon: 'close', title: 'Закрыть', onClick: guarded });
       box.append(x);
     }
     if (opts.title) box.append(h('h2', null, opts.title));
@@ -75,7 +89,11 @@
     if (opts.body) box.append(opts.body);
     if (opts.buttons && opts.buttons.length) {
       const foot = h('div', { class: 'modal__foot' });
-      opts.buttons.forEach(b => foot.append(btn(b.label, { cls: b.cls, icon: b.icon, onClick: () => { const r = b.onClick ? b.onClick() : null; if (b.close !== false && r !== false) close(); } })));
+      opts.buttons.forEach(b => foot.append(btn(b.label, { cls: b.cls, icon: b.icon, onClick: () => {
+        if (!b.onClick) { guarded(); return; }
+        const r = b.onClick();
+        if (b.close !== false && r !== false) close();
+      } })));
       box.append(foot);
     }
     document.body.append(wrap);
@@ -105,10 +123,11 @@
     let d = null;
     try { d = await r.json(); } catch (e) { /* пусто */ }
     if (r.status === 401) { sessionExpired(); throw Object.assign(new Error('Нужно войти заново'), { status: 401 }); }
+    if (r.status === 403 && d && d.csrfExpired && !opts._retry && await refreshCsrf()) return api(action, Object.assign({}, opts, { _retry: true }));
     if (!r.ok) throw Object.assign(new Error((d && d.error) || ('Ошибка ' + r.status)), { status: r.status });
     return d;
   }
-  function uploadFile(blob, path, onProgress) {
+  function uploadFile(blob, path, onProgress, retried) {
     return new Promise((res, rej) => {
       const fd = new FormData();
       fd.append('path', path);
@@ -120,6 +139,9 @@
       x.onload = () => {
         let d = null; try { d = JSON.parse(x.responseText); } catch (e) { /* */ }
         if (x.status === 401) { sessionExpired(); return rej(new Error('Нужно войти заново')); }
+        if (x.status === 403 && d && d.csrfExpired && !retried) {
+          return refreshCsrf().then(ok => ok ? uploadFile(blob, path, onProgress, true).then(res, rej) : rej(new Error(d.error)));
+        }
         if (x.status >= 200 && x.status < 300 && d) res(d); else rej(new Error((d && d.error) || ('Ошибка загрузки ' + x.status)));
       };
       x.onerror = () => rej(new Error('Нет связи с сервером, файл не загрузился.'));
@@ -229,6 +251,8 @@
     S.dirty = false;
     document.getElementById('logoutForm').submit();
   }
+  window.addEventListener('dragover', (e) => e.preventDefault());
+  window.addEventListener('drop', (e) => e.preventDefault());
   window.addEventListener('beforeunload', (e) => { if (S.dirty) { e.preventDefault(); e.returnValue = ''; } });
 
   function refreshTop() {
@@ -270,6 +294,16 @@ body.ed-mode .program-card__full{display:block!important;border-top:2px dashed #
 body.ed-mode .program-card__full::before{content:"Текст в «Подробнее»";display:block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b2cc0;margin-bottom:6px}
 body.ed-mode a,body.ed-mode button,body.ed-mode [role=button]{cursor:default}
 body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
+body.ed-mode .menu-category{display:block!important;animation:none!important}
+body.ed-mode .menu-category + .menu-category{margin-top:28px}
+.ed-label{display:block;margin:6px 0 14px;padding:8px 14px;border-radius:12px;background:#F4F0FC;border:2px dashed #c9b6ee;color:#6b2cc0;font:800 13px/1.3 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+body.ed-mode .fst-stage{height:auto!important}
+body.ed-mode .fst-track{position:static!important;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+body.ed-mode .fst-it{position:relative!important;left:auto!important;bottom:auto!important;transform:none!important;opacity:1!important;filter:none!important;visibility:visible!important;width:auto!important;height:auto!important;flex-direction:column;align-items:center;background:#fff!important;border-radius:18px!important;padding:10px!important;z-index:auto!important}
+body.ed-mode .fst-it img{width:100%;height:130px;object-fit:contain}
+body.ed-mode .fst-it::after{content:attr(data-name) " · " attr(data-p);display:block;margin-top:6px;font:700 12px/1.3 system-ui,sans-serif;color:#4a1185;text-align:center}
+body.ed-mode .fst-ped,body.ed-mode .fst-arrow,body.ed-mode .fst-cap,body.ed-mode .fst-thumbs{display:none!important}
+body.ed-mode .fst::before{content:"Фуршет: кликните по позиции, чтобы поменять название, описание, вес и цену (справа) или фото";display:block;margin-bottom:12px;font:700 13px/1.4 system-ui,sans-serif;color:#6b2cc0}
 `;
   function toEditorHtml(src) {
     const d = new DOMParser().parseFromString(src, 'text/html');
@@ -318,6 +352,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       });
       S.doc = ui.frame.contentDocument;
       fixStickyOffsets(S.doc);
+      addEditorLabels(S.doc);
       bindFrame(S.doc);
       if (!opts.keepState) { S.initial = S.doc.body.innerHTML; S.dirty = false; }
       else { S.dirty = true; }
@@ -362,6 +397,115 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     renderPages();
     const first = S.pages.find(p => p.path === pagePath) || S.pages.find(p => p.path === 'index.html') || S.pages[0];
     if (first) await openPage(first.path, { force: true });
+  }
+  // подписи вкладок меню — только в редакторе (элементы с data-ed не сохраняются)
+  function addEditorLabels(doc) {
+    doc.querySelectorAll('[data-menu-category]').forEach(cat => {
+      const id = cat.getAttribute('data-menu-category');
+      const b = doc.querySelector('[data-menu-filter="' + CSS.escape(id) + '"]');
+      const lab = doc.createElement('div');
+      lab.setAttribute('data-ed', '');
+      lab.className = 'ed-label';
+      lab.setAttribute('data-cat', id);
+      lab.textContent = 'Вкладка «' + (b ? b.textContent.trim() : id) + '»';
+      cat.prepend(lab);
+    });
+  }
+  // куда ведёт элемент: раздел этой же страницы или другая страница сайта
+  function navTarget(el) {
+    const tab = el.closest('[data-menu-filter]');
+    if (tab) {
+      const t = S.doc.querySelector('[data-menu-category="' + CSS.escape(tab.getAttribute('data-menu-filter')) + '"]');
+      if (t) return { el: tab, scroll: t, label: tab.textContent.trim() };
+    }
+    const a = el.closest('a[href]');
+    if (!a) return null;
+    const href = a.getAttribute('href');
+    if (href.startsWith('#') && href.length > 1) {
+      const t = S.doc.getElementById(href.slice(1));
+      if (t) return { el: a, scroll: t, label: a.textContent.trim() };
+      return null;
+    }
+    const [file, hash] = href.split('#');
+    const pg = S.pages.find(p => p.path === file);
+    if (pg) return { el: a, page: pg.path, hash: hash || '', label: pg.title };
+    return null;
+  }
+  function scrollToEl(t) {
+    const bar = S.doc.querySelector('.main-bar');
+    const sub = S.doc.querySelector('.subnav,.menu-filters');
+    const off = (bar ? bar.offsetHeight : 0) + (sub ? sub.offsetHeight : 0) + 12;
+    const y = t.getBoundingClientRect().top + S.doc.defaultView.scrollY - off;
+    S.doc.defaultView.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+  async function goToPage(path, hash) {
+    if (path === S.page) { const t = hash && S.doc.getElementById(hash); if (t) scrollToEl(t); return; }
+    await openPage(path);
+    if (hash && S.page === path) { const t = S.doc.getElementById(hash); if (t) setTimeout(() => scrollToEl(t), 50); }
+  }
+  // производные части страницы, которые на сайте строит скрипт: миниатюры фуршета, подписи калькулятора
+  const fmtNum = (n) => String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+  function syncDerived() {
+    S.doc.querySelectorAll('.ed-label[data-cat]').forEach(lab => {
+      const b = S.doc.querySelector('[data-menu-filter="' + CSS.escape(lab.getAttribute('data-cat')) + '"]');
+      if (b) lab.textContent = 'Вкладка «' + b.textContent.trim() + '»';
+    });
+    S.doc.querySelectorAll('[data-fst]').forEach(root => {
+      const items = [...root.querySelectorAll('.fst-it')];
+      items.forEach(it => {
+        const n = it.getAttribute('data-name') || '';
+        it.setAttribute('aria-label', n);
+        const im = it.querySelector('img'); if (im) im.setAttribute('alt', n);
+      });
+      const thumbs = root.querySelector('.fst-thumbs');
+      if (thumbs) {
+        thumbs.replaceChildren(...items.map(it => {
+          const b = S.doc.createElement('button');
+          b.type = 'button'; b.className = 'fst-th'; b.setAttribute('aria-label', it.getAttribute('data-name') || '');
+          const im = S.doc.createElement('img');
+          const src = it.querySelector('img'); im.setAttribute('src', src ? src.getAttribute('src') : ''); im.setAttribute('alt', ''); im.setAttribute('loading', 'lazy');
+          b.append(im); return b;
+        }));
+      }
+      const first = items[0];
+      const cap = root.querySelector('.fst-cap');
+      if (first && cap) {
+        const set = (sel, a) => { const x = cap.querySelector(sel); if (x) x.textContent = first.getAttribute(a) || ''; };
+        set('.fst-name', 'data-name'); set('.fst-desc', 'data-desc'); set('.fst-w', 'data-w'); set('.fst-p', 'data-p');
+      }
+    });
+    S.doc.querySelectorAll('.tk-ready[data-decor][aria-label]').forEach(t => {
+      const al = t.getAttribute('aria-label');
+      const nw = al.replace(/(декор )\d[\d\s\u00a0]*?(?= рубл| ?₽|$)/, '$1' + String(Math.round(Number(t.getAttribute('data-decor')) || 0)));
+      if (nw !== al) t.setAttribute('aria-label', nw);
+    });
+    const c = calcData();
+    if (c) {
+      const d = c.data;
+      S.doc.querySelectorAll('#calcFilling option').forEach(o => {
+        const f = d.fillings && d.fillings[o.value];
+        if (f) o.textContent = o.value + '. ' + f.name + ' — ' + fmtNum(f.price) + '\u00a0₽/кг';
+      });
+      S.doc.querySelectorAll('#calcReady option').forEach(o => {
+        const r = d.ready && d.ready[o.value];
+        if (r) o.textContent = o.textContent.replace(/декор [\d\s\u00a0]+₽/, 'декор ' + fmtNum(r.decor) + '\u00a0₽');
+      });
+    }
+  }
+  // правки в списке «Калькулятор торта» → карточки начинок и плитки готовых тортов
+  function pushCalcToPage(d) {
+    S.doc.querySelectorAll('.tk-fill').forEach(card => {
+      const n = (card.querySelector('.tk-fill__num') || {}).textContent;
+      const f = n && d.fillings && d.fillings[n.trim()];
+      if (!f) return;
+      const pr = card.querySelector('.tk-fill__price'); if (pr) pr.textContent = fmtNum(f.price) + '\u00a0₽/кг';
+      const nm = card.querySelector('.tk-fill__name'); if (nm) nm.textContent = f.name;
+    });
+    S.doc.querySelectorAll('.tk-ready[data-num]').forEach(t => {
+      const r = d.ready && d.ready[t.getAttribute('data-num')];
+      if (!r) return;
+      t.setAttribute('data-decor', String(r.decor));
+    });
   }
   const titleOf = (p) => { const x = S.pages.find(q => q.path === p); return x ? x.title : p; };
 
@@ -444,6 +588,9 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     doc.addEventListener('paste', onFramePaste, true);
     doc.addEventListener('submit', (e) => e.preventDefault(), true);
     doc.addEventListener('dragstart', (e) => e.preventDefault(), true);
+    doc.addEventListener('dragover', (e) => e.preventDefault(), true);
+    doc.addEventListener('drop', (e) => { e.preventDefault(); toast('Чтобы поменять фото, кликните по нему и нажмите «Заменить фото»'); }, true);
+    doc.addEventListener('auxclick', (e) => e.preventDefault(), true);
     doc.addEventListener('input', () => { if (S.editing) { S.dirty = true; refreshTop(); } });
   }
   function setHover(n) {
@@ -466,6 +613,12 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     finishEditing();
     setHover(null);
     if (t.localName === 'img') { select(t); return; }
+    const fst = t.closest('.fst-it');
+    if (fst && fst.querySelector('img')) { select(fst.querySelector('img')); return; }
+    const nav = navTarget(t);
+    if (nav && nav.scroll) { scrollToEl(nav.scroll); select(nav.el); return; }
+    // простая ссылка на другую страницу (пункт меню, кнопка) — выделяем, переход и правка названия кнопками справа
+    if (nav && nav.page && !nav.el.querySelector('p,h1,h2,h3,h4,h5,div,li,img')) { select(nav.el); return; }
     const tb = textBlock(t);
     if (tb) { startEditing(tb, e.clientX, e.clientY); return; }
     select(t.nodeType === 1 ? t : t.parentElement);
@@ -479,6 +632,8 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       return;
     }
     if (e.key === 'Escape') { e.preventDefault(); finishEditing(); select(S.sel); return; }
+    // в тексте внутри кнопки (вкладки меню) пробел иначе «нажимает» кнопку и не печатается
+    if (e.key === ' ' && !mod && S.editing.closest('button')) { e.preventDefault(); S.doc.execCommand('insertText', false, ' '); return; }
     if (e.key === 'Enter') {
       e.preventDefault();
       const multi = /^(P|LI|DIV|TD|BLOCKQUOTE|DD|FIGCAPTION)$/.test(S.editing.tagName);
@@ -544,6 +699,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     cleanEdited(b);
     if (b.innerHTML !== S.editBefore) {
       afterTextHooks(b);
+      syncDerived();
       markDirty('текст');
     } else if (!silent) {
       S.undo.pop();
@@ -609,6 +765,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     'program-pkg': 'Программа', 'nav-card': 'Плитка навигации', 'nav-item': 'Пункт меню', 'addon-mini': 'Доп', 'meta-chip': 'Метка',
     'badge-pill': 'Плашка', 'extras-col': 'Колонка', 'journey-step': 'Шаг', 'callout': 'Плашка с текстом',
     'booking-day': 'День', 'fill-card': 'Начинка', 'filling-card': 'Начинка', 'tk-step': 'Шаг', 'pkg-card__price-row': 'Строка цены',
+    'fst-it': 'Позиция фуршета', 'menu-category': 'Вкладка меню', 'menu-filter': 'Кнопка вкладки', 'tk-fill': 'Начинка', 'tk-ready': 'Готовый торт',
     'room-grid': null,
   };
   function keyOf(n) { return n.tagName + '.' + (n.classList[0] || ''); }
@@ -651,6 +808,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     finishEditing(true);
     pushUndo();
     fn();
+    syncDerived();
     markDirty(what);
     markSelection();
     renderSide();
@@ -700,11 +858,47 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     m = modal({ title: 'Куда перенести?', text: 'Блок окажется последним в выбранном разделе, потом его можно поднять кнопкой ↑.', body: box });
   }
 
+  // блок верхнего уровня внутри раздела страницы — после него можно вставить новый
+  function blockAnchor(n) {
+    for (let x = n; x && x !== S.doc.body; x = x.parentElement) {
+      const p = x.parentElement;
+      if (!p) return null;
+      if (p.classList.contains('container') && p.parentElement && p.parentElement.tagName === 'SECTION') return x;
+      if (p.tagName === 'SECTION' && !x.classList.contains('container')) return x;
+    }
+    return null;
+  }
+  function insertBlock(anchor, kind) {
+    let el;
+    act(() => {
+      if (kind === 'callout') {
+        el = S.doc.createElement('div');
+        el.className = 'callout';
+        el.textContent = 'Новый текст — кликните и напишите свой';
+      } else {
+        el = S.doc.createElement('div');
+        el.className = 'category-intro';
+        const p = S.doc.createElement('p');
+        p.textContent = 'Новый текст — кликните и напишите свой';
+        el.append(p);
+      }
+      const ws = anchor.previousSibling && anchor.previousSibling.nodeType === 3 && /^\s+$/.test(anchor.previousSibling.data) ? anchor.previousSibling.data.replace(/^[^\n]*\n/, '\n') : '\n';
+      anchor.after(S.doc.createTextNode(ws), el);
+    }, 'добавлен блок');
+    const target = el.querySelector('p') || el;
+    target.scrollIntoView({ block: 'center' });
+    const r = target.getBoundingClientRect();
+    startEditing(target, r.left + 4, r.top + r.height / 2);
+    const sel = S.doc.getSelection(); const range = S.doc.createRange(); range.selectNodeContents(target); sel.removeAllRanges(); sel.addRange(range);
+    toast('Блок добавлен — напишите текст. Курсив: Ctrl+I, жирный: Ctrl+B');
+  }
+
   // ---------------------------------------------------------------- свойства
   const ATTR_LABELS = {
     href: 'Ссылка', alt: 'Описание фото (для поиска)', 'data-price': 'Цена (в окне с фото)', 'data-name': 'Название для поиска',
     'data-vk': 'Ссылка на альбом ВКонтакте', 'data-slug': 'Код торта (для доп. фото)', 'data-gallery': 'Код галереи фото',
     'data-video-title': 'Название видео', 'data-img': 'Большое фото', 'data-num': 'Номер',
+    'data-desc': 'Описание', 'data-w': 'Вес', 'data-p': 'Цена', 'data-decor': 'Цена декора, ₽ (число)', 'data-theme': 'Категория (код: thematic, cartoon…)',
   };
   const ATTR_SKIP = /^(data-hide|data-ed.*|data-video-full|data-toggle-card|data-flyout.*|data-admin.*|data-menu-.*|data-fst.*|data-tab.*)$/;
   function attrFields(n) {
@@ -718,9 +912,11 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
         if (!snap) { pushUndo(); snap = true; }
         n.setAttribute(a, inp.value);
         if (a === 'data-decor' && n.matches('.tk-ready[data-num]')) syncCalc(d => { const r = d.ready && d.ready[n.getAttribute('data-num')]; if (!r) return false; r.decor = num(inp.value); });
+        syncDerived();
         markDirty('свойства');
       });
-      out.push(h('label', { class: 'field' }, ATTR_LABELS[a] || a, inp));
+      const lab = (a === 'data-name' && n.matches('.fst-it')) ? 'Название' : (ATTR_LABELS[a] || a);
+      out.push(h('label', { class: 'field' }, lab, inp));
     });
     return out;
   }
@@ -786,7 +982,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     if (S.editing) {
       s.append(h('div', { class: 'panel' },
         h('p', { class: 'panel__title' }, 'Редактирование текста'),
-        h('p', { class: 'hint' }, 'Печатайте прямо на странице. Выделите слово и нажмите Ctrl+B (на Mac ⌘+B), чтобы сделать его жирным. Enter в абзаце — новая строка, в заголовке — завершить правку.'),
+        h('p', { class: 'hint' }, 'Печатайте прямо на странице. Выделите слово и нажмите Ctrl+B (на Mac ⌘+B) — жирный, Ctrl+I — курсив. Enter в абзаце — новая строка, в заголовке — завершить правку.'),
         btn('Готово', { cls: 'btn--purple btn--sm', onClick: () => { finishEditing(); select(S.sel); } })));
     }
 
@@ -799,9 +995,19 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
         h('img', { class: 'thumb', src: n.currentSrc || n.src, alt: '' }),
         h('div', { class: 'btn-row' }, btn('Заменить фото', { icon: 'photo', cls: 'btn--purple', onClick: () => replaceImage(n) })),
         h('p', { class: 'hint', style: 'margin-top:10px' }, 'Лучше всего подходят фото на белом или прозрачном фоне. Большие фото уменьшатся автоматически.'),
-        h('label', { class: 'field' }, ATTR_LABELS.alt, alt)));
+        n.closest('.fst-it') ? null : h('label', { class: 'field' }, ATTR_LABELS.alt, alt)));
     }
 
+    const nv = navTarget(n);
+    if (nv && (!S.editing || nv.page)) {
+      const tb = textBlock(nv.el);
+      s.append(h('div', { class: 'panel' },
+        h('p', { class: 'panel__title' }, nv.page ? 'Ссылка на страницу «' + nv.label + '»' : 'Переход к разделу «' + nv.label + '»'),
+        h('div', { class: 'btn-row' },
+          nv.page ? btn('Открыть в редакторе', { cls: 'btn--purple btn--sm', onClick: () => goToPage(nv.page, nv.hash) })
+                  : btn('Перейти', { cls: 'btn--purple btn--sm', onClick: () => scrollToEl(nv.scroll) }),
+          tb && !S.editing ? btn('Изменить название', { cls: 'btn--sm', onClick: () => { const r = tb.getBoundingClientRect(); startEditing(tb, r.left + r.width - 2, r.top + r.height / 2); } }) : null)));
+    }
     const ph = n.closest('[data-video-full], .program-card__photo, .feature-card__photo');
     if (ph) {
       const v = ph.getAttribute('data-video-full');
@@ -846,6 +1052,14 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       const af = attrFields(n).filter(() => !chain.includes(n));
       if (af.length) s.append(h('div', { class: 'panel' }, h('p', { class: 'panel__title' }, 'Свойства'), ...af));
     }
+    const anchor = blockAnchor(n);
+    if (anchor && !S.editing) {
+      s.append(h('div', { class: 'panel' },
+        h('p', { class: 'panel__title' }, 'Добавить под этим блоком'),
+        h('div', { class: 'btn-row' },
+          btn('Плашка с текстом', { cls: 'btn--sm', onClick: () => insertBlock(anchor, 'callout') }),
+          btn('Абзац текста', { cls: 'btn--sm', onClick: () => insertBlock(anchor, 'text') }))));
+    }
     s.append(btn('Снять выделение', { cls: 'btn--ghost btn--sm', onClick: () => { finishEditing(); select(null); } }));
     renderLists(s);
   }
@@ -866,6 +1080,8 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
         h('li', null, h('b', null, 'Карточка'), ' — кликните по пустому месту карточки: появятся кнопки скрыть, дублировать, удалить, переставить.'),
         h('li', null, h('b', null, 'Новая программа'), ' — «Дублировать» похожую карточку и поменять в копии текст и фото.'),
         h('li', null, h('b', null, 'Подробное описание'), ' программ показано под пунктирной линией в карточке.'),
+        h('li', null, h('b', null, 'Новый текст или плашка'), ' — выделите блок, под которым он нужен, и нажмите «Добавить под этим блоком».'),
+        h('li', null, h('b', null, 'Вкладки и ссылки'), ' — клик переносит к нужному разделу; название меняется кнопкой справа.'),
         h('li', null, 'Когда всё готово — зелёная кнопка ', h('b', null, '«Сохранить»'), '. Через 1–2 минуты изменения появятся на сайте.')));
     renderLists(s);
     if (hiddenOnPage.length) {
@@ -901,13 +1117,16 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     try { data = JSON.parse(sc.textContent); schema = JSON.parse(sc.getAttribute('data-admin-schema')); } catch (e) { toast('Список повреждён — его можно поправить через «Код»', 'err'); return; }
     const body = h('div');
     let m;
-    const rerender = () => { body.replaceChildren(renderNode(schema, data, rerender, null)); };
-    rerender();
+    let changed = false;
+    const rerender = () => { changed = true; body.replaceChildren(renderNode(schema, data, rerender, null)); };
+    body.addEventListener('input', () => { changed = true; });
+    body.addEventListener('change', () => { changed = true; });
+    body.replaceChildren(renderNode(schema, data, rerender, null));
     m = modal({
-      title: sc.getAttribute('data-admin'), wide: true, body,
+      title: sc.getAttribute('data-admin'), wide: true, body, confirmClose: () => changed,
       buttons: [{ label: 'Отмена' }, { label: 'Применить', cls: 'btn--green', onClick: () => {
         if (schema.type === 'groups' && schema.of && schema.of.type === 'list') for (const k of Object.keys(data)) if (!data[k].length) delete data[k];
-        act(() => { sc.textContent = '\n' + JSON.stringify(data, null, 1) + '\n'; }, 'список «' + sc.getAttribute('data-admin') + '»');
+        act(() => { sc.textContent = '\n' + JSON.stringify(data, null, 1) + '\n'; if (sc.id === 'cakeCalc') pushCalcToPage(data); }, 'список «' + sc.getAttribute('data-admin') + '»');
         toast('Изменения в списке применены — не забудьте сохранить', 'ok');
       } }],
     });
@@ -1183,7 +1402,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       const what = (m ? m[2] : it.message).split('\n')[0];
       rows.append(h('div', { class: 'row' },
         h('div', { class: 'row__main' }, h('div', { class: 'row__title' }, what), h('div', { class: 'row__sub' }, fmt.format(new Date(it.date)) + ' · ' + who)),
-        btn('Вернуть как было', { cls: 'btn--sm', onClick: (e) => revert(it, what, e.currentTarget) })));
+        it.merge ? h('span', { class: 'hint' }, 'служебная') : btn('Вернуть как было', { cls: 'btn--sm', onClick: (e) => revert(it, what, e.currentTarget) })));
     });
   }
   let reverting = false;
@@ -1210,7 +1429,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     ta.value = serialize();
     const start = ta.value;
     modal({
-      title: 'Код страницы «' + titleOf(S.page) + '»', wide: true,
+      title: 'Код страницы «' + titleOf(S.page) + '»', wide: true, confirmClose: () => ta.value !== start,
       text: 'Для разработчика. Ошибка в коде может сломать страницу — если сомневаетесь, закройте это окно.',
       body: ta,
       buttons: [{ label: 'Закрыть' }, { label: 'Применить', cls: 'btn--purple', onClick: () => {

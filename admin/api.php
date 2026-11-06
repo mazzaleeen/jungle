@@ -12,9 +12,10 @@ if (!jc_user()) jc_fail('Нужно войти заново', 401);
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
 
+if ($action === 'csrf' && !$isPost) jc_json(array('csrf' => $_SESSION['csrf'])); // после повторного входа в другой вкладке
 if ($isPost) {
     $t = isset($_SERVER['HTTP_X_CSRF']) ? $_SERVER['HTTP_X_CSRF'] : '';
-    if (!hash_equals($_SESSION['csrf'], $t)) jc_fail('Сессия устарела, обновите страницу', 403);
+    if (!hash_equals($_SESSION['csrf'], $t)) jc_json(array('error' => 'Сессия устарела, обновите страницу', 'csrfExpired' => true), 403);
 }
 session_write_close(); // не держим блокировку сессии во время долгих запросов к GitHub
 

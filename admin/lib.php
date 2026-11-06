@@ -358,7 +358,8 @@ function jc_history() {
     $out = array();
     foreach ($list as $it) {
         $out[] = array('sha' => $it['sha'], 'message' => $it['commit']['message'],
-            'date' => $it['commit']['author']['date'], 'author' => $it['commit']['author']['name']);
+            'date' => $it['commit']['author']['date'], 'author' => $it['commit']['author']['name'],
+            'merge' => isset($it['parents']) && count($it['parents']) > 1);
     }
     return $out;
 }
@@ -381,6 +382,7 @@ function jc_revert($sha, $prefix = '') {
     $rp = jc_repo_path();
     $commit = jc_gh('GET', $rp . '/commits/' . $sha);
     if (empty($commit['parents'])) throw new JcGitHubError('Эту правку нельзя откатить', 400);
+    if (count($commit['parents']) > 1) throw new JcGitHubError('Это служебное слияние веток — его нельзя вернуть из админки', 400);
     $parent = $commit['parents'][0]['sha'];
     $pc = jc_gh('GET', $rp . '/git/commits/' . $parent);
     $tree = jc_gh('GET', $rp . '/git/trees/' . $pc['tree']['sha'] . '?recursive=1');
