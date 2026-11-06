@@ -12,24 +12,70 @@ const JC_UPLOAD_RE = '~^assets/uploads/[a-z0-9_-]+(/[a-z0-9_-]+)*\.(webp|jpg|jpe
 const JC_MAX_IMAGE = 8388608;    // 8 МБ
 const JC_MAX_VIDEO = 31457280;   // 30 МБ
 
-function jc_config() {
+function jc_base_config() {
     static $cfg = null;
     if ($cfg !== null) return $cfg;
     $file = __DIR__ . '/config.php';
-    if (!is_file($file)) {
-        $cfg = array();
-        return $cfg;
-    }
-    $cfg = include $file;
+    $cfg = is_file($file) ? include $file : array();
     if (!is_array($cfg)) $cfg = array();
-    $cfg += array('branch' => 'main', 'users' => array(), 'token' => '', 'repo' => '');
+    $cfg += array('users' => array(), 'token' => '');
+    // пользователи: логин => ['hash' => ..., 'sites' => ['*'] | ['nn', 'orel', ...]]
+    foreach ($cfg['users'] as $login => $u) {
+        if (is_string($u)) $cfg['users'][$login] = array('hash' => $u, 'sites' => array('*'));
+    }
     return $cfg;
 }
 
+/** Города из sites.json: id => [name, repo, branch, url, pages]. */
+function jc_sites() {
+    static $sites = null;
+    if ($sites !== null) return $sites;
+    $sites = array();
+    $d = json_decode((string)@file_get_contents(__DIR__ . '/sites.json'), true);
+    if (is_array($d) && isset($d['sites'])) foreach ($d['sites'] as $s) {
+        if (empty($s['id']) || empty($s['repo'])) continue;
+        $s += array('branch' => 'main', 'name' => $s['id'], 'url' => '../', 'pages' => array());
+        $bc = jc_base_config();
+        if (!empty($bc['site_urls'][$s['id']])) $s['url'] = $bc['site_urls'][$s['id']]; // только для проверки на тестовом сервере
+        $sites[$s['id']] = $s;
+    }
+    return $sites;
+}
+
+$GLOBALS['JC_CUR_SITE'] = null;
+function jc_use_site($id) { $GLOBALS['JC_CUR_SITE'] = $id; }
+function jc_cur_site() { return $GLOBALS['JC_CUR_SITE']; }
+
+/** Настройки с учётом выбранного города (репозиторий, ветка). */
+function jc_config() {
+    $c = jc_base_config();
+    $id = jc_cur_site();
+    $sites = jc_sites();
+    if ($id && isset($sites[$id])) {
+        $c['repo'] = $sites[$id]['repo'];
+        $c['branch'] = $sites[$id]['branch'];
+        if (!empty($c['mock_dirs'][$id])) $c['mock_dir'] = $c['mock_dirs'][$id];
+    } else {
+        $c += array('repo' => '', 'branch' => 'main');
+    }
+    return $c;
+}
+
 function jc_configured() {
-    $c = jc_config();
-    if (!empty($c['mock_dir'])) return !empty($c['users']);
-    return !empty($c['users']) && !empty($c['token']) && !empty($c['repo']);
+    $c = jc_base_config();
+    if (!jc_sites() || !$c['users']) return false;
+    return !empty($c['token']) || !empty($c['mock_dirs']);
+}
+
+/** Города, доступные текущему пользователю (проверяется на каждом запросе). */
+function jc_allowed_sites() {
+    $u = jc_user();
+    $c = jc_base_config();
+    if (!$u || !isset($c['users'][$u])) return array();
+    $want = $c['users'][$u]['sites'];
+    $out = array();
+    foreach (jc_sites() as $id => $s) if (in_array('*', $want, true) || in_array($id, $want, true)) $out[] = $id;
+    return $out;
 }
 
 function jc_is_https() {
@@ -86,9 +132,9 @@ function jc_rl_fail() {
 function jc_rl_clear() { @unlink(jc_rl_file()); }
 
 function jc_login($login, $password) {
-    $c = jc_config();
+    $c = jc_base_config();
     $login = mb_strtolower(trim((string)$login));
-    $hash = isset($c['users'][$login]) ? $c['users'][$login] : null;
+    $hash = isset($c['users'][$login]['hash']) ? $c['users'][$login]['hash'] : null;
     // одинаковое время ответа, есть такой логин или нет
     $ok = $hash ? password_verify((string)$password, $hash) : (password_hash('x', PASSWORD_DEFAULT) && false);
     if ($hash && $ok) {

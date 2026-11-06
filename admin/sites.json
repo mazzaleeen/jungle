@@ -1,0 +1,41 @@
+{
+  "_comment": "Города в админке. Чтобы добавить город: новый блок ниже + доступ ключа ADMIN_GH_TOKEN к его репозиторию. Пароли и ключи сюда не писать.",
+  "sites": [
+    {
+      "id": "nn",
+      "name": "Нижний Новгород",
+      "aliases": ["нн", "нижний", "нижний новгород", "nn"],
+      "repo": "mazzaleeen/jungle",
+      "branch": "main",
+      "url": "../",
+      "pages": {
+        "index.html": "Главная",
+        "komnaty.html": "Комнаты",
+        "animations.html": "Анимации",
+        "paketnye-predlozheniya.html": "Пакетные предложения",
+        "dopolneniya.html": "Впечатления",
+        "vypusknoy.html": "Выпускные",
+        "torty.html": "Торты",
+        "menu.html": "Ресторан"
+      }
+    },
+    {
+      "id": "orel",
+      "name": "Орёл",
+      "aliases": ["орёл", "орел", "orel"],
+      "repo": "mazzaleeen/jungleOREL",
+      "branch": "main",
+      "url": "https://orel.jucity.ru/uslugi/",
+      "pages": {
+        "index.html": "Главная",
+        "komnaty.html": "Комнаты",
+        "animations.html": "Анимации",
+        "paketnye-predlozheniya.html": "Пакетные предложения",
+        "vpechatleniya.html": "Впечатления",
+        "vypusknoy.html": "Выпускные",
+        "torty.html": "Торты",
+        "menu.html": "Ресторан"
+      }
+    }
+  ]
+}

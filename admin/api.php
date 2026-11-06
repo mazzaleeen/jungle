@@ -33,35 +33,41 @@ function jc_detect_type($bin) {
     return null;
 }
 
-$PAGE_TITLES = array(
-    'index.html' => 'Главная', 'komnaty.html' => 'Комнаты', 'animations.html' => 'Анимации',
-    'paketnye-predlozheniya.html' => 'Пакетные предложения', 'dopolneniya.html' => 'Впечатления',
-    'vypusknoy.html' => 'Выпускные', 'torty.html' => 'Торты', 'menu.html' => 'Ресторан',
-);
+// ---------- город ----------
+$allowed = jc_allowed_sites();
+if (!$allowed) jc_fail('У вашего логина нет доступа ни к одному городу', 403);
+$siteId = isset($_GET['site']) ? (string)$_GET['site'] : '';
+$sites = jc_sites();
+if ($action !== 'sites') {
+    if (!in_array($siteId, $allowed, true)) jc_fail('Нет доступа к этому городу', 403);
+    jc_use_site($siteId);
+}
+$sitePages = $action !== 'sites' ? $sites[$siteId]['pages'] : array();
+function jc_page_allowed($path) {
+    global $sitePages;
+    return preg_match(JC_PAGE_RE, $path) && isset($sitePages[$path]);
+}
 
 try {
     switch ($action) {
-        case 'me':
-            jc_json(array('user' => jc_user()));
+        case 'sites':
+            $out = array();
+            foreach ($allowed as $id) {
+                $out[] = array('id' => $id, 'name' => $sites[$id]['name'], 'url' => $sites[$id]['url']);
+            }
+            jc_json(array('user' => jc_user(), 'sites' => $out));
 
         case 'pages':
+            $existing = array_flip(jc_list_pages());
             $out = array();
-            foreach (jc_list_pages() as $p) {
-                $out[] = array('path' => $p, 'title' => isset($PAGE_TITLES[$p]) ? $PAGE_TITLES[$p] : $p);
-            }
-            usort($out, function ($a, $b) use ($PAGE_TITLES) {
-                $ka = array_search($a['path'], array_keys($PAGE_TITLES));
-                $kb = array_search($b['path'], array_keys($PAGE_TITLES));
-                $ka = $ka === false ? 99 : $ka; $kb = $kb === false ? 99 : $kb;
-                return $ka - $kb;
-            });
+            foreach ($sitePages as $p => $title) if (isset($existing[$p])) $out[] = array('path' => $p, 'title' => $title);
             jc_json(array('pages' => $out));
 
         case 'file':
             // имя страницы без .html — некоторые фильтры хостинга блокируют «index.html» в адресе запроса
             $page = isset($_GET['page']) ? (string)$_GET['page'] : '';
             $path = preg_match('~^[a-z0-9_-]+$~', $page) ? $page . '.html' : (isset($_GET['path']) ? $_GET['path'] : '');
-            if (!preg_match(JC_PAGE_RE, $path)) jc_fail('Недопустимый файл');
+            if (!jc_page_allowed($path)) jc_fail('Эту страницу нельзя редактировать');
             $f = jc_get_file($path);
             jc_json(array('path' => $path, 'content' => $f['content'], 'sha' => $f['sha']));
 
@@ -93,7 +99,7 @@ try {
             if (!$files && !$uploads) jc_fail('Нечего сохранять');
             if (count($files) > 20 || count($uploads) > 200) jc_fail('Слишком много изменений за раз');
             foreach ($files as $f) {
-                if (!isset($f['path'], $f['content']) || !preg_match(JC_PAGE_RE, $f['path'])) jc_fail('Недопустимый файл');
+                if (!isset($f['path'], $f['content']) || !jc_page_allowed($f['path'])) jc_fail('Эту страницу нельзя редактировать');
                 if (strlen($f['content']) > 3000000 || stripos($f['content'], '<html') === false) jc_fail('Страница «' . $f['path'] . '» выглядит повреждённой — сохранение отменено');
                 $changes[] = array('path' => $f['path'], 'content' => $f['content']);
                 $expected[$f['path']] = isset($f['base']) ? $f['base'] : null;

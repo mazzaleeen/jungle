@@ -5,7 +5,12 @@ require __DIR__ . '/lib.php';
 header('X-Robots-Tag: noindex, nofollow');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: same-origin');
-header("Content-Security-Policy: default-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
+$origins = array();
+foreach (jc_sites() as $s) {
+    if (preg_match('~^(https?://[^/]+)~i', $s['url'], $m)) $origins[$m[1]] = true;
+}
+$o = $origins ? ' ' . implode(' ', array_keys($origins)) : '';
+header("Content-Security-Policy: default-src 'self'; img-src 'self' blob: data:$o; media-src 'self' blob:$o; style-src 'self' 'unsafe-inline'$o; font-src 'self' data:$o; script-src 'self'; frame-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'$o; form-action 'self'");
 header('Cache-Control: no-store');
 
 $configured = jc_configured();
@@ -34,7 +39,7 @@ if ($configured && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 $user = $configured ? jc_user() : null;
-$v = '20261106b';
+$v = '20261106c';
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 ?><!doctype html>
 <html lang="ru">

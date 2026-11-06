@@ -6,7 +6,7 @@
 
   const CSRF = document.querySelector('meta[name="csrf"]').content;
   const USER = document.getElementById('app').dataset.user;
-  const SITE_BASE = new URL('../', location.href).href;
+  let SITE_BASE = new URL('../', location.href).href; // адрес сайта выбранного города
 
   // ---------------------------------------------------------------- утилиты
   function h(tag, attrs, ...kids) {
@@ -96,7 +96,8 @@
 
   async function api(action, opts) {
     opts = opts || {};
-    const url = 'api.php?action=' + action + (opts.params ? '&' + new URLSearchParams(opts.params) : '');
+    const params = Object.assign({}, S.site && action !== 'sites' ? { site: S.site } : {}, opts.params || {});
+    const url = 'api.php?action=' + action + (Object.keys(params).length ? '&' + new URLSearchParams(params) : '');
     const init = { method: opts.body ? 'POST' : 'GET', headers: { 'X-CSRF': CSRF }, credentials: 'same-origin', cache: 'no-store' };
     if (opts.body) { init.headers['Content-Type'] = 'application/json'; init.body = JSON.stringify(opts.body); }
     let r;
@@ -113,7 +114,7 @@
       fd.append('path', path);
       fd.append('file', blob, path.split('/').pop());
       const x = new XMLHttpRequest();
-      x.open('POST', 'api.php?action=upload');
+      x.open('POST', 'api.php?action=upload&site=' + encodeURIComponent(S.site));
       x.setRequestHeader('X-CSRF', CSRF);
       x.upload.onprogress = (e) => { if (e.lengthComputable && onProgress) onProgress(e.loaded / e.total); };
       x.onload = () => {
@@ -177,7 +178,7 @@
 
   // ---------------------------------------------------------------- состояние
   const S = {
-    pages: [], page: null, sha: null, crlf: false, doctype: '<!DOCTYPE html>',
+    sites: [], site: null, pages: [], page: null, sha: null, crlf: false, doctype: '<!DOCTYPE html>',
     doc: null, initial: '', dirty: false, changes: new Set(), undo: [],
     uploads: [], blobByPath: new Map(), pathByBlob: new Map(),
     sel: null, editing: null, editBefore: '', phone: false, hover: null, loading: false,
@@ -188,6 +189,7 @@
   document.body.classList.add('app');
   const ui = {};
   ui.pageName = h('span', { class: 'topbar__title' }, '');
+  ui.city = h('select', { class: 'city', title: 'Город', onchange: (e) => switchSite(e.target.value) });
   ui.pc = btn('Компьютер', { icon: 'pc', cls: 'is-on', onClick: () => setPhone(false) });
   ui.ph = btn('Телефон', { icon: 'phone', onClick: () => setPhone(true) });
   ui.undo = btn('Отменить', { icon: 'undo', disabled: true, title: 'Отменить последнее действие (Ctrl+Z)', onClick: undo });
@@ -197,6 +199,7 @@
   ui.view.insertAdjacentHTML('beforeend', I.ext);
   const topbar = h('header', { class: 'topbar' },
     h('img', { class: 'topbar__logo', src: '../images/image.png', alt: '' }),
+    ui.city,
     ui.pageName,
     h('div', { class: 'seg' }, ui.pc, ui.ph),
     ui.undo, ui.save, ui.deploy,
@@ -234,6 +237,7 @@
     ui.undo.disabled = !S.undo.length;
     const p = S.pages.find(x => x.path === S.page);
     ui.pageName.textContent = p ? p.title : '';
+    document.title = (p ? p.title + ' · ' : '') + (S.sites.find(x => x.id === S.site) || {}).name + ' — админка';
     ui.view.href = SITE_BASE + (S.page === 'index.html' ? '' : (S.page || ''));
     ui.pages.querySelectorAll('a').forEach(a => {
       const on = a.dataset.path === S.page;
@@ -317,7 +321,8 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       bindFrame(S.doc);
       if (!opts.keepState) { S.initial = S.doc.body.innerHTML; S.dirty = false; }
       else { S.dirty = true; }
-      if (location.hash !== '#' + path) history.replaceState(null, '', '#' + path);
+      const hash = '#' + S.site + '/' + path;
+      if (location.hash !== hash) history.replaceState(null, '', hash);
       renderSide();
       refreshTop();
     } catch (e) {
@@ -334,6 +339,29 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     if (!bar || !st) return;
     const hgt = Math.round(bar.getBoundingClientRect().height);
     st.textContent += ':root{--header-h:' + hgt + 'px;--subnav-top:' + hgt + 'px}';
+  }
+  async function switchSite(id, pagePath) {
+    const site = S.sites.find(x => x.id === id);
+    if (!site) return;
+    if (S.dirty && id !== S.site) {
+      const r = await ask('Сохранить правки?', 'На странице «' + titleOf(S.page) + '» есть несохранённые правки.', [
+        { label: 'Отмена', value: 'cancel' }, { label: 'Не сохранять', cls: 'btn--danger', value: 'drop' }, { label: 'Сохранить', cls: 'btn--green', value: 'save' }]);
+      if (!r || r === 'cancel') { ui.city.value = S.site; return; }
+      if (r === 'save' && !(await save())) { ui.city.value = S.site; return; }
+    }
+    S.dirty = false;
+    S.site = id;
+    ui.city.value = id;
+    SITE_BASE = new URL(site.url, location.href).href;
+    try { localStorage.setItem('jcadmin-site', id); } catch (e) { /* без запоминания */ }
+    S.pages = [];
+    renderPages();
+    ui.loading.hidden = false;
+    ui.loading.textContent = 'Загружаю страницы города…';
+    try { S.pages = (await api('pages')).pages; } catch (e) { ui.loading.textContent = e.message; return; }
+    renderPages();
+    const first = S.pages.find(p => p.path === pagePath) || S.pages.find(p => p.path === 'index.html') || S.pages[0];
+    if (first) await openPage(first.path, { force: true });
   }
   const titleOf = (p) => { const x = S.pages.find(q => q.path === p); return x ? x.title : p; };
 
@@ -523,7 +551,29 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     }
     if (!silent) renderSide();
   }
+  function calcData() {
+    const sc = S.doc.querySelector('script#cakeCalc');
+    if (!sc) return null;
+    try { return { sc, data: JSON.parse(sc.textContent) }; } catch (e) { return null; }
+  }
+  function syncCalc(fn) {
+    const c = calcData();
+    if (!c) return;
+    if (fn(c.data) !== false) c.sc.textContent = '\n' + JSON.stringify(c.data, null, 1) + '\n';
+  }
+  const num = (t) => Number(String(t).replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
   function afterTextHooks(b) {
+    const fill = b.closest('.tk-fill');
+    if (fill) {
+      const n = (fill.querySelector('.tk-fill__num') || {}).textContent;
+      if (n) syncCalc(d => {
+        const f = d.fillings && d.fillings[n.trim()];
+        if (!f) return false;
+        if (b.matches('.tk-fill__price')) f.price = num(b.textContent);
+        else if (b.matches('.tk-fill__name')) f.name = b.textContent.replace(/\s+/g, ' ').trim();
+        else return false;
+      });
+    }
     const tile = b.closest('.cake-tile');
     if (tile && b.matches('.cake-tile__label')) tile.setAttribute('data-name', b.textContent.replace(/\s+/g, ' ').trim().toLowerCase());
     const card = b.closest('.program-card,.feature-card');
@@ -667,6 +717,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       inp.addEventListener('input', () => {
         if (!snap) { pushUndo(); snap = true; }
         n.setAttribute(a, inp.value);
+        if (a === 'data-decor' && n.matches('.tk-ready[data-num]')) syncCalc(d => { const r = d.ready && d.ready[n.getAttribute('data-num')]; if (!r) return false; r.decor = num(inp.value); });
         markDirty('свойства');
       });
       out.push(h('label', { class: 'field' }, ATTR_LABELS[a] || a, inp));
@@ -796,8 +847,15 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       if (af.length) s.append(h('div', { class: 'panel' }, h('p', { class: 'panel__title' }, 'Свойства'), ...af));
     }
     s.append(btn('Снять выделение', { cls: 'btn--ghost btn--sm', onClick: () => { finishEditing(); select(null); } }));
+    renderLists(s);
   }
 
+  function renderLists(s) {
+    const lists = [...S.doc.querySelectorAll('script[data-admin]')];
+    if (!lists.length) return;
+    s.append(h('h4', null, 'Списки на этой странице'));
+    lists.forEach(sc => s.append(h('div', { style: 'margin-bottom:8px' }, btn(sc.getAttribute('data-admin'), { icon: 'list', cls: 'btn--purple btn--block', onClick: () => { finishEditing(); openList(sc); } }))));
+  }
   function renderHelp() {
     const s = ui.side;
     const hiddenOnPage = [...S.doc.querySelectorAll('body [data-hide]')].filter(x => !x.closest('nav,.nav,.quick-nav,footer'));
@@ -809,11 +867,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
         h('li', null, h('b', null, 'Новая программа'), ' — «Дублировать» похожую карточку и поменять в копии текст и фото.'),
         h('li', null, h('b', null, 'Подробное описание'), ' программ показано под пунктирной линией в карточке.'),
         h('li', null, 'Когда всё готово — зелёная кнопка ', h('b', null, '«Сохранить»'), '. Через 1–2 минуты изменения появятся на сайте.')));
-    const lists = [...S.doc.querySelectorAll('script[data-admin]')];
-    if (lists.length) {
-      s.append(h('h4', null, 'Списки на этой странице'));
-      lists.forEach(sc => s.append(h('div', { style: 'margin-bottom:8px' }, btn(sc.getAttribute('data-admin'), { icon: 'list', cls: 'btn--purple btn--block', onClick: () => openList(sc) }))));
-    }
+    renderLists(s);
     if (hiddenOnPage.length) {
       s.append(h('h4', null, 'Скрыто на этой странице: ' + hiddenOnPage.length));
       hiddenOnPage.slice(0, 30).forEach(x => s.append(h('div', { style: 'margin-bottom:6px' }, btn(itemLabel(x) + ': ' + (excerpt(x) || '—'), { cls: 'btn--sm btn--block', onClick: () => { x.scrollIntoView({ block: 'center', behavior: 'smooth' }); select(x); } }))));
@@ -859,6 +913,13 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     });
   }
   function fieldInput(fs, obj, key, root) {
+    if (fs.type === 'number') {
+      return h('label', { class: 'field' }, fs.label || key, h('input', { type: 'number', step: 'any', inputmode: 'decimal', value: obj[key] == null ? '' : obj[key],
+        oninput: (e) => { const v = e.target.value.replace(',', '.'); obj[key] = v === '' ? 0 : Number(v); } }));
+    }
+    if (fs.type === 'bool') {
+      return h('label', { class: 'field field--check' }, h('input', { type: 'checkbox', checked: obj[key] ? true : null, onchange: (e) => { obj[key] = e.target.checked; } }), fs.label || key);
+    }
     if (fs.type === 'select') {
       const opts = (root && root[fs.options]) || [];
       const sel = h('select', { onchange: (e) => { obj[key] = e.target.value; } });
@@ -937,26 +998,30 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
           if (q) return q.textContent.trim();
         }
         if (sch.groupLabel && sch.groupLabel.field && v && v[sch.groupLabel.field]) return v[sch.groupLabel.field];
+        if (sch.groupLabel && sch.groupLabel.template) return sch.groupLabel.template.replace('{key}', k);
         return k;
       };
       Object.keys(val).forEach(k => {
         const v = val[k];
         const cnt = Array.isArray(v) ? v.length : (v && Array.isArray(v.photos) ? v.photos.length : null);
-        const det = h('details', { class: 'ds-group' }, h('summary', null, label(k, v), cnt != null ? h('span', { class: 'count' }, cnt + ' фото') : null));
+        const det = h('details', { class: 'ds-group' }, h('summary', null, label(k, v), cnt != null ? h('span', { class: 'count' }, cnt + ' фото') : null,
+          sch.removable ? btn('', { icon: 'trash', cls: 'btn--sm btn--danger', title: 'Удалить', onClick: (e) => { e.preventDefault(); delete val[k]; rerender(); } }) : null));
         if (S.openGroups && S.openGroups.has(k)) det.open = true;
         det.addEventListener('toggle', () => { S.openGroups = S.openGroups || new Set(); if (det.open) S.openGroups.add(k); else S.openGroups.delete(k); });
         det.append(h('div', { class: 'ds-body' }, renderNode(sch.of, v, rerender, root)));
         wrap.append(det);
       });
-      if (sch.groupLabel && sch.groupLabel.selector && sch.of.type === 'list') {
-        const tiles = [...S.doc.querySelectorAll('[data-slug]')].map(t => t.getAttribute('data-slug')).filter(s => s && !(s in val));
+      const af = sch.addFrom || (sch.groupLabel && sch.groupLabel.selector && sch.of.type === 'list' ? { selector: '[data-slug]', attr: 'data-slug', title: 'Добавить доп. фото к другому торту', empty: [] } : null);
+      if (af) {
+        const tiles = [...new Set([...S.doc.querySelectorAll(af.selector)].map(t => t.getAttribute(af.attr)))].filter(s => s && !(s in val));
         if (tiles.length) {
           const sel = h('select', null, h('option', { value: '' }, '— выберите —'), ...tiles.map(sl => h('option', { value: sl }, label(sl))));
           wrap.append(h('div', { class: 'panel', style: 'margin-top:12px' },
-            h('p', { class: 'panel__title' }, 'Добавить доп. фото к другому торту'),
+            h('p', { class: 'panel__title' }, af.title || 'Добавить'),
+            af.hint ? h('p', { class: 'hint' }, af.hint) : null,
             h('div', { class: 'btn-row' }, sel, btn('Добавить', { cls: 'btn--purple btn--sm', onClick: () => {
               if (!sel.value) return;
-              val[sel.value] = [];
+              val[sel.value] = JSON.parse(JSON.stringify(af.empty !== undefined ? af.empty : []));
               S.openGroups = S.openGroups || new Set(); S.openGroups.add(sel.value);
               rerender();
             } }))));
@@ -1004,11 +1069,12 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
   function trackDeploy(sha) {
     clearTimeout(deployTimer);
     const started = Date.now();
+    const site = S.site;
     ui.deploy.hidden = false;
     ui.deploy.replaceChildren(h('span', { class: 'spin' }), 'Публикуется на сайте…');
     const tick = async () => {
       let st = { state: 'running' };
-      try { st = await api('status', { params: { sha } }); } catch (e) { /* повторим */ }
+      try { st = await api('status', { params: { sha, site } }); } catch (e) { /* повторим */ }
       if (st.state === 'done') {
         ui.deploy.replaceChildren('✓ На сайте');
         toast('Изменения уже на сайте', 'ok');
@@ -1166,11 +1232,14 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
 
   (async function init() {
     try {
-      S.pages = (await api('pages')).pages;
+      S.sites = (await api('sites')).sites;
     } catch (e) { ui.loading.textContent = e.message; return; }
-    renderPages();
-    const fromHash = decodeURIComponent(location.hash.slice(1));
-    const first = S.pages.find(p => p.path === fromHash) || S.pages.find(p => p.path === 'index.html') || S.pages[0];
-    if (first) openPage(first.path);
+    ui.city.replaceChildren(...S.sites.map(x => h('option', { value: x.id }, x.name)));
+    ui.city.hidden = S.sites.length < 2;
+    const m = decodeURIComponent(location.hash.slice(1)).match(/^([\w-]+)\/(.+)$/);
+    let saved = null;
+    try { saved = localStorage.getItem('jcadmin-site'); } catch (e) { /* */ }
+    const site = (m && S.sites.find(x => x.id === m[1])) || S.sites.find(x => x.id === saved) || S.sites[0];
+    await switchSite(site.id, m ? m[2] : null);
   })();
 })();
