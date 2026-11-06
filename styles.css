@@ -1314,3 +1314,16 @@ html.vm-open{overflow:hidden}
 
 /* скрыто через админку */
 body:not(.ed-mode) [data-hide]{display:none!important}
+
+/* начинки с фото (торты, Нижний) */
+.filling-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.filling-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:12px 12px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;transition:box-shadow .25s,transform .25s}
+.filling-card:hover{box-shadow:0 12px 28px rgba(74,17,133,.10);transform:translateY(-2px)}
+.filling-card__photo{width:100%;aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#fff}
+.filling-card__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.filling-card__name{font-weight:800;color:var(--purple-1);font-size:15px;line-height:1.25;margin:4px 0 0}
+.filling-card__price{margin-top:auto;background:var(--green);color:#fff;font-weight:900;font-size:13px;padding:6px 14px;border-radius:999px;white-space:nowrap}
+
+.fillings-group__rows--more{margin-top:14px}
+@media(max-width:900px){.filling-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.filling-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.filling-card{padding:8px 8px 12px;border-radius:18px}.filling-card__name{font-size:13.5px}.filling-card__price{font-size:12px;padding:5px 11px}}
