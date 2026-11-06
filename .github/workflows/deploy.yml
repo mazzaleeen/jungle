@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: deploy-to-hosting
+  cancel-in-progress: false
+
 jobs:
   ftp-deploy:
     name: FTP Deploy
@@ -12,6 +16,12 @@ jobs:
     steps:
       - name: Забрать последнюю версию кода
         uses: actions/checkout@v4
+
+      - name: Настройки админки из секретов
+        env:
+          ADMIN_USERS: ${{ secrets.ADMIN_USERS }}
+          ADMIN_GH_TOKEN: ${{ secrets.ADMIN_GH_TOKEN }}
+        run: php .github/scripts/admin-config.php
 
       - name: Залить файлы на хостинг по FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

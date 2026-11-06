@@ -1311,3 +1311,6 @@ html.vm-open{overflow:hidden}
 .kids-feature{margin-top:24px}
 .kids-feature .feature-card__photo{padding-bottom:0}
 @media(max-width:860px){.addon-strip__grid{grid-template-columns:1fr}.addon-strip{padding:20px 16px}.addon-mini{padding:12px;gap:12px;align-items:flex-start}.addon-mini__img{width:76px;height:92px}}
+
+/* скрыто через админку */
+body:not(.ed-mode) [data-hide]{display:none!important}
