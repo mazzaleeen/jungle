@@ -298,7 +298,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     ui.loading.hidden = false;
     ui.loading.textContent = 'Загружаю страницу…';
     try {
-      const d = opts.source != null ? { content: opts.source, sha: S.sha } : await api('file', { params: { path } });
+      const d = opts.source != null ? { content: opts.source, sha: S.sha } : await api('file', { params: { page: path.replace(/\.html$/, '') } });
       S.page = path;
       S.sha = d.sha;
       S.crlf = /\r\n/.test(d.content);
@@ -313,6 +313,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
         ui.frame.srcdoc = toEditorHtml(d.content);
       });
       S.doc = ui.frame.contentDocument;
+      fixStickyOffsets(S.doc);
       bindFrame(S.doc);
       if (!opts.keepState) { S.initial = S.doc.body.innerHTML; S.dirty = false; }
       else { S.dirty = true; }
@@ -325,6 +326,14 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       S.loading = false;
       ui.loading.hidden = true;
     }
+  }
+  // на сайте высоту шапки выставляет main.js; в редакторе скрипты сайта не работают — считаем сами
+  function fixStickyOffsets(doc) {
+    const bar = doc.querySelector('.main-bar');
+    const st = doc.querySelector('style[data-ed]');
+    if (!bar || !st) return;
+    const hgt = Math.round(bar.getBoundingClientRect().height);
+    st.textContent += ':root{--header-h:' + hgt + 'px;--subnav-top:' + hgt + 'px}';
   }
   const titleOf = (p) => { const x = S.pages.find(q => q.path === p); return x ? x.title : p; };
 
@@ -1032,7 +1041,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
     let docs;
     try {
       docs = await Promise.all(S.pages.map(async p => {
-        const d = await api('file', { params: { path: p.path } });
+        const d = await api('file', { params: { page: p.path.replace(/\.html$/, '') } });
         return { path: p.path, sha: d.sha, src: d.content, doc: new DOMParser().parseFromString(d.content, 'text/html') };
       }));
     } catch (e) { pm.close(); toast(e.message, 'err'); return; }
@@ -1097,7 +1106,7 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
   // ---------------------------------------------------------------- история
   async function openHistory() {
     const rows = h('div', { class: 'list-rows' }, h('p', { class: 'hint' }, 'Загружаю…'));
-    modal({ title: 'История правок', text: 'Последние 30 сохранений сайта. «Вернуть как было» отменяет выбранную правку отдельной новой правкой — её тоже можно будет вернуть.', body: rows, wide: true });
+    modal({ title: 'История правок', text: 'Последние 30 сохранений сайта.', body: rows, wide: true });
     let items;
     try { items = (await api('history')).items; } catch (e) { rows.replaceChildren(h('p', { class: 'hint' }, e.message)); return; }
     rows.replaceChildren();
@@ -1108,19 +1117,24 @@ body.ed-mode .booking-widget,body.ed-mode .mbar{display:none!important}
       const what = (m ? m[2] : it.message).split('\n')[0];
       rows.append(h('div', { class: 'row' },
         h('div', { class: 'row__main' }, h('div', { class: 'row__title' }, what), h('div', { class: 'row__sub' }, fmt.format(new Date(it.date)) + ' · ' + who)),
-        btn('Вернуть как было', { cls: 'btn--sm', onClick: () => revert(it, what) })));
+        btn('Вернуть как было', { cls: 'btn--sm', onClick: (e) => revert(it, what, e.currentTarget) })));
     });
   }
-  async function revert(it, what) {
+  let reverting = false;
+  async function revert(it, what, button) {
+    if (reverting) return;
     if (S.dirty) { toast('Сначала сохраните или отмените текущие правки', 'err'); return; }
     if (!(await confirmBox('Вернуть как было до этой правки?', '«' + what + '» — всё, что изменилось в этой правке, вернётся к прежнему виду.', 'Вернуть'))) return;
+    reverting = true;
+    if (button) button.disabled = true;
     try {
       const r = await api('revert', { body: { sha: it.sha } });
       document.querySelectorAll('.modal').forEach(x => x.remove());
       toast('Готово, правка отменена', 'ok');
       trackDeploy(r.commit);
       await openPage(S.page, { force: true });
-    } catch (e) { if (e.status !== 401) toast(e.message, 'err', 9000); }
+    } catch (e) { if (e.status !== 401) toast(e.message, 'err', 9000); if (button) button.disabled = false; }
+    finally { reverting = false; }
   }
 
   // ---------------------------------------------------------------- код

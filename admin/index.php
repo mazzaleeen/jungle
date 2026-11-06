@@ -34,7 +34,7 @@ if ($configured && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 $user = $configured ? jc_user() : null;
-$v = '20261106';
+$v = '20261106b';
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 ?><!doctype html>
 <html lang="ru">
@@ -49,15 +49,15 @@ function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 </head>
 <body class="<?= $user ? 'app' : 'auth' ?>">
 <?php if (!$configured): ?>
+  <img class="auth-logo" src="../images/image.png" alt="Джунгли Сити">
   <main class="auth-box">
-    <img class="auth-logo" src="../images/image.png" alt="Джунгли Сити">
     <h1>Админка ещё не подключена</h1>
     <p>Нужно добавить пароль и ключ GitHub в настройки репозитория (Settings → Secrets) и дождаться деплоя.</p>
   </main>
 <?php elseif (!$user): ?>
+  <img class="auth-logo" src="../images/image.png" alt="Джунгли Сити">
   <main class="auth-box">
-    <img class="auth-logo" src="../images/image.png" alt="Джунгли Сити">
-    <h1>Вход в админку</h1>
+    <h1>Вход</h1>
     <form method="post" class="auth-form" autocomplete="on">
       <input type="hidden" name="csrf" value="<?= h($_SESSION['csrf']) ?>">
       <label>Логин<input name="login" autocomplete="username" required autofocus></label>

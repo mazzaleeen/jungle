@@ -58,7 +58,9 @@ try {
             jc_json(array('pages' => $out));
 
         case 'file':
-            $path = isset($_GET['path']) ? $_GET['path'] : '';
+            // имя страницы без .html — некоторые фильтры хостинга блокируют «index.html» в адресе запроса
+            $page = isset($_GET['page']) ? (string)$_GET['page'] : '';
+            $path = preg_match('~^[a-z0-9_-]+$~', $page) ? $page . '.html' : (isset($_GET['path']) ? $_GET['path'] : '');
             if (!preg_match(JC_PAGE_RE, $path)) jc_fail('Недопустимый файл');
             $f = jc_get_file($path);
             jc_json(array('path' => $path, 'content' => $f['content'], 'sha' => $f['sha']));

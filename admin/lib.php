@@ -249,6 +249,7 @@ function jc_commit($changes, $message, $expected = array()) {
             }
         }
         $newTree = jc_gh('POST', $rp . '/git/trees', array('base_tree' => $commit['tree']['sha'], 'tree' => $tree));
+        if ($newTree['sha'] === $commit['tree']['sha']) return $head; // ничего не изменилось — пустую правку не создаём
         $newCommit = jc_gh('POST', $rp . '/git/commits', array(
             'message' => $message, 'tree' => $newTree['sha'], 'parents' => array($head),
         ));
